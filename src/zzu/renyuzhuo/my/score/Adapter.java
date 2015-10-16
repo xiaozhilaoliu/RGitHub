@@ -1,7 +1,8 @@
-package zzu.renyuzhuo.score;
+package zzu.renyuzhuo.my.score;
 
 import java.util.ArrayList;
 
+import zzu.renyuzhuo.score.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;

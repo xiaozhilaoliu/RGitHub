@@ -1,5 +1,7 @@
-package zzu.renyuzhuo.score;
+package zzu.renyuzhuo.my.score;
 
+import zzu.renyuzhuo.my.main.AboutActivity;
+import zzu.renyuzhuo.score.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;

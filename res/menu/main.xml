@@ -54,5 +54,10 @@
         android:title="@string/zzu_term_8"
         app:showAsAction="never"/>
     
-
+    <item
+        android:id="@+id/news"
+        android:orderInCategory="100"
+        android:title="@string/news"
+        app:showAsAction="never"/>
+    
 </menu>

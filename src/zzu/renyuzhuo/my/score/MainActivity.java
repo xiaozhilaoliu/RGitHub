@@ -1,4 +1,4 @@
-package zzu.renyuzhuo.score;
+package zzu.renyuzhuo.my.score;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import zzu.renyuzhuo.my.main.AboutActivity;
+import zzu.renyuzhuo.my.news.NewsMainActivity;
+import zzu.renyuzhuo.score.R;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
 	public static String nianji = "";
 	public static String xuehao = "";
 	public static String mima = "";
-	
+
 	private TextView fenxi;
 
 	@Override
@@ -191,7 +194,13 @@ public class MainActivity extends ActionBarActivity {
 				finish();
 				break;
 			}
-
+			case R.id.news: {
+				Intent intent = new Intent(MainActivity.this,
+						NewsMainActivity.class);
+				startActivity(intent);
+				MainActivity.this.finish();
+				break;
+			}
 			default:
 				break;
 			}

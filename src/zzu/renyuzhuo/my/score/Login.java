@@ -1,4 +1,4 @@
-package zzu.renyuzhuo.score;
+package zzu.renyuzhuo.my.score;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import zzu.renyuzhuo.main.Util;
+import zzu.renyuzhuo.my.main.Util;
 import android.os.Handler;
 import android.widget.ListView;
 

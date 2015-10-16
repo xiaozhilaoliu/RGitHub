@@ -29,6 +29,7 @@
         android:text="@string/activity_about4" />
 
     <ImageView
+        android:id="@+id/erweima"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/weixin_image"

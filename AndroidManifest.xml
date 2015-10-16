@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zzu.renyuzhuo.score"
     android:versionCode="1"
-    android:versionName="1.1" >
+    android:versionName="1.4" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -16,26 +16,38 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashActivity"
+            android:name="zzu.renyuzhuo.my.main.SplashActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="zzu.renyuzhuo.my.score.MainActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="zzu.renyuzhuo.my.score.LoginActivity"
             android:label="@string/title_activity_setting" >
         </activity>
         <activity
-            android:name=".AboutActivity"
+            android:name="zzu.renyuzhuo.my.main.AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
-        
+        <activity
+            android:name="zzu.renyuzhuo.my.main.MainActivity_1"
+            android:label="@string/title_activity_main_activity_1" >
+        </activity>
+        <activity
+            android:name="zzu.renyuzhuo.my.news.NewsMainActivity"
+            android:label="@string/title_activity_news_main" >
+        </activity>
+        <activity
+            android:name="zzu.renyuzhuo.my.news.GetSpecificNewsActivity"
+            android:label="@string/title_activity_get_specific_news" >
+        </activity>
     </application>
 
 </manifest>
