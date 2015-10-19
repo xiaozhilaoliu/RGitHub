@@ -6,6 +6,8 @@
     <string name="welcome">欢迎页面</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">关于</string>
+    <string name="news_shuoming">新闻说明</string>
+    <string name="job">工作</string>
     <string name="action_logout">退出</string>
     <string name="login_label_username">年级</string>
     <string name="login_username_hint">我的信息</string>
@@ -41,5 +43,7 @@
     <string name="title_activity_main_activity_1">MainActivity_1</string>
     <string name="title_activity_news_main">新闻列表</string>
     <string name="title_activity_get_specific_news">新闻详情</string>
+    <string name="title_activity_job_main">郑大招聘</string>
+    <string name="title_activity_get_specific_jobs">招聘信息详情</string>
 
 </resources>

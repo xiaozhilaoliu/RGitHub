@@ -1,10 +1,9 @@
-package zzu.renyuzhuo.my.news;
+package zzu.renyuzhuo.my.job;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
+import zzu.renyuzhuo.my.news.GetSpecificNews;
 import zzu.renyuzhuo.score.R;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 @SuppressLint("HandlerLeak")
-public class GetSpecificNewsActivity extends ActionBarActivity {
+public class GetSpecificJobsActivity extends ActionBarActivity {
 	Handler mHandler;
 	public static String html = null;
 	TextView tv;
@@ -24,11 +23,12 @@ public class GetSpecificNewsActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_get_specific_news);
+		setContentView(R.layout.activity_get_specific_jobs);
 
 		Bundle bundle = this.getIntent().getExtras();
-		String url = bundle.getString("url");
-		tv = (TextView) findViewById(R.id.newsspeciufic);
+		String url = "http://job.zzu.edu.cn/" + bundle.getString("url");
+		System.out.println(url);
+		tv = (TextView) findViewById(R.id.jobsspeciufic);
 		mHandler = new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
@@ -48,32 +48,19 @@ public class GetSpecificNewsActivity extends ActionBarActivity {
 
 	public void analysis() {
 		Document doc = Jsoup.parse(html);
-		Elements fonts = doc.select("[class=zzj_5]").select("font");
-		String dealContent = "    ";
-		for (int i = 0; i < fonts.size(); i++) {
-			Element fount = fonts.get(i);
-			String newsContent = fount.text();
-			
-			newsContent = newsContent.replaceAll("\\s", "");
-			newsContent = newsContent.trim();
-			
-			if (i != 0 && newsContent.length() > 0) {
-				dealContent += "\n    ";
-			}
-			dealContent += newsContent.trim();
-		}
+		String title = doc.select("h1").get(1).text();
+		String h2 = doc.select("h2").get(0).text()
+				+ doc.select("h2").get(1).text();
+		String cons = doc.select("div").get(15).text()
+				+ doc.select("div").get(16).text();
+		;
 
-		if (dealContent.contains("郑州大学版权所有，禁止非法转载！")) {
-			String[] s = dealContent.split("郑州大学版权所有，禁止非法转载！");
-			dealContent = s[0];
-		}
-
-		tv.setText(dealContent);
+		tv.setText(title + "\n\n" + h2 + "\n\n" + cons);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		
+		getMenuInflater().inflate(R.menu.get_specific_jobs, menu);
 		return true;
 	}
 

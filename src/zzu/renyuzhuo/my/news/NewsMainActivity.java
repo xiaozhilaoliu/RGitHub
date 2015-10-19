@@ -6,6 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import zzu.renyuzhuo.my.job.JobMainActivity;
 import zzu.renyuzhuo.my.main.AboutActivity;
 import zzu.renyuzhuo.my.score.MainActivity;
 import zzu.renyuzhuo.score.R;
@@ -23,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 @SuppressLint("HandlerLeak")
 public class NewsMainActivity extends ActionBarActivity {
@@ -78,7 +80,16 @@ public class NewsMainActivity extends ActionBarActivity {
 			case R.id.action_about: {
 				intent = new Intent(NewsMainActivity.this, AboutActivity.class);
 				startActivity(intent);
-//				finish();
+				// finish();
+				return true;
+			}
+			case R.id.news_shuoming: {
+				Toast.makeText(this, "新闻来自郑大新闻网首页,版权归郑大所有!", Toast.LENGTH_LONG).show();
+				return true;
+			}
+			case R.id.job_main: {
+				intent = new Intent(NewsMainActivity.this, JobMainActivity.class);
+				startActivity(intent);
 				return true;
 			}
 			default:
@@ -104,8 +115,7 @@ public class NewsMainActivity extends ActionBarActivity {
 			news.add(as.get(i).text());
 			links.add(as.get(i).attr("href"));
 		}
-		lv.setAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_expandable_list_item_1, news));
+		lv.setAdapter(new ArrayAdapter<String>(this, R.layout.news_list, news));
 		lv.setOnItemClickListener(new MyItemClickListener(this, links));
 	}
 

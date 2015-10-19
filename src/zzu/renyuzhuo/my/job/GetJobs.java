@@ -1,4 +1,4 @@
-package zzu.renyuzhuo.my.news;
+package zzu.renyuzhuo.my.job;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -6,16 +6,15 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import zzu.renyuzhuo.my.job.GetSpecificJobsActivity;
 import zzu.renyuzhuo.my.main.Util;
 import android.os.Handler;
 
 @SuppressWarnings("deprecation")
-public class GetSpecificNews extends Thread {
+public class GetJobs extends Thread {
 	private String url;
 	Handler mHandler = new Handler();
 
-	public GetSpecificNews(String url, Handler mHandler) {
+	public GetJobs(String url, Handler mHandler) {
 		this.url = url;
 		this.mHandler = mHandler;
 	}
@@ -27,12 +26,14 @@ public class GetSpecificNews extends Thread {
 	public void run() {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(url);
+
 		try {
 			mHttpResponse = httpClient.execute(httpGet);
+
 			if (mHttpResponse.getStatusLine().getStatusCode() == 200) {
 				htmlText = EntityUtils.toString(mHttpResponse.getEntity(),
 						"utf-8");
-				GetSpecificJobsActivity.html = htmlText;
+				JobMainActivity.html = htmlText;
 				mHandler.sendEmptyMessage(0);
 			}
 		} catch (Exception e) {

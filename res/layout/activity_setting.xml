@@ -13,25 +13,9 @@
         android:padding="15dip" >
 
         <TextView
-            android:id="@+id/nianji"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="5dp"
-            android:text="@string/login_label_username" />
-
-        <Spinner
-            android:id="@+id/nianji_text"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/nianji" >
-        </Spinner>
-
-        <TextView
             android:id="@+id/xuehao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/nianji_text"
             android:layout_marginTop="3dp"
             android:text="@string/login_label_password" />
 
@@ -41,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/xuehao"
             android:inputType="text"
+            android:labelFor="@id/xuehao_text"
             android:singleLine="true" />
 
         <TextView
@@ -57,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/mima"
             android:inputType="textPassword"
+            android:labelFor="@id/mima_text"
             android:singleLine="true" />
         <!-- 登录button -->
 

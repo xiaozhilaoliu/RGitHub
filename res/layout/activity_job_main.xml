@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="zzu.renyuzhuo.my.news.NewsMainActivity" >
+    tools:context="zzu.renyuzhuo.my.job.JobMainActivity" >
 
     <ListView
-        android:id="@+id/news_listview"
+        android:id="@+id/jobs_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"

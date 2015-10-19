@@ -8,9 +8,20 @@
         android:orderInCategory="100"
         android:title="@string/zzu_score"
         app:showAsAction="never"/>
-	<item
+    <item
         android:id="@+id/action_about"
         android:orderInCategory="100"
         android:title="@string/action_about"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/news_shuoming"
+        android:orderInCategory="100"
+        android:title="@string/news_shuoming"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/job_main"
+        android:orderInCategory="100"
+        android:title="@string/job"
+        app:showAsAction="never"/>
+
 </menu>
