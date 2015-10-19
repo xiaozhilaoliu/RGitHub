@@ -96,9 +96,17 @@ public class JobMainActivity extends ActionBarActivity {
 			}
 		}
 		if (flag) {
+			ArrayList<String> jobs_1 = new ArrayList<String>();
+			ArrayList<String> links_1 = new ArrayList<String>();
+			for (int i = jobs.size() - 1; i >= 0; i--) {
+				jobs_1.add(jobs.get(i));
+				links_1.add(links.get(i));
+
+			}
+
 			lv.setAdapter(new ArrayAdapter<String>(this, R.layout.news_list,
-					jobs));
-			lv.setOnItemClickListener(new MyItemClickListener(this, links));
+					jobs_1));
+			lv.setOnItemClickListener(new MyItemClickListener(this, links_1));
 		} else {
 			urlTemp = JOB_URL + page;
 			page++;
