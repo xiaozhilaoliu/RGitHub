@@ -8,20 +8,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import zzu.renyuzhuo.my.main.Util;
 import zzu.renyuzhuo.score.R;
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 @SuppressLint("HandlerLeak")
@@ -104,41 +99,14 @@ public class JobMainActivity extends ActionBarActivity {
 
 			}
 
-			lv.setAdapter(new ArrayAdapter<String>(this, R.layout.news_list,
-					jobs_1));
-			lv.setOnItemClickListener(new MyItemClickListener(this, links_1));
+			Util.listLinks(this, lv, jobs_1, links_1,
+					"zzu.renyuzhuo.my.job.GetSpecificJobsActivity");
 		} else {
 			urlTemp = JOB_URL + page;
 			page++;
 			System.out.println(page);
 			new GetJobs(urlTemp, mHandler).start();
 		}
-	}
-
-	/**
-	 * 对选项的点击做出应答动作
-	 * 
-	 * @author renyuzhuo
-	 *
-	 */
-	private static class MyItemClickListener implements OnItemClickListener {
-		private ArrayList<String> links;
-		Context context;
-
-		public MyItemClickListener(Context context, ArrayList<String> links) {
-			this.context = context;
-			this.links = links;
-		}
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			String href = links.get(position);
-			Intent intent = new Intent(context, GetSpecificJobsActivity.class);
-			intent.putExtra("url", href);
-			context.startActivity(intent);
-		}
-
 	}
 
 	@Override

@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import zzu.renyuzhuo.score.R;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class Util {
 	public static final boolean DEBUG = false;
@@ -77,4 +78,48 @@ public class Util {
 		}
 
 	}
+
+	public static void listLinks(final Context context, ListView lv,
+			ArrayList<String> shows, ArrayList<String> links, String str) {
+		lv.setAdapter(new ArrayAdapter<String>(context, R.layout.news_list,
+				shows));
+		lv.setOnItemClickListener(new MyItemClickListenerLinks(context, links,
+				str));
+	}
+
+	/**
+	 * 对选项的点击做出应答动作
+	 * 
+	 * @author renyuzhuo
+	 *
+	 */
+	private static class MyItemClickListenerLinks implements
+			OnItemClickListener {
+		private ArrayList<String> links;
+		Context context;
+		String classToWhat;
+
+		public MyItemClickListenerLinks(Context context,
+				ArrayList<String> links, String cls) {
+			this.context = context;
+			this.links = links;
+			classToWhat = cls;
+		}
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			String href = links.get(position);
+			Intent intent;
+			try {
+				intent = new Intent(context,
+						Class.forName(classToWhat));
+				intent.putExtra("url", href);
+				context.startActivity(intent);
+			} catch (ClassNotFoundException e) {
+			}
+		}
+
+	}
+
 }
