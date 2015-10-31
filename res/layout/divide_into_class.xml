@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#eee"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/login_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/title_bar" >
+
+        <Button
+            android:id="@+id/login_reback_btn"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back"
+            android:onClick="back"
+            android:text="@string/action_back"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/login"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <Spinner
+        android:id="@+id/nj"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login_top_layout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/login_editbox"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/sfzh"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nj"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/login_editbox"
+        android:hint="@string/admission_card_number"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:id="@+id/fb"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sfzh"
+        android:layout_marginTop="20dp" >
+
+        <Button
+            android:id="@+id/login_login_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_style_green"
+            android:onClick="submit"
+            android:text="@string/login"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/student_class"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fb"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/newstu_background" >
+
+        <TextView
+            android:id="@+id/con1"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/con1"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/con1"
+            android:layout_toRightOf="@id/con1"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con3"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/con1"
+            android:gravity="center"
+            android:text="@string/con3"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/con2"
+            android:layout_toEndOf="@id/con3"
+            android:layout_toRightOf="@id/con3"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con5"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/con3"
+            android:gravity="center"
+            android:text="@string/con5"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/con4"
+            android:layout_toEndOf="@id/con5"
+            android:layout_toRightOf="@id/con5"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con7"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/con5"
+            android:gravity="center"
+            android:text="@string/con7"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/con6"
+            android:layout_toEndOf="@id/con7"
+            android:layout_toRightOf="@id/con7"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con9"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/con7"
+            android:gravity="center"
+            android:text="@string/con9"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/con8"
+            android:layout_toEndOf="@id/con9"
+            android:layout_toRightOf="@id/con9"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con11"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/con9"
+            android:gravity="center"
+            android:text="@string/con11"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/con10"
+            android:layout_toEndOf="@id/con11"
+            android:layout_toRightOf="@id/con11"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con13"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/con11"
+            android:gravity="center"
+            android:text="@string/con13"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/con12"
+            android:layout_toEndOf="@id/con13"
+            android:layout_toRightOf="@id/con13"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con15"
+            android:layout_width="75sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/con13"
+            android:gravity="center"
+            android:text="@string/con15"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/con16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/con14"
+            android:layout_toEndOf="@id/con15"
+            android:layout_toRightOf="@id/con15"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
