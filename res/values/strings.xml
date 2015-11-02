@@ -63,8 +63,8 @@
     <string name="school_environment">校园风景</string>
     <string name="freshman_register">新生报道</string>
     <string name="divide_into_class_information">分班信息查询</string>
-    
     <string name="stuinfo">郑州大学学生信息</string>
+    <string name="myinfo">我的信息</string>
     <string name="photo">入学日期</string>
     <string name="stuinfo_student_id">学号</string>
     <string name="stuinfo_name">姓名</string>
@@ -112,8 +112,51 @@
     <string name="zzu_credit">学分</string>
     <string name="zzu_score">成绩</string>
     <string name="zzu_gpa">绩点</string>
-    <string name="title_activity_zzu_map">ZzuMapActivity</string>
-    <string name="title_activity_map_top_right_dialog">MapTopRightDialog</string>
-    <string name="title_activity_score_main">ScoreMainActivity</string>
+    <string name="school_calendar">学校校历</string>
+    <string name="zzu_index">学校首页</string>
+    <string name="school_zzu_jw">系统教务首页</string>
+    <string name="school_zzu_ie">信息工程学院首页</string>
+    <string name="service_index">校园网服务主页</string>
+    <string name="how_to_regist">校园网学生用户注册流程</string>
+    <string name="how_to_change_ip">更改IP方法</string>
+    <string name="ips">新校区学生宿舍IP分配总表</string>
+    <string name="internet_regist">校园网注册</string>
+    <string name="ruijie_download">认证客户端锐捷下载</string>
+    <string name="mac_sezrch">mac地址查询方法</string>
+    <string name="wlan_intruction">校园网无线网络使用说明</string>
+    <string name="service">校园网相关</string>
+    <string name="trouble_faq">网络故障FAQ查询</string>
+    <string name="service_commopn_phone">网络中心常用服务电话</string>
+    <string name="news_notice">网上新闻与公告</string>
+    <string name="zzu_notice0">郑州大学网上公告</string>
+    <string name="zzu_notice1">学校办公通知</string>
+    <string name="zzu_notice2">普通公告栏</string>
+    <string name="zzu_notice3">招聘.招生.海报</string>
+    <string name="zzu_notice5">学术动态</string>
+    <string name="zzu_news0">郑州大学网上新闻</string>
+    <string name="zzu_news1">图片新闻</string>
+    <string name="zzu_news2">综合新闻</string>
+    <string name="zzu_news3">新闻.教学科研</string>
+    <string name="zzu_news4">新闻.学生信息</string>
+    <string name="zzu_news5">新闻.学术动态</string>
+    <string name="zzu_news6">新闻.院系风采</string>
+    <string name="zzu_news8">新闻.媒体郑大</string>
+    <string name="zzu_news9">新闻.外事信息</string>
+    <string name="job">校园宣讲会</string>
+    <string name="roompre">图书馆座位预约</string>
+    <!-- about begin -->
+    <string name="app_about1">\t\t你好，我叫“我的郑大”，我还不到一岁，诞生在一个叫做郑州大学信息工程学院的地方，我的诞生就是一场意外。</string>
+    <string name="app_about2">\t\t我的存在主要是帮助大一的学弟学妹了解一些学校的信息，帮助大二大三学长学姐很方便的了解一些学校的新闻，查询学期的成绩，帮助大四的学长学姐查看校园就业服务中心有哪些宣讲会，希望他们可以早日找到心仪的工作。</string>
+    <string name="app_about3">\t\t我这里不能聊天，不能交友，毕竟玩不过某讯摇一摇什么的，现在这里找到你心仪的妹子是不太可能的，不过你可以勾搭我的哥哥，把我造出来的那个哥哥，去“关于我”中可以查看呦。</string>
+    <string name="app_about4">\t\t我现在还没有那么有趣，谁让我的哥哥那么没有幽默感呢，虽然他自己一直很努力的想成为段子手，然而并没有什么用。你有什么好的建议吗，可以帮助我让我变得更有趣吗？对了，哥哥说了，只有让我开源(https://github.com/renyuzhuo/Score)，我才能长大变的更好，更多的人才可以帮助我长大，那么问题来了，你知道什么叫做开源吗?同样，进入到我哥哥的那里也可以找到我的真身和分身(源码)，你帮帮我让我快快长大好不好:)</string>
+    <string name="app_about5">\t\t我有时会犯错误，你可以告诉我的哥哥，他会教训我我才会变的更好的，啦啦啦。对于帮助到我的我会在这里感谢你们的。在这里署上你的名字或ID，不过没有RMB，嘻嘻</string>
+    <string name="app_about6">\t\t最后，向郑大小助手致敬，向郑大小丁丁致敬。</string>
+    <string name="app_about7">\t\t2015.11</string>
+    <string name="me_about1">\t\t你好，我是郑州大学的一个普通学生，这个APP一直想写，然后花了好久构思，一周时间编码，写出来的。</string>
+    <string name="me_about2">我的联系方式：</string>
+    <string name="me_about3">\t\tqq：97206415</string>
+    <string name="me_about4">\t\temail：renyuzhuo@foxmail.com</string>
+    <string name="me_about5">\t\t微信公众平台：我叫任玉琢(i_am_renyuzhuo)</string>
+    <string name="me_about6">\t\t微信公众平台里面有彩蛋呦!</string>
 
 </resources>

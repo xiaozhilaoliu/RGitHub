@@ -2,9 +2,14 @@ package zzu.renyuzhuo.win.main;
 
 import java.util.ArrayList;
 
+import zzu.renyuzhuo.score.AppAboutActivity;
+import zzu.renyuzhuo.score.MeAboutActivity;
 import zzu.renyuzhuo.score.R;
 import zzu.renyuzhuo.score.ScoreApplication;
 import zzu.renyuzhuo.win.common.MyInformationActivity;
+import zzu.renyuzhuo.win.common.ServiceInternetActivity;
+import zzu.renyuzhuo.win.job.JobMainActivity;
+import zzu.renyuzhuo.win.news.NewsMainActivity;
 import zzu.renyuzhuo.win.score.MyScoreMainActivity;
 import zzu.renyuzhuo.win.zzu.DivideIntoClassActivity;
 import zzu.renyuzhuo.win.zzu.ZzuHistoricalEvolutionActivity;
@@ -341,6 +346,205 @@ public class MainActivity extends Activity {
 	public void myInformation(View view) {
 		Intent intent = new Intent(MainActivity.this,
 				MyInformationActivity.class);
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void schoolCalendar(View view) {
+		Intent intent = new Intent(MainActivity.this, WebIndex.class);
+		intent.putExtra("title", "学校校历");
+		intent.putExtra("url", "http://jw.zzu.edu.cn/xxxl/xxxl15-16.htm");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void jwIndex(View view) {
+		Intent intent = new Intent(MainActivity.this, WebIndex.class);
+		intent.putExtra("title", "系统教务首页");
+		intent.putExtra("url", "http://jw.zzu.edu.cn/");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void zzuIndex(View view) {
+		Intent intent = new Intent(MainActivity.this, WebIndex.class);
+		intent.putExtra("title", "学校首页");
+		intent.putExtra("url", "http://www.zzu.edu.cn/");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void ieIndex(View view) {
+		Intent intent = new Intent(MainActivity.this, WebIndex.class);
+		intent.putExtra("title", "信息工程学院首页");
+		intent.putExtra("url", "http://www5.zzu.edu.cn/ie/");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void serviceInternet(View view) {
+		Intent intent = new Intent(MainActivity.this,
+				ServiceInternetActivity.class);
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void freshmanRegister(View view) {
+		Toast.makeText(this, "这里面应该有好多东西,学长学姐有什么想说的吗?欢迎投稿!", Toast.LENGTH_SHORT)
+				.show();
+	}
+
+	public void notice0(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "所有公告");
+		intent.putExtra(
+				"url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=m&lan=101,102,103,105");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void notice1(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "学校办公通知");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=m&lan=101");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void notice2(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "普通公告栏");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=m&lan=102");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void notice3(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "招聘.招生.海报");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=m&lan=103");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void notice5(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "学术动态");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=m&lan=105");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news0(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "郑州大学网上新闻");
+		intent.putExtra(
+				"url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=201,202,203,204,205,206,207,208,209");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news1(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "图片新闻");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=201");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news2(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "综合新闻");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=202");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news3(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "新闻.教学科研");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=203");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news4(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "新闻.学生信息");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=204");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news5(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "新闻.学术动态");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=205");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news6(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "新闻.院系风采");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=206");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news8(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "新闻.媒体郑大");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=208");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void news9(View view) {
+		Intent intent = new Intent(MainActivity.this, NewsMainActivity.class);
+		intent.putExtra("title", "新闻.外事信息");
+		intent.putExtra("url",
+				"http://www16.zzu.edu.cn/msgs/vmsgisapi.dll/vmsglist?mtype=x&lan=209");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void job(View view) {
+		Intent intent = new Intent(MainActivity.this, JobMainActivity.class);
+		intent.putExtra("title", "将要举行的招聘会");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void appAbout(View view) {
+		Intent intent = new Intent(MainActivity.this, AppAboutActivity.class);
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void meAbout(View view) {
+		Intent intent = new Intent(MainActivity.this, MeAboutActivity.class);
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void roompre(View view) {
+		Intent intent = new Intent(MainActivity.this, WebIndex.class);
+		intent.putExtra("title", "图书馆座位预约");
+		intent.putExtra("url", "http://202.197.191.152/roompre/");
 		instance.startActivity(intent);
 		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
 	}

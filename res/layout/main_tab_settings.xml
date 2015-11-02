@@ -64,14 +64,14 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/preference_item"
                 android:clickable="true"
-                android:onClick="myInformation"
-                android:gravity="center_vertical" >
+                android:gravity="center_vertical"
+                android:onClick="appAbout" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@string/my_information"
+                    android:text="@string/app_name"
                     android:textColor="#000"
                     android:textSize="17sp" />
 
@@ -81,7 +81,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:contentDescription="@string/my_information"
+                    android:contentDescription="@string/app_name"
                     android:scaleType="matrix"
                     android:src="@drawable/mm_submenu" />
             </RelativeLayout>
@@ -117,7 +117,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/preference_last_item"
                 android:clickable="true"
-                android:gravity="center_vertical" >
+                android:gravity="center_vertical"
+                android:onClick="meAbout" >
 
                 <TextView
                     android:layout_width="wrap_content"

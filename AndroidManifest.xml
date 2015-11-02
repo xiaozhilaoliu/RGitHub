@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zzu.renyuzhuo.score"
     android:versionCode="1"
-    android:versionName="1.8" >
+    android:versionName="2.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -60,7 +60,6 @@
         </activity>
         <activity
             android:name="zzu.renyuzhuo.win.zzu.ZzuMapActivity"
-            android:label="@string/title_activity_zzu_map"
             android:theme="@style/Anim_style2" >
         </activity>
         <activity
@@ -79,12 +78,35 @@
         </activity>
         <activity
             android:name="zzu.renyuzhuo.win.score.MyScoreMainActivity"
-            android:label="@string/title_activity_score_main"
             android:screenOrientation="landscape"
             android:theme="@style/Anim_style2" >
         </activity>
         <activity
             android:name="zzu.renyuzhuo.win.common.MyInformationActivity"
+            android:theme="@style/Anim_style2" >
+        </activity>
+        <activity
+            android:name="zzu.renyuzhuo.win.main.WebIndex"
+            android:theme="@style/Anim_style2" >
+        </activity>
+        <activity
+            android:name="zzu.renyuzhuo.win.common.ServiceInternetActivity"
+            android:theme="@style/Anim_style2" >
+        </activity>
+        <activity
+            android:name="zzu.renyuzhuo.win.news.NewsMainActivity"
+            android:theme="@style/Anim_style2" >
+        </activity>
+        <activity
+            android:name="zzu.renyuzhuo.win.job.JobMainActivity"
+            android:theme="@style/Anim_style2" >
+        </activity>
+        <activity
+            android:name=".AppAboutActivity"
+            android:theme="@style/Anim_style2" >
+        </activity>
+        <activity
+            android:name=".MeAboutActivity"
             android:theme="@style/Anim_style2" >
         </activity>
     </application>
