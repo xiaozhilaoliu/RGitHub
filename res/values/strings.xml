@@ -150,13 +150,16 @@
     <string name="app_about3">\t\t我这里不能聊天，不能交友，毕竟玩不过某讯摇一摇什么的，现在这里找到你心仪的妹子是不太可能的，不过你可以勾搭我的哥哥，把我造出来的那个哥哥，去“关于我”中可以查看呦。</string>
     <string name="app_about4">\t\t我现在还没有那么有趣，谁让我的哥哥那么没有幽默感呢，虽然他自己一直很努力的想成为段子手，然而并没有什么用。你有什么好的建议吗，可以帮助我让我变得更有趣吗？对了，哥哥说了，只有让我开源(https://github.com/renyuzhuo/Score)，我才能长大变的更好，更多的人才可以帮助我长大，那么问题来了，你知道什么叫做开源吗?同样，进入到我哥哥的那里也可以找到我的真身和分身(源码)，你帮帮我让我快快长大好不好:)</string>
     <string name="app_about5">\t\t我有时会犯错误，你可以告诉我的哥哥，他会教训我我才会变的更好的，啦啦啦。对于帮助到我的我会在这里感谢你们的。在这里署上你的名字或ID，不过没有RMB，嘻嘻</string>
-    <string name="app_about6">\t\t最后，向郑大小助手致敬，向郑大小丁丁致敬。</string>
-    <string name="app_about7">\t\t2015.11</string>
+    <string name="app_about6">\t\t感谢我的家人，感谢我的老师，感谢我爱的人，感谢我的朋友们，谢谢！！！</string>
+    <string name="app_about7">\t\t最后，向郑大小助手致敬，向郑大小丁丁致敬。</string>
+    <string name="app_about8">\t\t2015.11</string>
     <string name="me_about1">\t\t你好，我是郑州大学的一个普通学生，这个APP一直想写，然后花了好久构思，一周时间编码，写出来的。</string>
     <string name="me_about2">我的联系方式：</string>
     <string name="me_about3">\t\tqq：97206415</string>
     <string name="me_about4">\t\temail：renyuzhuo@foxmail.com</string>
     <string name="me_about5">\t\t微信公众平台：我叫任玉琢(i_am_renyuzhuo)</string>
     <string name="me_about6">\t\t微信公众平台里面有彩蛋呦!</string>
+    <string name="search_books">图书馆书籍查询</string>
+    <string name="input_books_name">请输入书名</string>
 
 </resources>

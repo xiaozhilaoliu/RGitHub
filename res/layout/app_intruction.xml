@@ -79,6 +79,14 @@
             android:text="@string/app_about7"
             android:textColor="#000000"
             android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:text="@string/app_about8"
+            android:textColor="#000000"
+            android:textSize="15sp" />
     </LinearLayout>
 
 </ScrollView>

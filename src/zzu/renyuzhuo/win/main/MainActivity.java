@@ -9,6 +9,7 @@ import zzu.renyuzhuo.score.ScoreApplication;
 import zzu.renyuzhuo.win.common.MyInformationActivity;
 import zzu.renyuzhuo.win.common.ServiceInternetActivity;
 import zzu.renyuzhuo.win.job.JobMainActivity;
+import zzu.renyuzhuo.win.library.SearchBooksActivity;
 import zzu.renyuzhuo.win.news.NewsMainActivity;
 import zzu.renyuzhuo.win.score.MyScoreMainActivity;
 import zzu.renyuzhuo.win.zzu.DivideIntoClassActivity;
@@ -545,6 +546,12 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this, WebIndex.class);
 		intent.putExtra("title", "图书馆座位预约");
 		intent.putExtra("url", "http://202.197.191.152/roompre/");
+		instance.startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+
+	public void searchBooks(View view) {
+		Intent intent = new Intent(MainActivity.this, SearchBooksActivity.class);
 		instance.startActivity(intent);
 		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
 	}

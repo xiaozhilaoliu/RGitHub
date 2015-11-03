@@ -32,7 +32,7 @@
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="5Vs66fu3dz6jpM8oPcM0kitY" />
+            android:value="XoXMwqtxZHqPELuZNjCQgYRO" />
 
         <activity
             android:name="zzu.renyuzhuo.win.main.SplashActivity"
@@ -107,6 +107,10 @@
         </activity>
         <activity
             android:name=".MeAboutActivity"
+            android:theme="@style/Anim_style2" >
+        </activity>
+        <activity
+            android:name="zzu.renyuzhuo.win.library.SearchBooksActivity"
             android:theme="@style/Anim_style2" >
         </activity>
     </application>
