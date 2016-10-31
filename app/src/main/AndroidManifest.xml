@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.renyuzhuo.rgithub">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name=".RGitHubApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".RGitHubApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RGitHubMainActivity">

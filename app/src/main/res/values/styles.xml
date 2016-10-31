@@ -1,11 +1,49 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar" />
+
+    <style name="title_style">
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <style name="title_style.title_text">
+        <item name="android:background">@color/white</item>
+        <item name="android:textSize">25dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/setup_title_back_color</item>
+    </style>
+
+    <style name="title_style.title_relative_text"></style>
+
+    <style name="fragment_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="footer_style">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="footer_style.radio_group">
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_marginBottom">3dp</item>
+        <item name="android:layout_marginTop">3dp</item>
+    </style>
+
+    <style name="footer_style.radio_button">
+        <item name="android:button">@null</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">13dp</item>
+        <item name="android:layout_marginRight">13dp</item>
     </style>
 
 </resources>
