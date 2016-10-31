@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">RGitHub</string>
+
+    <string-array name="trending">
+        <item>Today</item>
+        <item>Week</item>
+        <item>Month</item>
+    </string-array>
+    <string-array name="language">
+        <item>Java</item>
+        <item>C</item>
+    </string-array>
+    <string-array name="repo_deve">
+        <item>Repositories</item>
+        <item>Developers</item>
+    </string-array>
 </resources>

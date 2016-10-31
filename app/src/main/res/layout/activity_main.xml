@@ -29,7 +29,7 @@
         style="@style/footer_style">
 
         <RadioGroup
-            android:id="@+id/tab"
+            android:id="@+id/radio_group"
             style="@style/footer_style.radio_group"
             android:orientation="horizontal"
             android:weightSum="4">

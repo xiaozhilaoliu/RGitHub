@@ -13,6 +13,8 @@ import rx.schedulers.Schedulers;
  * Created by renyuzhuo on 16-10-31.
  */
 public class UserInfoClient {
+    public static UserInfoClientListener userInfoClientListener;
+
     public static void getLoginUserInfo() {
         UserService userService = ApiBase.getInstance().build().create(UserService.class);
         userService.getUserInfo("token " + Token.getAuthorization())
@@ -22,7 +24,15 @@ public class UserInfoClient {
                     @Override
                     public void call(UserInfoBean userInfoBean) {
                         rlog.d(userInfoBean);
+                        UserInfoBean.getInstance().setUserInfoBean(userInfoBean);
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onGetUserInfoSuccess();
+                        }
                     }
                 });
+    }
+
+    public static void setUserInfoClientListener(UserInfoClientListener userInfoClientListener) {
+        UserInfoClient.userInfoClientListener = userInfoClientListener;
     }
 }

@@ -1,9 +1,23 @@
 package cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user;
 
+import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
+
 /**
  * Created by renyuzhuo on 16-10-31.
  */
 public class UserInfoBean {
+
+    private static UserInfoBean userInfoBean;
+
+    public static UserInfoBean getInstance() {
+        if (userInfoBean == null) {
+            userInfoBean = new UserInfoBean();
+            return userInfoBean;
+        } else {
+            return userInfoBean;
+        }
+    }
+
     private String login;
 
     private int id;
@@ -75,6 +89,10 @@ public class UserInfoBean {
     private int collaborators;
 
     private Plan plan;
+
+    public void setUserInfoBean(UserInfoBean userInfoBean) {
+        UserInfoBean.userInfoBean = userInfoBean;
+    }
 
     public void setLogin(String login) {
         this.login = login;
