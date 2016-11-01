@@ -3,6 +3,8 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="again">Again to Exit</string>
+    <string name="stars">Stars</string>
+    <string name="repos">Repositories</string>
 
     <string-array name="trending">
         <item>Today</item>

@@ -28,7 +28,6 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
     Intent intent;
     String username, type;
     TextView titleText;
-
     Context context;
     ListView listView;
     private boolean isFollowing;
@@ -37,13 +36,13 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
 
     OtherUsersAdapter adapter;
 
-    private static Map<String, List<OtherUserInfoBean>> followersMap = new HashMap<>();
-    private static Map<String, List<OtherUserInfoBean>> followingMap = new HashMap<>();
+    private static Map<String, List<OtherUserInfoBean>> mapFollowers = new HashMap<>();
+    private static Map<String, List<OtherUserInfoBean>> mapFollowing = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_other_users);
+        setContentView(R.layout.activity_listview);
         context = this;
 
         titleText = (TextView) findViewById(R.id.title_text);
@@ -56,16 +55,16 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
         if (type.equals(getString(R.string.followers))) {
             isFollowing = false;
             titleText.setText(getString(R.string.followers));
-            if (followersMap.get(username) != null) {
-                onGetUserList(followersMap.get(username));
+            if (mapFollowers.get(username) != null) {
+                onGetUserList(mapFollowers.get(username));
                 return;
             }
             UserInfoClient.getUserFollowersList(username);
         } else if (type.equals(getString(R.string.following))) {
             isFollowing = true;
             titleText.setText(getString(R.string.following));
-            if (followingMap.get(username) != null) {
-                onGetUserList(followingMap.get(username));
+            if (mapFollowing.get(username) != null) {
+                onGetUserList(mapFollowing.get(username));
                 return;
             }
             UserInfoClient.getUserFollowingList(username);
@@ -119,9 +118,9 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
         });
 
         if (isFollowing) {
-            followingMap.put(username, otherUserInfoBeenList);
+            mapFollowing.put(username, otherUserInfoBeenList);
         } else {
-            followersMap.put(username, otherUserInfoBeenList);
+            mapFollowers.put(username, otherUserInfoBeenList);
         }
         if (otherUserInfoBeenList.size() < 30) {
             hasMore = false;
@@ -132,14 +131,6 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
 
     @Override
     public void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean) {
-//        if (!hasMore) {
-//            return;
-//        }
-//        if (isFollowing) {
-//            UserInfoClient.getUserFollowingMore(username, ++page);
-//        } else {
-//            UserInfoClient.getUserFollowersMore(username, ++page);
-//        }
     }
 
     private void loadMore() {

@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/fragment_style"
     android:layout_width="match_parent"
@@ -83,7 +83,42 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="5dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/stars"
+                style="@style/frame_function">
+
+                <ImageView
+                    style="@style/image_funciton"
+                    android:src="@drawable/ic_star" />
+
+                <TextView
+                    style="@style/text_function"
+                    android:text="@string/stars" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/repos"
+                style="@style/frame_function">
+
+                <ImageView
+                    style="@style/image_funciton"
+                    android:src="@drawable/ic_book" />
+
+                <TextView
+                    style="@style/text_function"
+                    android:text="@string/repos" />
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+</ScrollView>

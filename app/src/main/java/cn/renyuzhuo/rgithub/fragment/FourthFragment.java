@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.RGitHubApplication;
 import cn.renyuzhuo.rgithub.activity.OtherUsersActivity;
+import cn.renyuzhuo.rgithub.activity.RepoActivity;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 
 public class FourthFragment extends BaseFragment {
@@ -26,6 +28,8 @@ public class FourthFragment extends BaseFragment {
     View view;
 
     LinearLayout followers, following;
+
+    FrameLayout starts, repos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +55,9 @@ public class FourthFragment extends BaseFragment {
 
         followers = (LinearLayout) view.findViewById(R.id.followers);
         following = (LinearLayout) view.findViewById(R.id.following);
+
+        starts = (FrameLayout) view.findViewById(R.id.stars);
+        repos = (FrameLayout) view.findViewById(R.id.repos);
 
     }
 
@@ -81,7 +88,18 @@ public class FourthFragment extends BaseFragment {
             }
         });
 
+        starts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoActivity.startActivity(context, UserInfoBean.getInstance().getLogin(), getString(R.string.stars));
+            }
+        });
+
+        repos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoActivity.startActivity(context, UserInfoBean.getInstance().getLogin(), getString(R.string.repos));
+            }
+        });
     }
-
-
 }

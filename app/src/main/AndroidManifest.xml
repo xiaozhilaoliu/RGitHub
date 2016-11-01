@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.OtherUserInfoActivity" />
-        <activity android:name=".activity.OtherUsersActivity"></activity>
+        <activity android:name=".activity.OtherUsersActivity" />
+        <activity android:name=".activity.RepoActivity" />
     </application>
 
 </manifest>

@@ -20,7 +20,6 @@ import rx.schedulers.Schedulers;
  */
 public class UserInfoClient {
     public static UserInfoClientListener userInfoClientListener;
-    private static Object userFollowersMore;
     private static UserService userService = ApiBase.getInstance().build().create(UserService.class);
 
     public static void setUserInfoClientListener(UserInfoClientListener userInfoClientListener) {
