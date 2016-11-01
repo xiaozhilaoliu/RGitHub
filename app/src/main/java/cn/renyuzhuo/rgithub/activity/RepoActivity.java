@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
+import cn.renyuzhuo.rgithub.adapter.ReposAdapter;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClientListener;
+import cn.renyuzhuo.rlog.rlog;
 import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
+import okhttp3.HttpUrl;
 
 public class RepoActivity extends Activity implements RepoClientListener {
 
@@ -77,9 +80,10 @@ public class RepoActivity extends Activity implements RepoClientListener {
 
     @Override
     public void onGetRepoList(List<RepoBean> repoBeanList) {
+        rlog.d();
         LoadingDialog.closeDialog();
-        if (isStars) {
+        ReposAdapter reposAdapter = new ReposAdapter(context, repoBeanList);
+        listView.setAdapter(reposAdapter);
 
-        }
     }
 }

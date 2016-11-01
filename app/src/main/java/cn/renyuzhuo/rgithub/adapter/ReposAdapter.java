@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -54,7 +57,7 @@ public class ReposAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.repo_item, null, false);
-            viewHolder = new ViewHolder();
+            viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -65,8 +68,14 @@ public class ReposAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        public void setData(RepoBean repoBean) {
+        ImageView ownerAvatar;
 
+        public ViewHolder(View view) {
+            ownerAvatar = (ImageView) view.findViewById(R.id.owner_avatar);
+        }
+
+        public void setData(RepoBean repoBean) {
+            Picasso.with(context).load(repoBean.getOwner().getAvatar_url()).placeholder(R.drawable.logo).into(ownerAvatar);
         }
     }
 
