@@ -5,6 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -58,19 +62,22 @@ public class OtherUsersAdapter extends BaseAdapter {
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         }
-        viewHolder.setDatas(getItem(position));
+        viewHolder.setData(getItem(position));
         return view;
     }
 
     class ViewHolder {
-        private Object datas;
+        ImageView avatar;
+        TextView name;
 
         public ViewHolder(View view) {
-
+            avatar = (ImageView) view.findViewById(R.id.avatar);
+            name = (TextView) view.findViewById(R.id.name);
         }
 
-        public void setDatas(OtherUserInfoBean datas) {
-            this.datas = datas;
+        public void setData(OtherUserInfoBean otherUserInfoBean) {
+            name.setText(otherUserInfoBean.getLogin());
+            Picasso.with(context).load(otherUserInfoBean.getAvatar_url()).placeholder(R.drawable.logo).into(avatar);
         }
     }
 }

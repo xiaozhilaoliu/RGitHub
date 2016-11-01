@@ -21,7 +21,8 @@
 
         <ListView
             android:id="@+id/listview"
-            style="@style/listview_style" />
+            style="@style/listview_style"
+            android:layout_below="@id/title" />
     </RelativeLayout>
 
 </LinearLayout>
