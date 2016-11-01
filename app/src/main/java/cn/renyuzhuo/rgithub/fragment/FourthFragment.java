@@ -1,93 +1,87 @@
 package cn.renyuzhuo.rgithub.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import cn.renyuzhuo.rgithub.R;
+import cn.renyuzhuo.rgithub.RGitHubApplication;
+import cn.renyuzhuo.rgithub.activity.OtherUsersActivity;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 
 public class FourthFragment extends BaseFragment {
-
-    private static final int loginRequestCode = 0;
 
     ImageView avatar;
     TextView name, bio;
     Context context;
+    TextView followersNum, followingNum;
+    View view;
+
+    LinearLayout followers, following;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_second, container, false);
-//        View view = inflater.inflate(R.layout.fragment_fourth, container, false);
-//        context = getActivity();
-//        avatar = (ImageView) view.findViewById(R.id.avatar);
-//        name = (TextView) view.findViewById(R.id.name);
-//        bio = (TextView) view.findViewById(R.id.bio);
-//        if (!RGitHubApplication.isLogin) {
-//            Intent intent = new Intent(getActivity(), LoginActivity.class);
-//            startActivityForResult(intent, loginRequestCode);
-//        } else {
-//            getUserInfo();
-//        }
-//        return view;
+        view = inflater.inflate(R.layout.fragment_fourth, container, false);
+        context = getActivity();
+        initViews();
+        if (RGitHubApplication.isLogin) {
+            initUserView();
+        }
+        return view;
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == RESULT_OK) {
-//            switch (requestCode) {
-//                case loginRequestCode: {
-//                    if (RGitHubApplication.isLogin) {
-//                        rlog.d("login success forthFragment");
-//                        getUserInfo();
-//                    } else {
-//                        rlog.d("login fail forthFragment");
-//                    }
-//                    break;
-//                }
-//            }
-//        }
-//    }
-//
-//    public void getUserInfo() {
-//        if (RGitHubApplication.user != null) {
-//            initUserView();
-//            return;
-//        }
-//        rlog.d("get UserInfo");
-//        new GetAuthUserClient(accessToken)
-//                .observable()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Observer<User>() {
-//                    @Override
-//                    public void onCompleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    @Override
-//                    public void onNext(User user) {
-//                        rlog.d(user);
-//                        RGitHubApplication.user = user;
-//                        initUserView();
-//                    }
-//                });
-//    }
-//
-//    private void initUserView() {
-//        Picasso.with(context).load(RGitHubApplication.user.avatar_url).into(avatar);
-//        name.setText(RGitHubApplication.user.name);
-//        bio.setText(user.bio);
-//    }
-//
+    private void initViews() {
+        if (view == null) {
+            return;
+        }
+        avatar = (ImageView) view.findViewById(R.id.avatar);
+        name = (TextView) view.findViewById(R.id.name);
+        bio = (TextView) view.findViewById(R.id.bio);
+        followersNum = (TextView) view.findViewById(R.id.followers_num);
+        followingNum = (TextView) view.findViewById(R.id.following_num);
+
+        followers = (LinearLayout) view.findViewById(R.id.followers);
+        following = (LinearLayout) view.findViewById(R.id.following);
+
+    }
+
+    private void initUserView() {
+        Picasso.with(context).load(UserInfoBean.getInstance().getAvatar_url()).into(avatar);
+        name.setText(UserInfoBean.getInstance().getName());
+        bio.setText(UserInfoBean.getInstance().getBio());
+        followersNum.setText(String.valueOf(UserInfoBean.getInstance().getFollowers()));
+        followingNum.setText(String.valueOf(UserInfoBean.getInstance().getFollowing()));
+
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OtherUsersActivity.class);
+                intent.putExtra("username", UserInfoBean.getInstance().getLogin());
+                intent.putExtra("type", getString(R.string.followers));
+                startActivity(intent);
+            }
+        });
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OtherUsersActivity.class);
+                intent.putExtra("username", UserInfoBean.getInstance().getLogin());
+                intent.putExtra("type", getString(R.string.following));
+                startActivity(intent);
+            }
+        });
+
+    }
+
+
 }

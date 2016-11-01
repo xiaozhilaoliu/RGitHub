@@ -3,6 +3,7 @@
     package="cn.renyuzhuo.rgithub">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".RGitHubApplication"
         android:allowBackup="true"
@@ -17,6 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.OtherUserInfoActivity" />
+        <activity android:name=".activity.OtherUsersActivity"></activity>
     </application>
 
 </manifest>

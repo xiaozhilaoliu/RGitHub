@@ -46,4 +46,30 @@
         <item name="android:layout_marginRight">13dp</item>
     </style>
 
+    <style name="follow_button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/setup_basic_eidt_name_color</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="vertical_line">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@color/contact_setting_items_content_normal_color</item>
+    </style>
+
+    <style name="follow_button_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_color_white_and_gray_selector</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+
+    <style name="listview_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 </resources>

@@ -1,11 +1,55 @@
 package cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user;
 
-import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
-
 /**
  * Created by renyuzhuo on 16-10-31.
  */
 public class UserInfoBean {
+
+    /*
+     * {
+     * "login": "RWebRTC",
+     * "id": 21374839,
+     * "avatar_url": "https://avatars.githubusercontent.com/u/21374839?v=3",
+     * "gravatar_id": "",
+     * "url": "https://api.github.com/users/RWebRTC",
+     * "html_url": "https://github.com/RWebRTC",
+     * "followers_url": "https://api.github.com/users/RWebRTC/followers",
+     * "following_url": "https://api.github.com/users/RWebRTC/following{/other_user}",
+     * "gists_url": "https://api.github.com/users/RWebRTC/gists{/gist_id}",
+     * "starred_url": "https://api.github.com/users/RWebRTC/starred{/owner}{/repo}",
+     * "subscriptions_url": "https://api.github.com/users/RWebRTC/subscriptions",
+     * "organizations_url": "https://api.github.com/users/RWebRTC/orgs",
+     * "repos_url": "https://api.github.com/users/RWebRTC/repos",
+     * "events_url": "https://api.github.com/users/RWebRTC/events{/privacy}",
+     * "received_events_url": "https://api.github.com/users/RWebRTC/received_events",
+     * "type": "User",
+     * "site_admin": false,
+     * "name": "RWebRTC",
+     * "company": null,
+     * "blog": "http://renyuzhuo.cn",
+     * "location": null,
+     * "email": "rwebrtc@gmail.com",
+     * "hireable": null,
+     * "bio": "Read The Fucking Source Code.",
+     * "public_repos": 5,
+     * "public_gists": 0,
+     * "followers": 1,
+     * "following": 6,
+     * "created_at": "2016-09-01T01:29:31Z",
+     * "updated_at": "2016-11-01T01:59:21Z",
+     * "private_gists": 0,
+     * "total_private_repos": 0,
+     * "owned_private_repos": 0,
+     * "disk_usage": 189775,
+     * "collaborators": 0,
+     * "plan": {
+     * "name": "free",
+     * "space": 976562499,
+     * "collaborators": 0,
+     * "private_repos": 0
+     * }
+     * }
+     */
 
     private static UserInfoBean userInfoBean;
 
