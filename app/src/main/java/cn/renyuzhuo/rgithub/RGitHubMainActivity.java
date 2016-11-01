@@ -3,6 +3,7 @@ package cn.renyuzhuo.rgithub;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import cn.renyuzhuo.rgithub.activity.OtherUserInfoActivity;
 import cn.renyuzhuo.rgithub.fragment.FragmentFactory;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.AccessTokenBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.login.LoginClient;
 import cn.renyuzhuo.rgithubandroidsdk.net.login.LoginClientListener;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
@@ -67,16 +69,6 @@ public class RGitHubMainActivity extends AppCompatActivity implements LoginClien
     }
 
     @Override
-    public void onSuccess() {
-
-    }
-
-    @Override
-    public void onFail() {
-
-    }
-
-    @Override
     public void onLoginSuccess(AccessTokenBean accessToken) {
         rlog.d("login success");
         UserInfoClient.setUserInfoClientListener(this);
@@ -94,8 +86,27 @@ public class RGitHubMainActivity extends AppCompatActivity implements LoginClien
     }
 
     @Override
+    public void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean) {
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         OtherUserInfoActivity.clear();
+    }
+
+    private long mPressedTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        long mNowTime = System.currentTimeMillis();
+        if ((mNowTime - mPressedTime) > 1000) {
+            Toast.makeText(this, getString(R.string.again), Toast.LENGTH_SHORT).show();
+            mPressedTime = mNowTime;
+        } else {//退出程序
+            this.finish();
+            System.exit(0);
+        }
     }
 }

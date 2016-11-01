@@ -2,6 +2,7 @@
     <string name="app_name">RGitHub</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
+    <string name="again">Again to Exit</string>
 
     <string-array name="trending">
         <item>Today</item>

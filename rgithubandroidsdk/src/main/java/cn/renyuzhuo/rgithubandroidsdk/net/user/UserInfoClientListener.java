@@ -3,6 +3,7 @@ package cn.renyuzhuo.rgithubandroidsdk.net.user;
 import java.util.List;
 
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.BaseListener;
 
 /**
@@ -12,4 +13,6 @@ public interface UserInfoClientListener extends BaseListener {
     void onGetUserInfoSuccess();
 
     void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList);
+
+    void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean);
 }

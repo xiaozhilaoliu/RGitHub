@@ -66,7 +66,7 @@ public class OtherUsersAdapter extends BaseAdapter {
         return view;
     }
 
-    class ViewHolder {
+    public class ViewHolder {
         ImageView avatar;
         TextView name;
 
@@ -78,6 +78,17 @@ public class OtherUsersAdapter extends BaseAdapter {
         public void setData(OtherUserInfoBean otherUserInfoBean) {
             name.setText(otherUserInfoBean.getLogin());
             Picasso.with(context).load(otherUserInfoBean.getAvatar_url()).placeholder(R.drawable.logo).into(avatar);
+        }
+
+        public TextView getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return "ViewHolder{" +
+                    "name=" + name.getText() +
+                    '}';
         }
     }
 }

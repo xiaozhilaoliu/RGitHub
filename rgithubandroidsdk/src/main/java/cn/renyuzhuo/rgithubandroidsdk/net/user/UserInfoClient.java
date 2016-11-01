@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.Token;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Base.ApiBase.ApiBase;
 import cn.renyuzhuo.rgithubandroidsdk.service.user.UserService;
@@ -67,6 +68,21 @@ public class UserInfoClient {
                         rlog.d(otherUserInfoBeenList);
                         if (userInfoClientListener != null) {
                             userInfoClientListener.onGetUserList(otherUserInfoBeenList);
+                        }
+                    }
+                });
+    }
+
+    public static void getOtherUserInfo(String name) {
+        final UserService userService = ApiBase.getInstance().build().create(UserService.class);
+        userService.getOtherUserInfo(name)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<OtherUserInfoDetailBean>() {
+                    @Override
+                    public void call(OtherUserInfoDetailBean otherUserInfoDetailBean) {
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onGetOtherUserInfoSuccess(otherUserInfoDetailBean);
                         }
                     }
                 });

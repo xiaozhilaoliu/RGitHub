@@ -4,6 +4,7 @@
     android:id="@+id/activity_other_users"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/listview_divider_color2"
     android:orientation="vertical"
     tools:context="cn.renyuzhuo.rgithub.activity.OtherUsersActivity">
 
@@ -22,7 +23,8 @@
         <ListView
             android:id="@+id/listview"
             style="@style/listview_style"
-            android:layout_below="@id/title" />
+            android:layout_below="@id/title"
+            android:visibility="gone" />
     </RelativeLayout>
 
 </LinearLayout>
