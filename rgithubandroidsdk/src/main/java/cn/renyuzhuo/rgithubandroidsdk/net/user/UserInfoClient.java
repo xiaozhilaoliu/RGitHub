@@ -1,5 +1,7 @@
 package cn.renyuzhuo.rgithubandroidsdk.net.user;
 
+import android.provider.ContactsContract;
+
 import java.util.List;
 
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.Token;
@@ -18,9 +20,14 @@ import rx.schedulers.Schedulers;
  */
 public class UserInfoClient {
     public static UserInfoClientListener userInfoClientListener;
+    private static Object userFollowersMore;
+    private static UserService userService = ApiBase.getInstance().build().create(UserService.class);
+
+    public static void setUserInfoClientListener(UserInfoClientListener userInfoClientListener) {
+        UserInfoClient.userInfoClientListener = userInfoClientListener;
+    }
 
     public static void getLoginUserInfo() {
-        UserService userService = ApiBase.getInstance().build().create(UserService.class);
         userService.getUserInfo("token " + Token.getAuthorization())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -36,12 +43,7 @@ public class UserInfoClient {
                 });
     }
 
-    public static void setUserInfoClientListener(UserInfoClientListener userInfoClientListener) {
-        UserInfoClient.userInfoClientListener = userInfoClientListener;
-    }
-
     public static void getUserFollowersList(String username) {
-        final UserService userService = ApiBase.getInstance().build().create(UserService.class);
         userService.getUserFollowersList(username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -58,7 +60,6 @@ public class UserInfoClient {
     }
 
     public static void getUserFollowingList(String username) {
-        final UserService userService = ApiBase.getInstance().build().create(UserService.class);
         userService.getUserFollowingList(username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -73,9 +74,8 @@ public class UserInfoClient {
                 });
     }
 
-    public static void getOtherUserInfo(String name) {
-        final UserService userService = ApiBase.getInstance().build().create(UserService.class);
-        userService.getOtherUserInfo(name)
+    public static void getOtherUserInfo(String username) {
+        userService.getOtherUserInfo(username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<OtherUserInfoDetailBean>() {
@@ -83,6 +83,34 @@ public class UserInfoClient {
                     public void call(OtherUserInfoDetailBean otherUserInfoDetailBean) {
                         if (userInfoClientListener != null) {
                             userInfoClientListener.onGetOtherUserInfoSuccess(otherUserInfoDetailBean);
+                        }
+                    }
+                });
+    }
+
+    public static void getUserFollowingMore(String name, int page) {
+        userService.getUserFollowingMore(name, page)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<OtherUserInfoBean>>() {
+                    @Override
+                    public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onGetUserMore(otherUserInfoBeenList);
+                        }
+                    }
+                });
+    }
+
+    public static void getUserFollowersMore(final String username, int page) {
+        userService.getUserFollowersMore(username, page)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<OtherUserInfoBean>>() {
+                    @Override
+                    public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onGetUserMore(otherUserInfoBeenList);
                         }
                     }
                 });

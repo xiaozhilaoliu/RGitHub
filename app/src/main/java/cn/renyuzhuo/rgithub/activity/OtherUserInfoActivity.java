@@ -128,4 +128,9 @@ public class OtherUserInfoActivity extends Activity implements UserInfoClientLis
         initUserView();
         map.put(username, otherUserInfoDetailBean);
     }
+
+    @Override
+    public void onGetUserMore(List<OtherUserInfoBean> otherUserInfoBeenList) {
+
+    }
 }

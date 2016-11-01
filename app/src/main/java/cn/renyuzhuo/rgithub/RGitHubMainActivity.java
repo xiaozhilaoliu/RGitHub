@@ -91,6 +91,11 @@ public class RGitHubMainActivity extends AppCompatActivity implements LoginClien
     }
 
     @Override
+    public void onGetUserMore(List<OtherUserInfoBean> otherUserInfoBeenList) {
+
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         OtherUserInfoActivity.clear();

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,7 +31,11 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
 
     Context context;
     ListView listView;
-    private static boolean isFollowing;
+    private boolean isFollowing;
+    private boolean hasMore = false;
+    int page = 1;
+
+    OtherUsersAdapter adapter;
 
     private static Map<String, List<OtherUserInfoBean>> followersMap = new HashMap<>();
     private static Map<String, List<OtherUserInfoBean>> followingMap = new HashMap<>();
@@ -69,6 +74,12 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        UserInfoClient.setUserInfoClientListener(this);
+    }
+
+    @Override
     public void onGetUserInfoSuccess() {
 
     }
@@ -76,8 +87,8 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
     @Override
     public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
         LoadingDialog.closeDialog();
-        OtherUsersAdapter otherUsersAdapter = new OtherUsersAdapter(context, otherUserInfoBeenList);
-        listView.setAdapter(otherUsersAdapter);
+        adapter = new OtherUsersAdapter(context, otherUserInfoBeenList);
+        listView.setAdapter(adapter);
         if (otherUserInfoBeenList.size() != 0) {
             listView.setVisibility(View.VISIBLE);
         }
@@ -91,17 +102,59 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
                 }
             }
         });
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
+                        rlog.d("load more");
+                        loadMore();
+                    }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
 
         if (isFollowing) {
             followingMap.put(username, otherUserInfoBeenList);
         } else {
             followersMap.put(username, otherUserInfoBeenList);
         }
+        if (otherUserInfoBeenList.size() < 30) {
+            hasMore = false;
+        } else {
+            hasMore = true;
+        }
     }
 
     @Override
     public void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean) {
-
+//        if (!hasMore) {
+//            return;
+//        }
+//        if (isFollowing) {
+//            UserInfoClient.getUserFollowingMore(username, ++page);
+//        } else {
+//            UserInfoClient.getUserFollowersMore(username, ++page);
+//        }
     }
 
+    private void loadMore() {
+        if (!hasMore) {
+            return;
+        }
+        if (isFollowing) {
+            UserInfoClient.getUserFollowingMore(username, ++page);
+        } else {
+            UserInfoClient.getUserFollowersMore(username, ++page);
+        }
+    }
+
+    @Override
+    public void onGetUserMore(List<OtherUserInfoBean> otherUserInfoBeenList) {
+        adapter.addUserInfo(otherUserInfoBeenList);
+    }
 }

@@ -15,4 +15,6 @@ public interface UserInfoClientListener extends BaseListener {
     void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList);
 
     void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean);
+
+    void onGetUserMore(List<OtherUserInfoBean> otherUserInfoBeenList);
 }

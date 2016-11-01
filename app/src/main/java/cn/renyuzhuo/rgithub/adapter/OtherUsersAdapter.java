@@ -19,8 +19,8 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
  * Created by renyuzhuo on 16-11-1.
  */
 public class OtherUsersAdapter extends BaseAdapter {
-    private final List<OtherUserInfoBean> otherUserInfoBeenList;
-    private final Context context;
+    private List<OtherUserInfoBean> otherUserInfoBeenList;
+    private Context context;
 
     public OtherUsersAdapter(Context context, List<OtherUserInfoBean> otherUserInfoBeenList) {
         this.otherUserInfoBeenList = otherUserInfoBeenList;
@@ -66,6 +66,11 @@ public class OtherUsersAdapter extends BaseAdapter {
         return view;
     }
 
+    public void addUserInfo(List<OtherUserInfoBean> list) {
+        otherUserInfoBeenList.addAll(list);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder {
         ImageView avatar;
         TextView name;
@@ -91,4 +96,5 @@ public class OtherUsersAdapter extends BaseAdapter {
                     '}';
         }
     }
+
 }

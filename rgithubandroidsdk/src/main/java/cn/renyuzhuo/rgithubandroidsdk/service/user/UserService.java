@@ -9,6 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -46,4 +47,20 @@ public interface UserService {
     })
     @GET("users/{username}")
     Observable<OtherUserInfoDetailBean> getOtherUserInfo(@Path("username") String username);
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "User-Agent: RGitHub"
+    })
+    @GET("users/{username}/following")
+    Observable<List<OtherUserInfoBean>> getUserFollowingMore(@Path("username") String username, @Query("page") int page);
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "User-Agent: RGitHub"
+    })
+    @GET("users/{username}/followers")
+    Observable<List<OtherUserInfoBean>> getUserFollowersMore(@Path("username") String username, @Query("page") int page);
 }
