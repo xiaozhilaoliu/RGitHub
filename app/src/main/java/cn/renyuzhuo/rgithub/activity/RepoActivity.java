@@ -3,6 +3,8 @@ package cn.renyuzhuo.rgithub.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -119,4 +121,13 @@ public class RepoActivity extends BaseListViewActivity {
         }
     }
 
+    @Override
+    public void afterInitListView() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                RepoDetailActivity.startRepoDetailActivity(context, ((ReposAdapter) adapter).getItem(position));
+            }
+        });
+    }
 }

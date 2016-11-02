@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout style="@style/repo_state_detail_relative_style">
+
+
+            <ImageView
+                android:id="@+id/lay3"
+                style="@style/repo_state_detail_img_style"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/people" />
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/lay3"
+                android:text="@string/watchers" />
+
+            <ImageView
+                android:id="@+id/lay4"
+                style="@style/repo_state_detail_img_forward_style"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/forward" />
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/lay4"
+                android:paddingRight="5dp"
+                android:text="@string/app_name" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout style="@style/repo_state_detail_relative_style">
+
+
+            <ImageView
+                android:id="@+id/lay5"
+                style="@style/repo_state_detail_img_style"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/people" />
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/lay5"
+                android:text="@string/watchers" />
+
+            <ImageView
+                android:id="@+id/lay6"
+                style="@style/repo_state_detail_img_forward_style"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/forward" />
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/lay6"
+                android:paddingRight="5dp"
+                android:text="@string/app_name" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout style="@style/repo_state_detail_relative_style">
+
+
+            <ImageView
+                android:id="@+id/lay7"
+                style="@style/repo_state_detail_img_style"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/people" />
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/lay7"
+                android:text="@string/watchers" />
+
+            <ImageView
+                android:id="@+id/lay8"
+                style="@style/repo_state_detail_img_forward_style"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/forward" />
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/lay8"
+                android:paddingRight="5dp"
+                android:text="@string/app_name" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

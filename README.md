@@ -8,6 +8,8 @@ RGitHub
 
 [GitClub](https://github.com/TellH/GitClub)
 
+[CodeHub](http://codehub-app.com/)
+
 # LICENSE
 
 [MIT](http://renyuzhuo.cn/#/issues/37)

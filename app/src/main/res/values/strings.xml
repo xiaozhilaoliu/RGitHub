@@ -6,6 +6,10 @@
     <string name="stars">Stars</string>
     <string name="repos">Repositories</string>
     <string name="has_no_more">Has No More</string>
+    <string name="stargazers">Stargazers</string>
+    <string name="watchers">Watchers</string>
+    <string name="forks">Forks</string>
+    <string name="language">Language</string>
 
     <string-array name="trending">
         <item>Today</item>
