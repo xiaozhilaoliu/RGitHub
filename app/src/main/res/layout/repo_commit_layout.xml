@@ -5,12 +5,12 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/commit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RelativeLayout style="@style/repo_state_detail_relative_style">
-
 
             <ImageView
                 android:id="@+id/lay3"
@@ -18,13 +18,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/people" />
+                android:background="@drawable/commit" />
 
             <TextView
                 style="@style/repo_state_detail_text_style"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/lay3"
-                android:text="@string/watchers" />
+                android:text="@string/commit" />
 
             <ImageView
                 android:id="@+id/lay4"
@@ -36,18 +36,13 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/forward" />
 
-            <TextView
-                style="@style/repo_state_detail_text_style"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/lay4"
-                android:paddingRight="5dp"
-                android:text="@string/app_name" />
-
-
         </RelativeLayout>
     </LinearLayout>
 
+    <View style="@style/horizontal_line" />
+
     <LinearLayout
+        android:id="@+id/pull"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -61,13 +56,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/people" />
+                android:background="@drawable/pull" />
 
             <TextView
                 style="@style/repo_state_detail_text_style"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/lay5"
-                android:text="@string/watchers" />
+                android:text="@string/pull" />
 
             <ImageView
                 android:id="@+id/lay6"
@@ -79,18 +74,13 @@
                 android:layout_marginRight="5dp"
                 android:background="@drawable/forward" />
 
-            <TextView
-                style="@style/repo_state_detail_text_style"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/lay6"
-                android:paddingRight="5dp"
-                android:text="@string/app_name" />
-
-
         </RelativeLayout>
     </LinearLayout>
 
+    <View style="@style/horizontal_line" />
+
     <LinearLayout
+        android:id="@+id/source"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -104,13 +94,13 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/people" />
+                android:background="@drawable/source" />
 
             <TextView
                 style="@style/repo_state_detail_text_style"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/lay7"
-                android:text="@string/watchers" />
+                android:text="@string/source" />
 
             <ImageView
                 android:id="@+id/lay8"
@@ -121,14 +111,6 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/forward" />
-
-            <TextView
-                style="@style/repo_state_detail_text_style"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/lay8"
-                android:paddingRight="5dp"
-                android:text="@string/app_name" />
-
 
         </RelativeLayout>
     </LinearLayout>

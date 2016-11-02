@@ -92,7 +92,7 @@ public class ReposAdapter extends BaseAdapter {
 
         public void setData(RepoBean repoBean) {
             Picasso.with(context).load(repoBean.getOwner().getAvatar_url()).placeholder(R.drawable.logo).into(ownerAvatar);
-            repoName.setText(repoBean.getFull_name());
+            repoName.setText(repoBean.getName());
             repoDescription.setText(repoBean.getDescription());
             repoLanguage.setText(repoBean.getLanguage());
             repoStarNum.setText(String.valueOf(repoBean.getStargazers_count()));

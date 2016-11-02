@@ -10,6 +10,16 @@
     <string name="watchers">Watchers</string>
     <string name="forks">Forks</string>
     <string name="language">Language</string>
+    <string name="owner">Owner</string>
+    <string name="is_private">Private</string>
+    <string name="is_public">Public</string>
+    <string name="events">Events</string>
+    <string name="issues">Issues</string>
+    <string name="readme">Readme</string>
+    <string name="websit">Website</string>
+    <string name="commit">Commits</string>
+    <string name="pull">Pull Request</string>
+    <string name="source">Source</string>
 
     <string-array name="trending">
         <item>Today</item>

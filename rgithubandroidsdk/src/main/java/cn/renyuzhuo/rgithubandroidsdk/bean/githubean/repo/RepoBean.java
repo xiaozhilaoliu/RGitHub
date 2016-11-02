@@ -135,6 +135,16 @@ public class RepoBean {
 
     private String default_branch;
 
+    private boolean isPrivate;
+
+    public boolean getPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -741,6 +751,7 @@ public class RepoBean {
                 ", open_issues=" + open_issues +
                 ", watchers=" + watchers +
                 ", default_branch='" + default_branch + '\'' +
+                ", isPrivate=" + isPrivate +
                 '}';
     }
 }

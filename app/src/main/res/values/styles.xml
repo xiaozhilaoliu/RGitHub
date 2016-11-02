@@ -73,9 +73,9 @@
 
     <style name="listview_style">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingLeft">5dp</item>
-        <item name="android:paddingRight">5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:paddingRight">3dp</item>
         <item name="android:paddingTop">3dp</item>
         <item name="android:paddingBottom">3dp</item>
         <item name="android:background">@color/listview_divider_color2</item>
@@ -83,11 +83,13 @@
 
     <style name="listview_style.first_linear">
         <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/selector_white</item>
     </style>
 
     <style name="listview_style.avatar">
         <item name="android:layout_width">45dp</item>
         <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/selector_white</item>
     </style>
 
     <style name="listview_style.second_linear">
@@ -96,6 +98,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
+        <item name="android:background">@drawable/selector_white</item>
     </style>
 
     <style name="frame_function">
