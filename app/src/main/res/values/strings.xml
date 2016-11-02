@@ -20,6 +20,7 @@
     <string name="commit">Commits</string>
     <string name="pull">Pull Request</string>
     <string name="source">Source</string>
+    <string name="project_event">ProjectEvent</string>
 
     <string-array name="trending">
         <item>Today</item>

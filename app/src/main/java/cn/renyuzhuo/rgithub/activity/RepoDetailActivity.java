@@ -116,7 +116,7 @@ public class RepoDetailActivity extends Activity {
         eventsEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                EventActivity.startEventActivity(context, repoBean.getOwner().getLogin(), repoBean.getName());
             }
         });
 

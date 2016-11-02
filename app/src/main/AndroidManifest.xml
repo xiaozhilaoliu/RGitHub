@@ -21,7 +21,8 @@
         <activity android:name=".activity.OtherUserInfoActivity" />
         <activity android:name=".activity.OtherUsersActivity" />
         <activity android:name=".activity.RepoActivity" />
-        <activity android:name=".activity.RepoDetailActivity"></activity>
+        <activity android:name=".activity.RepoDetailActivity" />
+        <activity android:name=".activity.EventActivity"></activity>
     </application>
 
 </manifest>
