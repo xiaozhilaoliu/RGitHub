@@ -2,6 +2,7 @@ package cn.renyuzhuo.rgithubandroidsdk.net.repo;
 
 import java.util.List;
 
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.Token;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Base.ApiBase.ApiBase;
 import cn.renyuzhuo.rgithubandroidsdk.service.user.RepoService;
@@ -21,7 +22,7 @@ public class RepoClient {
     }
 
     public static void getStarsList(String username) {
-        repoService.getStarList(username)
+        repoService.getStarList("token " + Token.getAuthorization(), username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<RepoBean>>() {
@@ -35,7 +36,7 @@ public class RepoClient {
     }
 
     public static void getReposList(String username) {
-        repoService.getRepoList(username)
+        repoService.getRepoList("token " + Token.getAuthorization(), username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<RepoBean>>() {

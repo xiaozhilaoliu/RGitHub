@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
@@ -69,13 +71,27 @@ public class ReposAdapter extends BaseAdapter {
 
     class ViewHolder {
         ImageView ownerAvatar;
+        TextView repoName;
+        TextView repoDescription;
+
+        TextView repoLanguage, repoStarNum, repoForkNum;
 
         public ViewHolder(View view) {
             ownerAvatar = (ImageView) view.findViewById(R.id.owner_avatar);
+            repoName = (TextView) view.findViewById(R.id.repo_name);
+            repoDescription = (TextView) view.findViewById(R.id.repo_description);
+            repoLanguage = (TextView) view.findViewById(R.id.repo_language);
+            repoStarNum = (TextView) view.findViewById(R.id.repo_star_num);
+            repoForkNum = (TextView) view.findViewById(R.id.repo_fork_num);
         }
 
         public void setData(RepoBean repoBean) {
             Picasso.with(context).load(repoBean.getOwner().getAvatar_url()).placeholder(R.drawable.logo).into(ownerAvatar);
+            repoName.setText(repoBean.getFull_name());
+            repoDescription.setText(repoBean.getDescription());
+            repoLanguage.setText(repoBean.getLanguage());
+            repoStarNum.setText(String.valueOf(repoBean.getStargazers_count()));
+            repoForkNum.setText(String.valueOf(repoBean.getForks_count()));
         }
     }
 

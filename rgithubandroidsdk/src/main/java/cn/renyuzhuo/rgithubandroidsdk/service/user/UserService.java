@@ -30,7 +30,7 @@ public interface UserService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}/followers")
-    Observable<List<OtherUserInfoBean>> getUserFollowersList(@Path("username") String username);
+    Observable<List<OtherUserInfoBean>> getUserFollowersList(@Header("Authorization") String token, @Path("username") String username);
 
     @Headers({
             "Accept: application/json",
@@ -38,7 +38,7 @@ public interface UserService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}/following")
-    Observable<List<OtherUserInfoBean>> getUserFollowingList(@Path("username") String username);
+    Observable<List<OtherUserInfoBean>> getUserFollowingList(@Header("Authorization") String token, @Path("username") String username);
 
     @Headers({
             "Accept: application/json",
@@ -46,7 +46,7 @@ public interface UserService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}")
-    Observable<OtherUserInfoDetailBean> getOtherUserInfo(@Path("username") String username);
+    Observable<OtherUserInfoDetailBean> getOtherUserInfo(@Header("Authorization") String token, @Path("username") String username);
 
     @Headers({
             "Accept: application/json",
@@ -54,7 +54,7 @@ public interface UserService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}/following")
-    Observable<List<OtherUserInfoBean>> getUserFollowingMore(@Path("username") String username, @Query("page") int page);
+    Observable<List<OtherUserInfoBean>> getUserFollowingMore(@Header("Authorization") String token, @Path("username") String username, @Query("page") int page);
 
     @Headers({
             "Accept: application/json",
@@ -62,5 +62,5 @@ public interface UserService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}/followers")
-    Observable<List<OtherUserInfoBean>> getUserFollowersMore(@Path("username") String username, @Query("page") int page);
+    Observable<List<OtherUserInfoBean>> getUserFollowersMore(@Header("Authorization") String token, @Path("username") String username, @Query("page") int page);
 }

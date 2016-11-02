@@ -43,7 +43,7 @@ public class UserInfoClient {
     }
 
     public static void getUserFollowersList(String username) {
-        userService.getUserFollowersList(username)
+        userService.getUserFollowersList("token " + Token.getAuthorization(), username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<OtherUserInfoBean>>() {
@@ -59,7 +59,7 @@ public class UserInfoClient {
     }
 
     public static void getUserFollowingList(String username) {
-        userService.getUserFollowingList(username)
+        userService.getUserFollowingList("token " + Token.getAuthorization(), username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<OtherUserInfoBean>>() {
@@ -74,7 +74,7 @@ public class UserInfoClient {
     }
 
     public static void getOtherUserInfo(String username) {
-        userService.getOtherUserInfo(username)
+        userService.getOtherUserInfo("token " + Token.getAuthorization(), username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<OtherUserInfoDetailBean>() {
@@ -88,7 +88,7 @@ public class UserInfoClient {
     }
 
     public static void getUserFollowingMore(String name, int page) {
-        userService.getUserFollowingMore(name, page)
+        userService.getUserFollowingMore("token " + Token.getAuthorization(), name, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<OtherUserInfoBean>>() {
@@ -102,7 +102,7 @@ public class UserInfoClient {
     }
 
     public static void getUserFollowersMore(final String username, int page) {
-        userService.getUserFollowersMore(username, page)
+        userService.getUserFollowersMore("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<OtherUserInfoBean>>() {

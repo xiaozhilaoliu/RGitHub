@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,7 +19,6 @@ import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClientListener;
 import cn.renyuzhuo.rlog.rlog;
 import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
-import okhttp3.HttpUrl;
 
 public class RepoActivity extends Activity implements RepoClientListener {
 
@@ -84,6 +84,7 @@ public class RepoActivity extends Activity implements RepoClientListener {
         LoadingDialog.closeDialog();
         ReposAdapter reposAdapter = new ReposAdapter(context, repoBeanList);
         listView.setAdapter(reposAdapter);
+        listView.setVisibility(View.VISIBLE);
 
     }
 }

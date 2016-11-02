@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import rx.Observable;
@@ -18,7 +19,7 @@ public interface RepoService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}/starred")
-    Observable<List<RepoBean>> getStarList(@Path("username") String username);
+    Observable<List<RepoBean>> getStarList(@Header("Authorization") String token, @Path("username") String username);
 
     @Headers({
             "Accept: application/json",
@@ -26,6 +27,6 @@ public interface RepoService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}/repos")
-    Observable<List<RepoBean>> getRepoList(@Path("username") String username);
+    Observable<List<RepoBean>> getRepoList(@Header("Authorization") String token, @Path("username") String username);
 
 }
