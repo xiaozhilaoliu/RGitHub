@@ -1,14 +1,13 @@
 package cn.renyuzhuo.rgithub.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,22 +18,15 @@ import cn.renyuzhuo.rgithub.adapter.OtherUsersAdapter;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
-import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClientListener;
-import cn.renyuzhuo.rlog.rlog;
 import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
-public class OtherUsersActivity extends Activity implements UserInfoClientListener {
+public class OtherUsersActivity extends BaseListViewActivity {
 
     Intent intent;
     String username, type;
     TextView titleText;
     Context context;
-    ListView listView;
     private boolean isFollowing;
-    private boolean hasMore = false;
-    int page = 1;
-
-    OtherUsersAdapter adapter;
 
     private static Map<String, List<OtherUserInfoBean>> mapFollowers = new HashMap<>();
     private static Map<String, List<OtherUserInfoBean>> mapFollowing = new HashMap<>();
@@ -56,20 +48,31 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
             isFollowing = false;
             titleText.setText(getString(R.string.followers));
             if (mapFollowers.get(username) != null) {
-                onGetUserList(mapFollowers.get(username));
+                List<OtherUserInfoBean> tempOtherUserInfo = mapFollowers.get(username);
+                pageHelper = new PageHelper(tempOtherUserInfo.size());
+                initList(tempOtherUserInfo);
                 return;
             }
-            UserInfoClient.getUserFollowersList(username);
+            pageHelper = new PageHelper();
+            UserInfoClient.getUserFollowersList(username, pageHelper.nextPage());
         } else if (type.equals(getString(R.string.following))) {
             isFollowing = true;
             titleText.setText(getString(R.string.following));
             if (mapFollowing.get(username) != null) {
-                onGetUserList(mapFollowing.get(username));
+                List<OtherUserInfoBean> tempOtherUserInfo = mapFollowing.get(username);
+                pageHelper = new PageHelper(tempOtherUserInfo.size());
+                initList(tempOtherUserInfo);
                 return;
             }
-            UserInfoClient.getUserFollowingList(username);
+            pageHelper = new PageHelper();
+            UserInfoClient.getUserFollowingList(username, pageHelper.nextPage());
         }
         LoadingDialog.openLoadingDialogLoading(this);
+    }
+
+    private void initList(List<OtherUserInfoBean> tempOtherUserInfo) {
+        adapter = new OtherUsersAdapter(context, tempOtherUserInfo);
+        initListView();
     }
 
     @Override
@@ -79,53 +82,22 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
     }
 
     @Override
-    public void onGetUserInfoSuccess() {
-
-    }
-
-    @Override
     public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
         LoadingDialog.closeDialog();
-        adapter = new OtherUsersAdapter(context, otherUserInfoBeenList);
-        listView.setAdapter(adapter);
-        if (otherUserInfoBeenList.size() != 0) {
-            listView.setVisibility(View.VISIBLE);
-        }
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                rlog.d(position);
-                if (view.getTag() instanceof OtherUsersAdapter.ViewHolder) {
-                    String name = ((OtherUsersAdapter.ViewHolder) view.getTag()).getName().getText().toString();
-                    OtherUserInfoActivity.startOtherUserInfoActivity(context, name);
-                }
-            }
-        });
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
-                        rlog.d("load more");
-                        loadMore();
-                    }
-                }
-            }
+        pageHelper.hasMoreOrNot(otherUserInfoBeenList.size());
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            }
-        });
+        if (adapter != null) {
+            ((OtherUsersAdapter) adapter).addUserInfo(otherUserInfoBeenList);
+            return;
+        }
+
+        adapter = new OtherUsersAdapter(context, otherUserInfoBeenList);
+        initListView();
 
         if (isFollowing) {
             mapFollowing.put(username, otherUserInfoBeenList);
         } else {
             mapFollowers.put(username, otherUserInfoBeenList);
-        }
-        if (otherUserInfoBeenList.size() < 30) {
-            hasMore = false;
-        } else {
-            hasMore = true;
         }
     }
 
@@ -133,19 +105,28 @@ public class OtherUsersActivity extends Activity implements UserInfoClientListen
     public void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean) {
     }
 
-    private void loadMore() {
-        if (!hasMore) {
+    public void loadMore() {
+        if (!pageHelper.hasMore()) {
+            if (pageHelper.showToast()) {
+                Toast.makeText(context, getString(R.string.has_no_more), Toast.LENGTH_SHORT).show();
+            }
             return;
         }
+        LoadingDialog.openLoadingDialogLoadingMore(this);
         if (isFollowing) {
-            UserInfoClient.getUserFollowingMore(username, ++page);
+            UserInfoClient.getUserFollowingList(username, pageHelper.nextPage());
         } else {
-            UserInfoClient.getUserFollowersMore(username, ++page);
+            UserInfoClient.getUserFollowersList(username, pageHelper.nextPage());
         }
     }
 
     @Override
-    public void onGetUserMore(List<OtherUserInfoBean> otherUserInfoBeenList) {
-        adapter.addUserInfo(otherUserInfoBeenList);
+    public void afterInitListView() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                OtherUserInfoActivity.startOtherUserInfoActivity(context, ((OtherUsersAdapter.ViewHolder) view.getTag()).getName());
+            }
+        });
     }
 }

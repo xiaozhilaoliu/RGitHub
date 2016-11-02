@@ -34,4 +34,8 @@ public class LoadingDialog {
     public static void openLoadingDialogLoading(Context context) {
         openLoadingDialog(context, R.string.loading);
     }
+
+    public static void openLoadingDialogLoadingMore(Context context) {
+        openLoadingDialog(context, R.string.loading_more);
+    }
 }

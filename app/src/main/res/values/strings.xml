@@ -5,6 +5,7 @@
     <string name="again">Again to Exit</string>
     <string name="stars">Stars</string>
     <string name="repos">Repositories</string>
+    <string name="has_no_more">Has No More</string>
 
     <string-array name="trending">
         <item>Today</item>

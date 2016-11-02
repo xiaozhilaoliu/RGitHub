@@ -42,37 +42,6 @@ public class UserInfoClient {
                 });
     }
 
-    public static void getUserFollowersList(String username) {
-        userService.getUserFollowersList("token " + Token.getAuthorization(), username)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<OtherUserInfoBean>>() {
-                    @Override
-                    public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
-                        rlog.d(otherUserInfoBeenList);
-                        if (userInfoClientListener != null) {
-                            userInfoClientListener.onGetUserList(otherUserInfoBeenList);
-                        }
-                    }
-                });
-
-    }
-
-    public static void getUserFollowingList(String username) {
-        userService.getUserFollowingList("token " + Token.getAuthorization(), username)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<OtherUserInfoBean>>() {
-                    @Override
-                    public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
-                        rlog.d(otherUserInfoBeenList);
-                        if (userInfoClientListener != null) {
-                            userInfoClientListener.onGetUserList(otherUserInfoBeenList);
-                        }
-                    }
-                });
-    }
-
     public static void getOtherUserInfo(String username) {
         userService.getOtherUserInfo("token " + Token.getAuthorization(), username)
                 .subscribeOn(Schedulers.newThread())
@@ -87,21 +56,21 @@ public class UserInfoClient {
                 });
     }
 
-    public static void getUserFollowingMore(String name, int page) {
-        userService.getUserFollowingMore("token " + Token.getAuthorization(), name, page)
+    public static void getUserFollowingList(String username, int page) {
+        userService.getUserFollowingMore("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<OtherUserInfoBean>>() {
                     @Override
                     public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
                         if (userInfoClientListener != null) {
-                            userInfoClientListener.onGetUserMore(otherUserInfoBeenList);
+                            userInfoClientListener.onGetUserList(otherUserInfoBeenList);
                         }
                     }
                 });
     }
 
-    public static void getUserFollowersMore(final String username, int page) {
+    public static void getUserFollowersList(final String username, int page) {
         userService.getUserFollowersMore("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -109,7 +78,7 @@ public class UserInfoClient {
                     @Override
                     public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
                         if (userInfoClientListener != null) {
-                            userInfoClientListener.onGetUserMore(otherUserInfoBeenList);
+                            userInfoClientListener.onGetUserList(otherUserInfoBeenList);
                         }
                     }
                 });

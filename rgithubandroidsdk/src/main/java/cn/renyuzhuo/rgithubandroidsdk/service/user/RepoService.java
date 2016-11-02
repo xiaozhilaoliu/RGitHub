@@ -7,6 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -19,7 +20,7 @@ public interface RepoService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}/starred")
-    Observable<List<RepoBean>> getStarList(@Header("Authorization") String token, @Path("username") String username);
+    Observable<List<RepoBean>> getStarList(@Header("Authorization") String token, @Path("username") String username, @Query("page") int page);
 
     @Headers({
             "Accept: application/json",
@@ -27,6 +28,6 @@ public interface RepoService {
             "User-Agent: RGitHub"
     })
     @GET("users/{username}/repos")
-    Observable<List<RepoBean>> getRepoList(@Header("Authorization") String token, @Path("username") String username);
+    Observable<List<RepoBean>> getRepoList(@Header("Authorization") String token, @Path("username") String username, @Query("page") int page);
 
 }

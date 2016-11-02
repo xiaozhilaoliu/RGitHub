@@ -117,4 +117,76 @@
         <item name="android:textColor">@color/setup_title_back_color</item>
     </style>
 
+    <style name="repo_text_style">
+        <item name="android:textColor">@color/setup_title_back_color</item>
+    </style>
+
+    <style name="repo_state_text_style" parent="repo_text_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingLeft">3dp</item>
+    </style>
+
+    <style name="repo_text_style.language">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="repo_state_text_style.star">
+        <item name="android:layout_weight">1.5</item>
+    </style>
+
+    <style name="repo_state_text_style.fork">
+        <item name="android:layout_weight">1.5</item>
+    </style>
+
+    <style name="repo_text_style.repo_name">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="repo_text_style.description">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">65dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLines">3</item>
+    </style>
+
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

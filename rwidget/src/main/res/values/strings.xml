@@ -2,4 +2,5 @@
 <resources>
     <string name="login_activity_authenticating">Login</string>
     <string name="loading">Loading</string>
+    <string name="loading_more">Loading More</string>
 </resources>

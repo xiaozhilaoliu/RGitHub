@@ -69,6 +69,11 @@ public class ReposAdapter extends BaseAdapter {
 
     }
 
+    public void addRepo(List<RepoBean> repoBeen) {
+        repoBeanList.addAll(repoBeen);
+        notifyDataSetChanged();
+    }
+
     class ViewHolder {
         ImageView ownerAvatar;
         TextView repoName;

@@ -1,10 +1,10 @@
 package cn.renyuzhuo.rgithub.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,7 +23,7 @@ import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClientListener;
 import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
-public class OtherUserInfoActivity extends Activity implements UserInfoClientListener {
+public class OtherUserInfoActivity extends BaseActivity {
 
     Context context;
     public static Map<String, OtherUserInfoDetailBean> map = new HashMap<>();
@@ -35,6 +35,8 @@ public class OtherUserInfoActivity extends Activity implements UserInfoClientLis
     LinearLayout followers, following;
     private OtherUserInfoDetailBean otherUserInfoDetailBean;
     String username;
+
+    FrameLayout starts, repos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class OtherUserInfoActivity extends Activity implements UserInfoClientLis
         followers = (LinearLayout) findViewById(R.id.followers);
         following = (LinearLayout) findViewById(R.id.following);
 
+        starts = (FrameLayout) findViewById(R.id.stars);
+        repos = (FrameLayout) findViewById(R.id.repos);
     }
 
     private void initUserView() {
@@ -93,6 +97,20 @@ public class OtherUserInfoActivity extends Activity implements UserInfoClientLis
             }
         });
 
+        starts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoActivity.startActivity(context, username, getString(R.string.stars));
+            }
+        });
+
+        repos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoActivity.startActivity(context, username, getString(R.string.repos));
+            }
+        });
+
     }
 
     public static void startOtherUserInfoActivity(Context context, String name) {
@@ -111,16 +129,6 @@ public class OtherUserInfoActivity extends Activity implements UserInfoClientLis
     }
 
     @Override
-    public void onGetUserInfoSuccess() {
-
-    }
-
-    @Override
-    public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
-
-    }
-
-    @Override
     public void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoDetailBean) {
         this.otherUserInfoDetailBean = otherUserInfoDetailBean;
         LoadingDialog.closeDialog();
@@ -129,8 +137,4 @@ public class OtherUserInfoActivity extends Activity implements UserInfoClientLis
         map.put(username, otherUserInfoDetailBean);
     }
 
-    @Override
-    public void onGetUserMore(List<OtherUserInfoBean> otherUserInfoBeenList) {
-
-    }
 }

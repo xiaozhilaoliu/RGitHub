@@ -85,8 +85,8 @@ public class OtherUsersAdapter extends BaseAdapter {
             Picasso.with(context).load(otherUserInfoBean.getAvatar_url()).placeholder(R.drawable.logo).into(avatar);
         }
 
-        public TextView getName() {
-            return name;
+        public String getName() {
+            return name.getText().toString();
         }
 
         @Override

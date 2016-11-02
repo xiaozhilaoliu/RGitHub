@@ -1,12 +1,11 @@
 package cn.renyuzhuo.rgithub.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +15,9 @@ import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.adapter.ReposAdapter;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
-import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClientListener;
-import cn.renyuzhuo.rlog.rlog;
 import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
-public class RepoActivity extends Activity implements RepoClientListener {
+public class RepoActivity extends BaseListViewActivity {
 
     Intent intent;
     String type;
@@ -29,9 +26,7 @@ public class RepoActivity extends Activity implements RepoClientListener {
 
     TextView titleText;
     Context context;
-    ListView listView;
 
-    private boolean hasMore = false;
 
     private static Map<String, List<RepoBean>> mapStars = new HashMap<>();
     private static Map<String, List<RepoBean>> mapRepos = new HashMap<>();
@@ -55,20 +50,31 @@ public class RepoActivity extends Activity implements RepoClientListener {
             isStars = true;
             titleText.setText(getString(R.string.stars));
             if (mapStars.get(username) != null) {
-                onGetRepoList(mapStars.get(username));
+                List<RepoBean> tempRepoBeanList = mapStars.get(username);
+                pageHelper = new PageHelper(tempRepoBeanList.size());
+                initList(tempRepoBeanList);
                 return;
             }
-            RepoClient.getStarsList(username);
+            pageHelper = new PageHelper();
+            RepoClient.getStarsList(username, pageHelper.nextPage());
         } else {
             isStars = false;
             titleText.setText(getString(R.string.repos));
             if (mapRepos.get(username) != null) {
-                onGetRepoList(mapRepos.get(username));
+                List<RepoBean> tempRepoBeanList = mapRepos.get(username);
+                pageHelper = new PageHelper(tempRepoBeanList.size());
+                initList(tempRepoBeanList);
                 return;
             }
-            RepoClient.getReposList(username);
+            pageHelper = new PageHelper();
+            RepoClient.getReposList(username, pageHelper.nextPage());
         }
         LoadingDialog.openLoadingDialogLoading(this);
+    }
+
+    private void initList(List<RepoBean> tempRepoBeanList) {
+        adapter = new ReposAdapter(context, tempRepoBeanList);
+        initListView();
     }
 
     public static void startActivity(Context context, String login, String type) {
@@ -80,11 +86,37 @@ public class RepoActivity extends Activity implements RepoClientListener {
 
     @Override
     public void onGetRepoList(List<RepoBean> repoBeanList) {
-        rlog.d();
         LoadingDialog.closeDialog();
-        ReposAdapter reposAdapter = new ReposAdapter(context, repoBeanList);
-        listView.setAdapter(reposAdapter);
-        listView.setVisibility(View.VISIBLE);
+        pageHelper.hasMoreOrNot(repoBeanList.size());
 
+        if (adapter != null) {
+            ((ReposAdapter) adapter).addRepo(repoBeanList);
+            return;
+        }
+
+        adapter = new ReposAdapter(context, repoBeanList);
+        initListView();
+
+        if (isStars) {
+            mapStars.put(username, repoBeanList);
+        } else {
+            mapRepos.put(username, repoBeanList);
+        }
     }
+
+    public void loadMore() {
+        if (!pageHelper.hasMore()) {
+            if (pageHelper.showToast()) {
+                Toast.makeText(context, getString(R.string.has_no_more), Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
+        LoadingDialog.openLoadingDialogLoadingMore(context);
+        if (isStars) {
+            RepoClient.getStarsList(username, pageHelper.nextPage());
+        } else {
+            RepoClient.getReposList(username, pageHelper.nextPage());
+        }
+    }
+
 }

@@ -21,8 +21,8 @@ public class RepoClient {
         RepoClient.repoClientListener = repoClientListener;
     }
 
-    public static void getStarsList(String username) {
-        repoService.getStarList("token " + Token.getAuthorization(), username)
+    public static void getStarsList(String username, int page) {
+        repoService.getStarList("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<RepoBean>>() {
@@ -35,8 +35,8 @@ public class RepoClient {
                 });
     }
 
-    public static void getReposList(String username) {
-        repoService.getRepoList("token " + Token.getAuthorization(), username)
+    public static void getReposList(String username, int page) {
+        repoService.getRepoList("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<RepoBean>>() {

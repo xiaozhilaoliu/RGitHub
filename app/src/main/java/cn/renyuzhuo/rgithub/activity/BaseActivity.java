@@ -1,23 +1,41 @@
 package cn.renyuzhuo.rgithub.activity;
 
 import android.app.Activity;
-import android.view.View;
-import android.view.ViewGroup;
 
-public class BaseActivity extends Activity {
+import java.util.List;
+
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.AccessTokenBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
+import cn.renyuzhuo.rgithubandroidsdk.net.login.LoginClientListener;
+import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClientListener;
+import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClientListener;
+
+public class BaseActivity extends Activity implements UserInfoClientListener, RepoClientListener, LoginClientListener {
 
     @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(layoutResID);
+    public void onGetUserInfoSuccess() {
+
     }
 
     @Override
-    public void setContentView(View view) {
-        super.setContentView(view);
+    public void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean) {
+
     }
 
     @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
-        super.setContentView(view, params);
+    public void onGetRepoList(List<RepoBean> repoBeanList) {
+
+    }
+
+    @Override
+    public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
+
+    }
+
+    @Override
+    public void onLoginSuccess(AccessTokenBean accessToken) {
+
     }
 }

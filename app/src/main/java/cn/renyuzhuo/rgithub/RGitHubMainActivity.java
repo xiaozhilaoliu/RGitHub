@@ -1,25 +1,19 @@
 package cn.renyuzhuo.rgithub;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import java.util.List;
-
+import cn.renyuzhuo.rgithub.activity.BaseActivity;
 import cn.renyuzhuo.rgithub.activity.OtherUserInfoActivity;
 import cn.renyuzhuo.rgithub.fragment.FragmentFactory;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.AccessTokenBean;
-import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
-import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.login.LoginClient;
-import cn.renyuzhuo.rgithubandroidsdk.net.login.LoginClientListener;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
-import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClientListener;
 import cn.renyuzhuo.rlog.rlog;
 import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
-public class RGitHubMainActivity extends AppCompatActivity implements LoginClientListener, UserInfoClientListener {
+public class RGitHubMainActivity extends BaseActivity {
 
     FragmentFactory fragmentFactory;
     RadioGroup radioGroup;
@@ -76,26 +70,6 @@ public class RGitHubMainActivity extends AppCompatActivity implements LoginClien
     }
 
     @Override
-    public void onGetUserInfoSuccess() {
-        initFinish();
-    }
-
-    @Override
-    public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
-
-    }
-
-    @Override
-    public void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean) {
-
-    }
-
-    @Override
-    public void onGetUserMore(List<OtherUserInfoBean> otherUserInfoBeenList) {
-
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         OtherUserInfoActivity.clear();
@@ -113,5 +87,10 @@ public class RGitHubMainActivity extends AppCompatActivity implements LoginClien
             this.finish();
             System.exit(0);
         }
+    }
+
+    @Override
+    public void onGetUserInfoSuccess() {
+        initFinish();
     }
 }

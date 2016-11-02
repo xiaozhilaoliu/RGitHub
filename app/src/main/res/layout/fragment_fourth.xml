@@ -67,7 +67,7 @@
                         android:text="@string/followers" />
                 </LinearLayout>
 
-                <View style="@style/vertical_line"></View>
+                <View style="@style/vertical_line" />
 
                 <LinearLayout
                     android:id="@+id/following"
