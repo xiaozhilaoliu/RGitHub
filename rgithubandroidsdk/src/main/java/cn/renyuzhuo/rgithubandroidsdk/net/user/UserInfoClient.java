@@ -1,7 +1,5 @@
 package cn.renyuzhuo.rgithubandroidsdk.net.user;
 
-import android.provider.ContactsContract;
-
 import java.util.List;
 
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.Token;
@@ -72,6 +70,20 @@ public class UserInfoClient {
 
     public static void getUserFollowersList(final String username, int page) {
         userService.getUserFollowersMore("token " + Token.getAuthorization(), username, page)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<OtherUserInfoBean>>() {
+                    @Override
+                    public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onGetUserList(otherUserInfoBeenList);
+                        }
+                    }
+                });
+    }
+
+    public static void getRepoFollows(String username, String reponame, String type, int page) {
+        userService.getRepoFollowList("token " + Token.getAuthorization(), username, reponame, type, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<List<OtherUserInfoBean>>() {

@@ -83,7 +83,7 @@ public class RGitHubMainActivity extends BaseActivity {
         if ((mNowTime - mPressedTime) > 1000) {
             Toast.makeText(this, getString(R.string.again), Toast.LENGTH_SHORT).show();
             mPressedTime = mNowTime;
-        } else {//退出程序
+        } else {
             this.finish();
             System.exit(0);
         }

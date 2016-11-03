@@ -10,6 +10,10 @@ RGitHub
 
 [CodeHub](http://codehub-app.com/)
 
+# TODO
+
+Fix bug: star and repo quickly.
+
 # LICENSE
 
 [MIT](http://renyuzhuo.cn/#/issues/37)

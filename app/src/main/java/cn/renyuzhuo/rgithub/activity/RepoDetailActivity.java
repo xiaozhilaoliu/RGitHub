@@ -32,6 +32,7 @@ public class RepoDetailActivity extends BaseActivity {
     TextView description;
     String fullname;
 
+    LinearLayout stars, watch, forks;
     TextView starNum, watchNum, forkNum;
 
     TextView lock, language, issues, branch, calendar, tool, ownerName;
@@ -78,6 +79,10 @@ public class RepoDetailActivity extends BaseActivity {
         repoName = (TextView) findViewById(R.id.repo_name);
         description = (TextView) findViewById(R.id.description);
 
+        stars = (LinearLayout) findViewById(R.id.stars);
+        watch = (LinearLayout) findViewById(R.id.watch);
+        forks = (LinearLayout) findViewById(R.id.forks);
+
         starNum = (TextView) findViewById(R.id.stars_num);
         watchNum = (TextView) findViewById(R.id.watch_num);
         forkNum = (TextView) findViewById(R.id.forks_num);
@@ -123,6 +128,20 @@ public class RepoDetailActivity extends BaseActivity {
     }
 
     private void initListener() {
+        stars.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoOtherUsersActivity.startRepoOtherUsersActivity(context, repoBean.getOwner().getLogin(), repoBean.getName(), getString(R.string.stargazers));
+            }
+        });
+
+        forks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoOtherUsersActivity.startRepoOtherUsersActivity(context, repoBean.getOwner().getLogin(), repoBean.getName(), getString(R.string.forks));
+            }
+        });
+
         ownerLinerar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
