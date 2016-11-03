@@ -15,10 +15,10 @@ import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.adapter.OtherUsersAdapter;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
-import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
 public class OtherUsersActivity extends BaseListViewActivity {
 

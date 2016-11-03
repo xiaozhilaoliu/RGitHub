@@ -12,13 +12,11 @@ import java.util.List;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.activity.PageHelper;
-import cn.renyuzhuo.rgithub.adapter.EventAdapter;
 import cn.renyuzhuo.rgithub.adapter.UserEventAdapter;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event.EventBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Event.EventClient;
 import cn.renyuzhuo.rlog.rlog;
-import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
-import rx.internal.schedulers.NewThreadScheduler;
 
 public class SecondFragment extends BaseListViewFragment {
 

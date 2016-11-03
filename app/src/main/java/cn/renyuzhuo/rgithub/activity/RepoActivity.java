@@ -15,9 +15,9 @@ import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.adapter.ReposAdapter;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
-import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
 public class RepoActivity extends BaseListViewActivity {
 

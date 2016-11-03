@@ -1,11 +1,10 @@
-package cn.renyuzhuo.rwidget.Dialog;
+package cn.renyuzhuo.rgithubandroidsdk.Dialog;
 
 import android.content.Context;
-import android.view.ContextThemeWrapper;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import cn.renyuzhuo.rwidget.R;
+import cn.renyuzhuo.rgithubandroidsdk.R;
 
 /**
  * Created by renyuzhuo on 16-11-1.
@@ -38,4 +37,11 @@ public class LoadingDialog {
     public static void openLoadingDialogLoadingMore(Context context) {
         openLoadingDialog(context, R.string.loading_more);
     }
+
+    public static void closeAllDialog() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
+    }
+
 }

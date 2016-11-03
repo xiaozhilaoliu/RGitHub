@@ -16,6 +16,7 @@ import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.utils.DateUtil;
+import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
 import cn.renyuzhuo.rlog.rlog;
@@ -174,7 +175,7 @@ public class RepoDetailActivity extends BaseActivity {
         website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                OpenWeb.open(context, repoBean.getHtml_url());
             }
         });
     }

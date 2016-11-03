@@ -2,6 +2,7 @@ package cn.renyuzhuo.rgithub.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.RGitHubApplication;
 import cn.renyuzhuo.rgithub.activity.OtherUsersActivity;
 import cn.renyuzhuo.rgithub.activity.RepoActivity;
+import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 
 public class FourthFragment extends BaseFragment {
@@ -29,7 +31,9 @@ public class FourthFragment extends BaseFragment {
 
     LinearLayout followers, following;
 
-    FrameLayout starts, repos;
+    LinearLayout starts, repos;
+
+    LinearLayout websit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,9 +60,9 @@ public class FourthFragment extends BaseFragment {
         followers = (LinearLayout) view.findViewById(R.id.followers);
         following = (LinearLayout) view.findViewById(R.id.following);
 
-        starts = (FrameLayout) view.findViewById(R.id.stars);
-        repos = (FrameLayout) view.findViewById(R.id.repos);
-
+        starts = (LinearLayout) view.findViewById(R.id.stars);
+        repos = (LinearLayout) view.findViewById(R.id.repos);
+        websit = (LinearLayout) view.findViewById(R.id.websit);
     }
 
     private void initUserView() {
@@ -99,6 +103,13 @@ public class FourthFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 RepoActivity.startActivity(context, UserInfoBean.getInstance().getLogin(), getString(R.string.repos));
+            }
+        });
+
+        websit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenWeb.open(context, UserInfoBean.getInstance().getHtml_url());
             }
         });
     }

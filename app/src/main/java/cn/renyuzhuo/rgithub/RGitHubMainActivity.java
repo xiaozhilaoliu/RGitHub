@@ -7,11 +7,11 @@ import android.widget.Toast;
 import cn.renyuzhuo.rgithub.activity.BaseActivity;
 import cn.renyuzhuo.rgithub.activity.OtherUserInfoActivity;
 import cn.renyuzhuo.rgithub.fragment.FragmentFactory;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.AccessTokenBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.login.LoginClient;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
 import cn.renyuzhuo.rlog.rlog;
-import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
 public class RGitHubMainActivity extends BaseActivity {
 
@@ -38,7 +38,7 @@ public class RGitHubMainActivity extends BaseActivity {
         setOnClickListener();
         radioGroup.check(R.id.first);
         RGitHubApplication.isLogin = true;
-        LoadingDialog.closeDialog();
+        LoadingDialog.closeAllDialog();
     }
 
     private void setOnClickListener() {

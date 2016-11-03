@@ -1,6 +1,7 @@
 package cn.renyuzhuo.rgithubandroidsdk.Browser;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -8,6 +9,10 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
+import cn.renyuzhuo.rgithubandroidsdk.R;
 import cn.renyuzhuo.rgithubandroidsdk.activity.WebActivity;
 
 import static android.app.Activity.RESULT_OK;
@@ -41,5 +46,32 @@ public class MyWebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         view.loadUrl(request.getUrl().toString());
         return true;
+    }
+
+    private static MaterialDialog webDialog;
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+        if (webDialog != null) {
+            webDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        if (webDialog != null) {
+            if (webDialog.isShowing()) {
+
+            } else {
+                webDialog.show();
+            }
+            return;
+        }
+        webDialog = new MaterialDialog.Builder(activity)
+                .progress(true, 0)
+                .content(activity.getString(R.string.web_loading))
+                .show();
     }
 }

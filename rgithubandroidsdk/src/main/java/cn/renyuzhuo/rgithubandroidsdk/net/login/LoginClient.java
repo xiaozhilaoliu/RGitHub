@@ -1,8 +1,10 @@
 package cn.renyuzhuo.rgithubandroidsdk.net.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import cn.renyuzhuo.rgithubandroidsdk.R;
 import cn.renyuzhuo.rgithubandroidsdk.activity.WebActivity;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.AccessTokenBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.OAuthBean;

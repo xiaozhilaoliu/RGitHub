@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_web"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.renyuzhuo.rgithubandroidsdk.activity.WebActivity">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login" />
+    <RelativeLayout style="@style/title_style">
 
-    <cn.renyuzhuo.rgithubandroidsdk.Browser.MyWebView
-        android:id="@+id/webview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible" />
+        <RelativeLayout
+            android:id="@+id/title"
+            style="@style/title_style.title_relative_text">
 
-</RelativeLayout>
+            <TextView
+                style="@style/title_style.title_text"
+                android:text="@string/login" />
+        </RelativeLayout>
+
+        <cn.renyuzhuo.rgithubandroidsdk.Browser.MyWebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/title"
+            android:visibility="visible" />
+    </RelativeLayout>
+</LinearLayout>

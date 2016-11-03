@@ -104,7 +104,6 @@
     <style name="frame_function">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">45dp</item>
-        <item name="android:layout_marginTop">10dp</item>
         <item name="android:background">@drawable/selector_white</item>
         <item name="android:paddingLeft">10dp</item>
     </style>

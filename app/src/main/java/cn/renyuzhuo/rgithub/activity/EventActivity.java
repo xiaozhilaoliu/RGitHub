@@ -11,12 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
-import cn.renyuzhuo.rgithub.adapter.EventAdapter;
 import cn.renyuzhuo.rgithub.adapter.RepoEventAdapter;
 import cn.renyuzhuo.rgithub.adapter.UserEventAdapter;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event.EventBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Event.EventClient;
-import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
 public class EventActivity extends BaseListViewActivity {
 

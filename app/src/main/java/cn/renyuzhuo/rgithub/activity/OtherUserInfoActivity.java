@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,16 +11,13 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
-import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
+import cn.renyuzhuo.rgithub.utils.OpenWeb;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
-import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
-import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClientListener;
-import cn.renyuzhuo.rwidget.Dialog.LoadingDialog;
 
 public class OtherUserInfoActivity extends BaseActivity {
 
@@ -36,7 +32,9 @@ public class OtherUserInfoActivity extends BaseActivity {
     private OtherUserInfoDetailBean otherUserInfoDetailBean;
     String username;
 
-    FrameLayout starts, repos;
+    LinearLayout starts, repos;
+
+    LinearLayout websit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +64,9 @@ public class OtherUserInfoActivity extends BaseActivity {
         followers = (LinearLayout) findViewById(R.id.followers);
         following = (LinearLayout) findViewById(R.id.following);
 
-        starts = (FrameLayout) findViewById(R.id.stars);
-        repos = (FrameLayout) findViewById(R.id.repos);
+        starts = (LinearLayout) findViewById(R.id.stars);
+        repos = (LinearLayout) findViewById(R.id.repos);
+        websit = (LinearLayout) findViewById(R.id.websit);
     }
 
     private void initUserView() {
@@ -108,6 +107,13 @@ public class OtherUserInfoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 RepoActivity.startActivity(context, username, getString(R.string.repos));
+            }
+        });
+
+        websit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenWeb.open(context, otherUserInfoDetailBean.getHtml_url());
             }
         });
 
