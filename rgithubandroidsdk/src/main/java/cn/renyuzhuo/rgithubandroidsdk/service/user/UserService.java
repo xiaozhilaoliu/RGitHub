@@ -10,6 +10,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import rx.Completable;
 import rx.Observable;
 
 /**
@@ -80,5 +81,4 @@ public interface UserService {
     Observable<List<OtherUserInfoBean>> getRepoFollowList(@Header("Authorization") String token, @Path("username") String username,
                                                           @Path("reponame") String reponame, @Path("type") String type,
                                                           @Query("page") int page);
-
 }

@@ -9,6 +9,8 @@ public class RepoBean {
 
     private Owner owner;
 
+    private boolean isPrivate;
+
     private String html_url;
 
     private String description;
@@ -135,15 +137,9 @@ public class RepoBean {
 
     private String default_branch;
 
-    private boolean isPrivate;
+    private int network_count;
 
-    public boolean getPrivate() {
-        return isPrivate;
-    }
-
-    public void setPrivate(boolean aPrivate) {
-        isPrivate = aPrivate;
-    }
+    private int subscribers_count;
 
     public void setId(int id) {
         this.id = id;
@@ -175,6 +171,14 @@ public class RepoBean {
 
     public Owner getOwner() {
         return this.owner;
+    }
+
+    public void setPrivate(boolean isPrivate) {
+        this.isPrivate = isPrivate;
+    }
+
+    public boolean getPrivate() {
+        return this.isPrivate;
     }
 
     public void setHtml_url(String html_url) {
@@ -681,6 +685,46 @@ public class RepoBean {
         return this.default_branch;
     }
 
+    public void setNetwork_count(int network_count) {
+        this.network_count = network_count;
+    }
+
+    public int getNetwork_count() {
+        return this.network_count;
+    }
+
+    public void setSubscribers_count(int subscribers_count) {
+        this.subscribers_count = subscribers_count;
+    }
+
+    public int getSubscribers_count() {
+        return this.subscribers_count;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public boolean isFork() {
+        return fork;
+    }
+
+    public boolean isHas_issues() {
+        return has_issues;
+    }
+
+    public boolean isHas_downloads() {
+        return has_downloads;
+    }
+
+    public boolean isHas_wiki() {
+        return has_wiki;
+    }
+
+    public boolean isHas_pages() {
+        return has_pages;
+    }
+
     @Override
     public String toString() {
         return "RepoBean{" +
@@ -688,6 +732,7 @@ public class RepoBean {
                 ", name='" + name + '\'' +
                 ", full_name='" + full_name + '\'' +
                 ", owner=" + owner +
+                ", isPrivate=" + isPrivate +
                 ", html_url='" + html_url + '\'' +
                 ", description='" + description + '\'' +
                 ", fork=" + fork +
@@ -751,7 +796,8 @@ public class RepoBean {
                 ", open_issues=" + open_issues +
                 ", watchers=" + watchers +
                 ", default_branch='" + default_branch + '\'' +
-                ", isPrivate=" + isPrivate +
+                ", network_count=" + network_count +
+                ", subscribers_count=" + subscribers_count +
                 '}';
     }
 }

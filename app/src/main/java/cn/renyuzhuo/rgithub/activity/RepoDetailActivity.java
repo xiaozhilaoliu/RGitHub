@@ -113,7 +113,7 @@ public class RepoDetailActivity extends BaseActivity {
         description.setText(repoBean.getDescription());
 
         starNum.setText(String.valueOf(repoBean.getStargazers_count()));
-        watchNum.setText(String.valueOf(repoBean.getWatchers_count()));
+        watchNum.setText(String.valueOf(repoBean.getSubscribers_count()));
         forkNum.setText(String.valueOf(repoBean.getForks_count()));
 
         lock.setText(repoBean.getPrivate() ? getString(R.string.is_private) : getString(R.string.is_public));
@@ -132,6 +132,13 @@ public class RepoDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 RepoOtherUsersActivity.startRepoOtherUsersActivity(context, repoBean.getOwner().getLogin(), repoBean.getName(), getString(R.string.stargazers));
+            }
+        });
+
+        watch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoOtherUsersActivity.startRepoOtherUsersActivity(context, repoBean.getOwner().getLogin(), repoBean.getName(), getString(R.string.watchers));
             }
         });
 

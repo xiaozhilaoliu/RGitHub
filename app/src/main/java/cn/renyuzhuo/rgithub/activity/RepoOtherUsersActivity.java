@@ -15,9 +15,12 @@ import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.adapter.OtherUsersAdapter;
+import cn.renyuzhuo.rgithub.adapter.ReposAdapter;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
+import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
 
 public class RepoOtherUsersActivity extends BaseListViewActivity {
@@ -31,7 +34,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
     Context context;
 
     private static Map<String, List<OtherUserInfoBean>> mapStars = new HashMap<>();
-    private static Map<String, List<OtherUserInfoBean>> mapFocks = new HashMap<>();
+    private static Map<String, List<RepoBean>> mapFocks = new HashMap<>();
     String repoFullName;
     private boolean isStar = false;
 
@@ -52,13 +55,14 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         List<OtherUserInfoBean> tempOtherUserInfoBean;
         repoFullName = username + ":" + reponame;
         UserInfoClient.setUserInfoClientListener(this);
+        RepoClient.setRepoClientListener(this);
         if (type.equals(getString(R.string.stargazers))) {
             isStar = true;
             titleText.setText(getString(R.string.stargazers));
             tempOtherUserInfoBean = mapStars.get(repoFullName);
             if (tempOtherUserInfoBean != null) {
                 pageHelper = new PageHelper(tempOtherUserInfoBean.size());
-                initList(tempOtherUserInfoBean);
+                initListUser(tempOtherUserInfoBean);
                 return;
             }
             pageHelper = new PageHelper();
@@ -66,19 +70,22 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         } else if (type.equals(getString(R.string.forks))) {
             isStar = false;
             titleText.setText(getString(R.string.forks));
-            tempOtherUserInfoBean = mapFocks.get(repoFullName);
-            if (tempOtherUserInfoBean != null) {
-                pageHelper = new PageHelper(tempOtherUserInfoBean.size());
-                initList(tempOtherUserInfoBean);
+            if (mapFocks.get(repoFullName) != null) {
+                pageHelper = new PageHelper(mapFocks.get(repoFullName).size());
+                initListRepo(mapFocks.get(repoFullName));
                 return;
             }
             pageHelper = new PageHelper();
-            UserInfoClient.getRepoFollows(username, reponame, "forks", pageHelper.nextPage());
+            RepoClient.getRepoForks(username, reponame, "forks", pageHelper.nextPage());
         }
         LoadingDialog.openLoadingDialogLoading(this);
     }
 
-    private void initList(List<OtherUserInfoBean> tempOtherUserInfoBean) {
+    private void initListRepo(List<RepoBean> repoBeanList) {
+
+    }
+
+    private void initListUser(List<OtherUserInfoBean> tempOtherUserInfoBean) {
         adapter = new OtherUsersAdapter(context, tempOtherUserInfoBean);
         initListView();
     }
@@ -87,6 +94,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
     protected void onResume() {
         super.onResume();
         UserInfoClient.setUserInfoClientListener(this);
+        RepoClient.setRepoClientListener(this);
     }
 
     @Override
@@ -102,11 +110,23 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         adapter = new OtherUsersAdapter(context, otherUserInfoBeenList);
         initListView();
 
-        if (isStar) {
-            mapStars.put(repoFullName, otherUserInfoBeenList);
-        } else {
-            mapFocks.put(repoFullName, otherUserInfoBeenList);
+        mapStars.put(repoFullName, otherUserInfoBeenList);
+    }
+
+    @Override
+    public void onGetRepoList(List<RepoBean> repoBeanList) {
+        LoadingDialog.closeDialog();
+        pageHelper.hasMoreOrNot(repoBeanList.size());
+
+        if (adapter != null) {
+            ((ReposAdapter) adapter).addRepo(repoBeanList);
+            return;
         }
+
+        adapter = new ReposAdapter(context, repoBeanList);
+        initListView();
+
+        mapFocks.put(repoFullName, repoBeanList);
     }
 
     public void loadMore() {

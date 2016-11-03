@@ -63,11 +63,8 @@ public class MyWebViewClient extends WebViewClient {
         super.onPageStarted(view, url, favicon);
         if (webDialog != null) {
             if (webDialog.isShowing()) {
-
-            } else {
-                webDialog.show();
+                webDialog.dismiss();
             }
-            return;
         }
         webDialog = new MaterialDialog.Builder(activity)
                 .progress(true, 0)

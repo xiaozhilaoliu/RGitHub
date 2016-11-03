@@ -62,4 +62,18 @@ public class RepoClient {
                     }
                 });
     }
+
+    public static void getRepoForks(String username, String reponame, String type, int page) {
+        repoService.getRepoList("token " + Token.getAuthorization(), username, reponame, type, page)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<RepoBean>>() {
+                    @Override
+                    public void call(List<RepoBean> repoBeanList) {
+                        if (repoClientListener != null) {
+                            repoClientListener.onGetRepoList(repoBeanList);
+                        }
+                    }
+                });
+    }
 }
