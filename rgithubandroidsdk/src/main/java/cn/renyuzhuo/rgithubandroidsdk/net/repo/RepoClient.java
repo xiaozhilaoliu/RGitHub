@@ -48,4 +48,18 @@ public class RepoClient {
                     }
                 });
     }
+
+    public static void getRepo(String username, String reponame) {
+        repoService.getRepo("token " + Token.getAuthorization(), username, reponame)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<RepoBean>() {
+                    @Override
+                    public void call(RepoBean repoBean) {
+                        if (repoClientListener != null) {
+                            repoClientListener.onGetRepo(repoBean);
+                        }
+                    }
+                });
+    }
 }

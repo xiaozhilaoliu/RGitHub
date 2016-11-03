@@ -18,6 +18,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/go_to_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -47,7 +48,7 @@
                 android:layout_width="@dimen/eventSize"
                 android:layout_height="@dimen/eventSize"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp" />
 
             <TextView

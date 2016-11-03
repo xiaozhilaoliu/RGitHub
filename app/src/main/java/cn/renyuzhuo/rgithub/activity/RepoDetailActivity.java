@@ -1,10 +1,8 @@
 package cn.renyuzhuo.rgithub.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,15 +10,17 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.nio.charset.CoderMalfunctionError;
 import java.util.HashMap;
 import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.utils.DateUtil;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
+import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
 import cn.renyuzhuo.rlog.rlog;
 
-public class RepoDetailActivity extends Activity {
+public class RepoDetailActivity extends BaseActivity {
 
     private static Map<String, RepoBean> mapRepos = new HashMap<>();
     Intent intent;
@@ -29,6 +29,7 @@ public class RepoDetailActivity extends Activity {
     ImageView avatar;
     TextView repoName;
     TextView description;
+    String fullname;
 
     TextView starNum, watchNum, forkNum;
 
@@ -47,12 +48,27 @@ public class RepoDetailActivity extends Activity {
         setContentView(R.layout.activity_repo_detail);
         context = this;
         intent = getIntent();
-        String fullname = intent.getStringExtra("fullname");
+        fullname = intent.getStringExtra("fullname");
         repoBean = mapRepos.get(fullname);
         rlog.d(repoBean);
         findViewIds();
-        initView();
+        if (repoBean != null) {
+            initView();
+            initListener();
+        } else {
+            String[] names = fullname.split("/");
+            if (names != null && names.length == 2) {
+                RepoClient.setRepoClientListener(this);
+                RepoClient.getRepo(names[0], names[1]);
+            }
+        }
+    }
 
+    @Override
+    public void onGetRepo(RepoBean repoBean) {
+        this.repoBean = repoBean;
+        mapRepos.put(fullname, repoBean);
+        initView();
         initListener();
     }
 
@@ -167,6 +183,12 @@ public class RepoDetailActivity extends Activity {
         Intent intent = new Intent(context, RepoDetailActivity.class);
         mapRepos.put(repoBean.getFull_name(), repoBean);
         intent.putExtra("fullname", repoBean.getFull_name());
+        context.startActivity(intent);
+    }
+
+    public static void startRepoDetailActivity(Context context, String repoName) {
+        Intent intent = new Intent(context, RepoDetailActivity.class);
+        intent.putExtra("fullname", repoName);
         context.startActivity(intent);
     }
 }

@@ -10,4 +10,6 @@ import cn.renyuzhuo.rgithubandroidsdk.net.BaseListener;
  */
 public interface RepoClientListener extends BaseListener {
     void onGetRepoList(List<RepoBean> repoBeanList);
+
+    void onGetRepo(RepoBean repoBean);
 }

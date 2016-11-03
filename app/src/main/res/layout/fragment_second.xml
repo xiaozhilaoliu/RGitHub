@@ -5,4 +5,9 @@
     android:layout_height="match_parent"
     tools:context="cn.renyuzhuo.rgithub.fragment.FirstFragment">
 
+    <ListView
+        android:id="@+id/listview"
+        style="@style/listview_style"
+        android:layout_below="@id/title"
+        android:visibility="gone" />
 </FrameLayout>

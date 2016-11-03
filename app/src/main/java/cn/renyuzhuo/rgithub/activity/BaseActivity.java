@@ -32,6 +32,11 @@ public class BaseActivity extends Activity implements UserInfoClientListener, Re
     }
 
     @Override
+    public void onGetRepo(RepoBean repoBean) {
+
+    }
+
+    @Override
     public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
 
     }

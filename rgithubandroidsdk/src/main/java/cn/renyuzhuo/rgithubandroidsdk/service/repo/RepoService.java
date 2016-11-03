@@ -30,4 +30,11 @@ public interface RepoService {
     @GET("users/{username}/repos")
     Observable<List<RepoBean>> getRepoList(@Header("Authorization") String token, @Path("username") String username, @Query("page") int page);
 
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "User-Agent: RGitHub"
+    })
+    @GET("repos/{username}/{reponame}")
+    Observable<RepoBean> getRepo(@Header("Authorization") String token, @Path("username") String username, @Path("reponame") String reponame);
 }
