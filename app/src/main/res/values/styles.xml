@@ -145,11 +145,7 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="repo_state_text_style.star">
-        <item name="android:layout_weight">1.5</item>
-    </style>
-
-    <style name="repo_state_text_style.fork">
+    <style name="repo_state_text_style.star_fork_pull">
         <item name="android:layout_weight">1.5</item>
     </style>
 
@@ -218,6 +214,28 @@
         <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/selector_white</item>
         <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="event_text_style">
+        <item name="android:textColor">@color/setup_title_back_color</item>
+    </style>
+
+    <style name="event_text_style.event_event">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="event_text_style.description">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="event_text_style.date_text">
+
     </style>
 
 </resources>

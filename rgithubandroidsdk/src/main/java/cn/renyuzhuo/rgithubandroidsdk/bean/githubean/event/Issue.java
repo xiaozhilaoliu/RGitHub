@@ -1,7 +1,5 @@
 package cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event;
 
-import java.util.List;
-
 /**
  * Created by renyuzhuo on 16-11-2.
  */
@@ -26,15 +24,9 @@ public class Issue {
 
     private User user;
 
-    private List<String> labels;
-
     private String state;
 
     private boolean locked;
-
-    private String assignee;
-
-    private List<String> assignees;
 
     private String milestone;
 
@@ -128,14 +120,6 @@ public class Issue {
         this.user = user;
     }
 
-    public List<String> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(List<String> labels) {
-        this.labels = labels;
-    }
-
     public String getState() {
         return state;
     }
@@ -150,22 +134,6 @@ public class Issue {
 
     public void setLocked(boolean locked) {
         this.locked = locked;
-    }
-
-    public String getAssignee() {
-        return assignee;
-    }
-
-    public void setAssignee(String assignee) {
-        this.assignee = assignee;
-    }
-
-    public List<String> getAssignees() {
-        return assignees;
-    }
-
-    public void setAssignees(List<String> assignees) {
-        this.assignees = assignees;
     }
 
     public String getMilestone() {
@@ -229,11 +197,8 @@ public class Issue {
                 ", number=" + number +
                 ", title='" + title + '\'' +
                 ", user=" + user +
-                ", labels=" + labels +
                 ", state='" + state + '\'' +
                 ", locked=" + locked +
-                ", assignee='" + assignee + '\'' +
-                ", assignees=" + assignees +
                 ", milestone='" + milestone + '\'' +
                 ", comments=" + comments +
                 ", created_at='" + created_at + '\'' +

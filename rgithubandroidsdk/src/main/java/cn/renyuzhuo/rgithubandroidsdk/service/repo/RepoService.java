@@ -1,4 +1,4 @@
-package cn.renyuzhuo.rgithubandroidsdk.service.user;
+package cn.renyuzhuo.rgithubandroidsdk.service.repo;
 
 import java.util.List;
 

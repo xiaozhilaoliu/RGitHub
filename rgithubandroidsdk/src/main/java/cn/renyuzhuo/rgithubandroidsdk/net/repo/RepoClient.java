@@ -5,7 +5,7 @@ import java.util.List;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.Token;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Base.ApiBase.ApiBase;
-import cn.renyuzhuo.rgithubandroidsdk.service.user.RepoService;
+import cn.renyuzhuo.rgithubandroidsdk.service.repo.RepoService;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;

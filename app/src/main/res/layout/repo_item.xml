@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/repo_star_num"
-                style="@style/repo_state_text_style.star"
+                style="@style/repo_state_text_style.star_fork_pull"
                 tools:text="@string/app_name" />
 
             <ImageView
@@ -75,7 +75,7 @@
 
             <TextView
                 android:id="@+id/repo_fork_num"
-                style="@style/repo_state_text_style.fork"
+                style="@style/repo_state_text_style.star_fork_pull"
                 tools:text="@string/app_name" />
 
         </LinearLayout>

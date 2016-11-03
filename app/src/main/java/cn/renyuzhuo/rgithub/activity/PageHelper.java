@@ -1,5 +1,8 @@
 package cn.renyuzhuo.rgithub.activity;
 
+import cn.renyuzhuo.rlog.rlog;
+import okhttp3.HttpUrl;
+
 /**
  * Created by renyuzhuo on 16-11-2.
  */
@@ -35,6 +38,7 @@ public class PageHelper {
     }
 
     public void hasMoreOrNot(int size) {
+        rlog.d("has more or not:" + size);
         if (size == pageContentNum) {
             hasMore = true;
         } else {
