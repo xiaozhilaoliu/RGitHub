@@ -23,6 +23,7 @@
     <string name="project_event">ProjectEvent</string>
     <string name="person_event">PersonEvent</string>
     <string name="long_string">This is a very long long long long long long long long long long long long long long long long long long long long long String</string>
+    <string name="homepage">HomePage</string>
 
     <string-array name="trending">
         <item>Today</item>

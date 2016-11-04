@@ -18,6 +18,8 @@ import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.utils.DateUtil;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
+import cn.renyuzhuo.rgithubandroidsdk.activity.MarkdownActivity;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.Readme;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
 import cn.renyuzhuo.rlog.rlog;
@@ -40,6 +42,7 @@ public class RepoDetailActivity extends BaseActivity {
     LinearLayout ownerLinerar;
 
     LinearLayout eventsEvents, eventsWarn, eventsReadme;
+    View readmeLine, homePageLine;
 
     LinearLayout commit, pull, source;
 
@@ -101,6 +104,8 @@ public class RepoDetailActivity extends BaseActivity {
         eventsEvents = (LinearLayout) findViewById(R.id.events_events);
         eventsWarn = (LinearLayout) findViewById(R.id.events_warn);
         eventsReadme = (LinearLayout) findViewById(R.id.events_readme);
+        readmeLine = findViewById(R.id.readme_top_line);
+        homePageLine = findViewById(R.id.homepage_top_line);
 
         commit = (LinearLayout) findViewById(R.id.commit);
         pull = (LinearLayout) findViewById(R.id.pull);
@@ -125,8 +130,6 @@ public class RepoDetailActivity extends BaseActivity {
         calendar.setText(DateUtil.formate(repoBean.getCreated_at()));
         tool.setText(String.valueOf(repoBean.getSize() / 1024) + " MB");
         ownerName.setText(repoBean.getOwner().getLogin());
-
-
     }
 
     private void initListener() {
@@ -172,13 +175,6 @@ public class RepoDetailActivity extends BaseActivity {
             }
         });
 
-        eventsReadme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -204,6 +200,21 @@ public class RepoDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 OpenWeb.open(context, repoBean.getHtml_url());
+            }
+        });
+
+        RepoClient.getRepoReadMe(this, repoBean.getOwner().getLogin(), repoBean.getName());
+    }
+
+    @Override
+    public void onGetReadme(final Readme readme) {
+        readmeLine.setVisibility(View.VISIBLE);
+        eventsReadme.setVisibility(View.VISIBLE);
+        eventsReadme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                MarkdownActivity.startMarkdownActivity(context, readme.getDownload_url().replace("https://raw.githubusercontent.com/", ""));
+                OpenWeb.open(context, readme.getHtml_url());
             }
         });
     }

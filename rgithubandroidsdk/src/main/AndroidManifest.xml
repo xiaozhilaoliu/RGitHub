@@ -3,10 +3,11 @@
     package="cn.renyuzhuo.rgithubandroidsdk">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application>
-        <activity android:name=".activity.WebActivity"></activity>
-        <activity android:name=".activity.RepoActivity"></activity>
+        <activity android:name=".activity.WebActivity" />
+        <activity android:name=".activity.MarkdownActivity" />
     </application>
 
 </manifest>

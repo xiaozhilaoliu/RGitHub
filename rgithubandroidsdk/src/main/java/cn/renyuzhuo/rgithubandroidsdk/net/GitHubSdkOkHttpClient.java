@@ -9,7 +9,7 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.sdkBean.DebugLevelBean;
 import okhttp3.Cache;
 import okhttp3.logging.HttpLoggingInterceptor;
 
-class GitHubSdkOkHttpClient {
+public class GitHubSdkOkHttpClient {
 
     private static GitHubSdkOkHttpClient gitHubSdkOkHttpClient = null;
 

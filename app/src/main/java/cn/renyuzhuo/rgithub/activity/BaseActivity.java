@@ -6,6 +6,7 @@ import java.util.List;
 
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.AccessTokenBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event.EventBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.Readme;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
@@ -33,6 +34,11 @@ public class BaseActivity extends Activity implements UserInfoClientListener, Re
 
     @Override
     public void onGetRepo(RepoBean repoBean) {
+
+    }
+
+    @Override
+    public void onGetReadme(Readme readme) {
 
     }
 
