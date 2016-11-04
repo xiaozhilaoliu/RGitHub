@@ -30,24 +30,6 @@ public interface UserService {
             "Content-Type: application/json",
             "User-Agent: RGitHub"
     })
-    @GET("users/{username}/followers")
-    Observable<List<OtherUserInfoBean>> getUserFollowersList(@Header("Authorization") String token,
-                                                             @Path("username") String username);
-
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/json",
-            "User-Agent: RGitHub"
-    })
-    @GET("users/{username}/following")
-    Observable<List<OtherUserInfoBean>> getUserFollowingList(@Header("Authorization") String token,
-                                                             @Path("username") String username);
-
-    @Headers({
-            "Accept: application/json",
-            "Content-Type: application/json",
-            "User-Agent: RGitHub"
-    })
     @GET("users/{username}")
     Observable<OtherUserInfoDetailBean> getOtherUserInfo(@Header("Authorization") String token,
                                                          @Path("username") String username);

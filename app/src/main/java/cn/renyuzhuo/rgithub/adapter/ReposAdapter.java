@@ -74,7 +74,8 @@ public class ReposAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    class ViewHolder {
+    public class ViewHolder {
+        String fullName;
         ImageView ownerAvatar;
         TextView repoName;
         TextView repoDescription;
@@ -91,12 +92,17 @@ public class ReposAdapter extends BaseAdapter {
         }
 
         public void setData(RepoBean repoBean) {
+            fullName = repoBean.getFull_name();
             Picasso.with(context).load(repoBean.getOwner().getAvatar_url()).placeholder(R.drawable.logo).into(ownerAvatar);
             repoName.setText(repoBean.getName());
             repoDescription.setText(repoBean.getDescription());
             repoLanguage.setText(repoBean.getLanguage());
             repoStarNum.setText(String.valueOf(repoBean.getStargazers_count()));
             repoForkNum.setText(String.valueOf(repoBean.getForks_count()));
+        }
+
+        public String getFullName() {
+            return fullName;
         }
     }
 

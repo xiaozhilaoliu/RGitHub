@@ -17,14 +17,9 @@ import rx.schedulers.Schedulers;
  * Created by renyuzhuo on 16-10-31.
  */
 public class UserInfoClient {
-    public static UserInfoClientListener userInfoClientListener;
     private static UserService userService = ApiBase.getInstance().build().create(UserService.class);
 
-    public static void setUserInfoClientListener(UserInfoClientListener userInfoClientListener) {
-        UserInfoClient.userInfoClientListener = userInfoClientListener;
-    }
-
-    public static void getLoginUserInfo() {
+    public static void getLoginUserInfo(final UserInfoClientListener userInfoClientListener) {
         userService.getUserInfo("token " + Token.getAuthorization())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,7 +35,7 @@ public class UserInfoClient {
                 });
     }
 
-    public static void getOtherUserInfo(String username) {
+    public static void getOtherUserInfo(final UserInfoClientListener userInfoClientListener, String username) {
         userService.getOtherUserInfo("token " + Token.getAuthorization(), username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,7 +49,7 @@ public class UserInfoClient {
                 });
     }
 
-    public static void getUserFollowingList(String username, int page) {
+    public static void getUserFollowingList(final UserInfoClientListener userInfoClientListener, String username, int page) {
         userService.getUserFollowingMore("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,7 +63,7 @@ public class UserInfoClient {
                 });
     }
 
-    public static void getUserFollowersList(final String username, int page) {
+    public static void getUserFollowersList(final UserInfoClientListener userInfoClientListener, final String username, int page) {
         userService.getUserFollowersMore("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -82,7 +77,16 @@ public class UserInfoClient {
                 });
     }
 
-    public static void getRepoFollows(String username, String reponame, String type, int page) {
+    public static void getRepoFollows(UserInfoClientListener userInfoClientListener, String username, String reponame, String type, int page) {
+        getRepoOtherUserList(userInfoClientListener, username, reponame, type, page);
+    }
+
+
+    public static void getRepoWatchers(UserInfoClientListener userInfoClientListener, String username, String reponame, String type, int page) {
+        getRepoOtherUserList(userInfoClientListener, username, reponame, type, page);
+    }
+
+    private static void getRepoOtherUserList(final UserInfoClientListener userInfoClientListener, String username, String reponame, String type, int page) {
         userService.getRepoFollowList("token " + Token.getAuthorization(), username, reponame, type, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

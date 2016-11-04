@@ -48,8 +48,7 @@ public class OtherUserInfoActivity extends BaseActivity {
             onGetOtherUserInfoSuccess(map.get(username));
             return;
         }
-        UserInfoClient.setUserInfoClientListener(this);
-        UserInfoClient.getOtherUserInfo(username);
+        UserInfoClient.getOtherUserInfo(this, username);
         LoadingDialog.openLoadingDialogLoading(context);
     }
 

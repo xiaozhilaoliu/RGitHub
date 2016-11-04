@@ -65,8 +65,7 @@ public class RGitHubMainActivity extends BaseActivity {
     @Override
     public void onLoginSuccess(AccessTokenBean accessToken) {
         rlog.d("login success");
-        UserInfoClient.setUserInfoClientListener(this);
-        UserInfoClient.getLoginUserInfo();
+        UserInfoClient.getLoginUserInfo(this);
     }
 
     @Override

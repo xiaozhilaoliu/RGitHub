@@ -43,7 +43,6 @@ public class OtherUsersActivity extends BaseListViewActivity {
         intent = getIntent();
         username = intent.getStringExtra("username");
         type = intent.getStringExtra("type");
-        UserInfoClient.setUserInfoClientListener(this);
         if (type.equals(getString(R.string.followers))) {
             isFollowing = false;
             titleText.setText(getString(R.string.followers));
@@ -54,7 +53,7 @@ public class OtherUsersActivity extends BaseListViewActivity {
                 return;
             }
             pageHelper = new PageHelper();
-            UserInfoClient.getUserFollowersList(username, pageHelper.nextPage());
+            UserInfoClient.getUserFollowersList(this, username, pageHelper.nextPage());
         } else if (type.equals(getString(R.string.following))) {
             isFollowing = true;
             titleText.setText(getString(R.string.following));
@@ -65,7 +64,7 @@ public class OtherUsersActivity extends BaseListViewActivity {
                 return;
             }
             pageHelper = new PageHelper();
-            UserInfoClient.getUserFollowingList(username, pageHelper.nextPage());
+            UserInfoClient.getUserFollowingList(this, username, pageHelper.nextPage());
         }
         LoadingDialog.openLoadingDialogLoading(this);
     }
@@ -78,7 +77,6 @@ public class OtherUsersActivity extends BaseListViewActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        UserInfoClient.setUserInfoClientListener(this);
     }
 
     @Override
@@ -110,9 +108,9 @@ public class OtherUsersActivity extends BaseListViewActivity {
         }
         LoadingDialog.openLoadingDialogLoadingMore(this);
         if (isFollowing) {
-            UserInfoClient.getUserFollowingList(username, pageHelper.nextPage());
+            UserInfoClient.getUserFollowingList(this, username, pageHelper.nextPage());
         } else {
-            UserInfoClient.getUserFollowersList(username, pageHelper.nextPage());
+            UserInfoClient.getUserFollowersList(this, username, pageHelper.nextPage());
         }
     }
 
