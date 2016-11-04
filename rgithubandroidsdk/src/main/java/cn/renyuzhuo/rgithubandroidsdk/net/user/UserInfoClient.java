@@ -7,6 +7,7 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Base.ApiBase.ApiBase;
+import cn.renyuzhuo.rgithubandroidsdk.net.result.MySubscriber;
 import cn.renyuzhuo.rgithubandroidsdk.service.user.UserService;
 import cn.renyuzhuo.rlog.rlog;
 import rx.android.schedulers.AndroidSchedulers;
@@ -23,9 +24,9 @@ public class UserInfoClient {
         userService.getUserInfo("token " + Token.getAuthorization())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<UserInfoBean>() {
+                .subscribe(new MySubscriber<UserInfoBean>() {
                     @Override
-                    public void call(UserInfoBean userInfoBean) {
+                    public void onNext(UserInfoBean userInfoBean) {
                         rlog.d(userInfoBean);
                         UserInfoBean.getInstance().setUserInfoBean(userInfoBean);
                         if (userInfoClientListener != null) {
@@ -39,9 +40,9 @@ public class UserInfoClient {
         userService.getOtherUserInfo("token " + Token.getAuthorization(), username)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<OtherUserInfoDetailBean>() {
+                .subscribe(new MySubscriber<OtherUserInfoDetailBean>() {
                     @Override
-                    public void call(OtherUserInfoDetailBean otherUserInfoDetailBean) {
+                    public void onNext(OtherUserInfoDetailBean otherUserInfoDetailBean) {
                         if (userInfoClientListener != null) {
                             userInfoClientListener.onGetOtherUserInfoSuccess(otherUserInfoDetailBean);
                         }
@@ -53,9 +54,9 @@ public class UserInfoClient {
         userService.getUserFollowingMore("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<OtherUserInfoBean>>() {
+                .subscribe(new MySubscriber<List<OtherUserInfoBean>>() {
                     @Override
-                    public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
+                    public void onNext(List<OtherUserInfoBean> otherUserInfoBeenList) {
                         if (userInfoClientListener != null) {
                             userInfoClientListener.onGetUserList(otherUserInfoBeenList);
                         }
@@ -67,9 +68,9 @@ public class UserInfoClient {
         userService.getUserFollowersMore("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<OtherUserInfoBean>>() {
+                .subscribe(new MySubscriber<List<OtherUserInfoBean>>() {
                     @Override
-                    public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
+                    public void onNext(List<OtherUserInfoBean> otherUserInfoBeenList) {
                         if (userInfoClientListener != null) {
                             userInfoClientListener.onGetUserList(otherUserInfoBeenList);
                         }
@@ -90,9 +91,9 @@ public class UserInfoClient {
         userService.getRepoFollowList("token " + Token.getAuthorization(), username, reponame, type, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<OtherUserInfoBean>>() {
+                .subscribe(new MySubscriber<List<OtherUserInfoBean>>() {
                     @Override
-                    public void call(List<OtherUserInfoBean> otherUserInfoBeenList) {
+                    public void onNext(List<OtherUserInfoBean> otherUserInfoBeenList) {
                         if (userInfoClientListener != null) {
                             userInfoClientListener.onGetUserList(otherUserInfoBeenList);
                         }

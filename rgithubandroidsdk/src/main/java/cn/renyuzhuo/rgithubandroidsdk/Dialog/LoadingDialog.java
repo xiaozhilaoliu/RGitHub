@@ -5,6 +5,7 @@ import android.content.Context;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import cn.renyuzhuo.rgithubandroidsdk.R;
+import cn.renyuzhuo.rgithubandroidsdk.activity.WebActivity;
 
 /**
  * Created by renyuzhuo on 16-11-1.
@@ -13,6 +14,9 @@ public class LoadingDialog {
     private static MaterialDialog progressDialog;
 
     private static void openLoadingDialog(Context context, int sourceId) {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
         progressDialog = new MaterialDialog.Builder(context)
                 .progress(true, 0)
                 .content(sourceId)
@@ -36,12 +40,6 @@ public class LoadingDialog {
 
     public static void openLoadingDialogLoadingMore(Context context) {
         openLoadingDialog(context, R.string.loading_more);
-    }
-
-    public static void closeAllDialog() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-        }
     }
 
 }

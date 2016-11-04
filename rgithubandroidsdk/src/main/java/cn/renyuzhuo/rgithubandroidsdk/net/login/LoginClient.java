@@ -8,9 +8,9 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.AccessTokenBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.OAuthBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.Token;
 import cn.renyuzhuo.rgithubandroidsdk.net.Base.GitHub.GitHubBase;
+import cn.renyuzhuo.rgithubandroidsdk.net.result.MySubscriber;
 import cn.renyuzhuo.rgithubandroidsdk.service.login.LoginService;
 import cn.renyuzhuo.rlog.rlog;
-import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -36,18 +36,7 @@ public class LoginClient {
         loginService.getToken(oAuthBean)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<AccessTokenBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        rlog.ebegin();
-                        e.printStackTrace();
-                        rlog.eend();
-                    }
+                .subscribe(new MySubscriber<AccessTokenBean>() {
 
                     @Override
                     public void onNext(AccessTokenBean accessTokenBean) {

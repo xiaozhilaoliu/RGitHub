@@ -9,6 +9,7 @@ import cn.renyuzhuo.rgithubandroidsdk.Browser.MyWebViewClient;
 import cn.renyuzhuo.rgithubandroidsdk.R;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.OAuthBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.login.LoginClient;
+import cn.renyuzhuo.rgithubandroidsdk.net.result.MySubscriber;
 import cn.renyuzhuo.rlog.rlog;
 import okhttp3.HttpUrl;
 
@@ -23,6 +24,9 @@ public class WebActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+
+        MySubscriber.init(getApplicationContext());
+
         webView = (MyWebView) findViewById(R.id.webview);
         webView.setWebViewClient(new MyWebViewClient(this));
         HttpUrl.Builder url = new HttpUrl.Builder()
@@ -44,4 +48,5 @@ public class WebActivity extends Activity {
             finish();
         }
     }
+
 }

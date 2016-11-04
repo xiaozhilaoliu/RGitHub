@@ -2,6 +2,8 @@ package cn.renyuzhuo.rgithub;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import cn.renyuzhuo.rgithubandroidsdk.GitHubSdk;
 
 /**
@@ -18,5 +20,10 @@ public class RGitHubApplication extends Application {
     public void onCreate() {
         super.onCreate();
         GitHubSdk.init(this);
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
     }
 }

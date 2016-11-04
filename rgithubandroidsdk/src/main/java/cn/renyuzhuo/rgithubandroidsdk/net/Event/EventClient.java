@@ -6,9 +6,9 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.Token;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event.EventBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Base.ApiBase.ApiBase;
+import cn.renyuzhuo.rgithubandroidsdk.net.result.MySubscriber;
 import cn.renyuzhuo.rgithubandroidsdk.service.event.EventService;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -21,9 +21,9 @@ public class EventClient {
         eventService.getUserEvent("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<EventBean>>() {
+                .subscribe(new MySubscriber<List<EventBean>>() {
                     @Override
-                    public void call(List<EventBean> eventBeen) {
+                    public void onNext(List<EventBean> eventBeen) {
                         if (eventClientListener != null) {
                             eventClientListener.onGetUserEvent(eventBeen);
                         }
@@ -35,9 +35,9 @@ public class EventClient {
         eventService.getRepoEvent("token " + Token.getAuthorization(), username, pname, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<EventBean>>() {
+                .subscribe(new MySubscriber<List<EventBean>>() {
                     @Override
-                    public void call(List<EventBean> eventBeen) {
+                    public void onNext(List<EventBean> eventBeen) {
                         if (eventClientListener != null) {
                             eventClientListener.onGetRepoEvent(eventBeen);
                         }

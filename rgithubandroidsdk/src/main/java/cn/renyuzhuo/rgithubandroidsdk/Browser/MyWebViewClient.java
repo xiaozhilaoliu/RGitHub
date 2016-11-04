@@ -14,6 +14,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.R;
 import cn.renyuzhuo.rgithubandroidsdk.activity.WebActivity;
+import cn.renyuzhuo.rlog.rlog;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -32,6 +33,9 @@ public class MyWebViewClient extends WebViewClient {
         view.loadUrl(url);
         Uri uri = Uri.parse(url);
         if (uri.getScheme().equals("http")) {
+            // 善后
+            isShow = false;
+            webDialog.dismiss();
             Intent data = new Intent();
             data.setData(uri);
             activity.setResult(RESULT_OK, data);
@@ -41,19 +45,14 @@ public class MyWebViewClient extends WebViewClient {
         return super.shouldOverrideUrlLoading(view, url);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        view.loadUrl(request.getUrl().toString());
-        return true;
-    }
-
     private static MaterialDialog webDialog;
+    private boolean isShow = true;
 
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
         if (webDialog != null) {
+            rlog.d("webDialog dismiss");
             webDialog.dismiss();
         }
     }
@@ -66,9 +65,18 @@ public class MyWebViewClient extends WebViewClient {
                 webDialog.dismiss();
             }
         }
-        webDialog = new MaterialDialog.Builder(activity)
-                .progress(true, 0)
-                .content(activity.getString(R.string.web_loading))
-                .show();
+        if (isShow) {
+            rlog.d("webDialog show");
+            webDialog = new MaterialDialog.Builder(activity)
+                    .progress(true, 0)
+                    .content(activity.getString(R.string.web_loading))
+                    .show();
+        }
+    }
+
+    public static void closeDialog() {
+        if (webDialog != null) {
+            webDialog.dismiss();
+        }
     }
 }

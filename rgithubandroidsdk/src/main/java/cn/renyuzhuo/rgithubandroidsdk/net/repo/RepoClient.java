@@ -5,9 +5,9 @@ import java.util.List;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.Token;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Base.ApiBase.ApiBase;
+import cn.renyuzhuo.rgithubandroidsdk.net.result.MySubscriber;
 import cn.renyuzhuo.rgithubandroidsdk.service.repo.RepoService;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -20,9 +20,9 @@ public class RepoClient {
         repoService.getStarList("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<RepoBean>>() {
+                .subscribe(new MySubscriber<List<RepoBean>>() {
                     @Override
-                    public void call(List<RepoBean> repoBeanList) {
+                    public void onNext(List<RepoBean> repoBeanList) {
                         if (repoClientListener != null) {
                             repoClientListener.onGetRepoList(repoBeanList);
                         }
@@ -34,9 +34,9 @@ public class RepoClient {
         repoService.getRepoList("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<RepoBean>>() {
+                .subscribe(new MySubscriber<List<RepoBean>>() {
                     @Override
-                    public void call(List<RepoBean> repoBeanList) {
+                    public void onNext(List<RepoBean> repoBeanList) {
                         if (repoClientListener != null) {
                             repoClientListener.onGetRepoList(repoBeanList);
                         }
@@ -48,9 +48,9 @@ public class RepoClient {
         repoService.getRepo("token " + Token.getAuthorization(), username, reponame)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<RepoBean>() {
+                .subscribe(new MySubscriber<RepoBean>() {
                     @Override
-                    public void call(RepoBean repoBean) {
+                    public void onNext(RepoBean repoBean) {
                         if (repoClientListener != null) {
                             repoClientListener.onGetRepo(repoBean);
                         }
@@ -62,9 +62,9 @@ public class RepoClient {
         repoService.getRepoList("token " + Token.getAuthorization(), username, reponame, type, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<RepoBean>>() {
+                .subscribe(new MySubscriber<List<RepoBean>>() {
                     @Override
-                    public void call(List<RepoBean> repoBeanList) {
+                    public void onNext(List<RepoBean> repoBeanList) {
                         if (repoClientListener != null) {
                             repoClientListener.onGetRepoList(repoBeanList);
                         }

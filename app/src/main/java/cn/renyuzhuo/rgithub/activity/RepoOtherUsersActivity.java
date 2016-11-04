@@ -154,7 +154,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
                 if (type.equals(getString(R.string.stargazers))) {
                     OtherUserInfoActivity.startOtherUserInfoActivity(context, ((OtherUsersAdapter.ViewHolder) view.getTag()).getName());
                 } else if (type.equals(getString(R.string.forks))) {
-                    RepoDetailActivity.startRepoDetailActivity(context, ((ReposAdapter.ViewHolder) view.getTag()).getFullName());
+                    RepoDetailActivity.startRepoDetailActivity(context, ((ReposAdapter) adapter).getItem(position).getFull_name());
                 } else if (type.equals(getString(R.string.watchers))) {
                     OtherUserInfoActivity.startOtherUserInfoActivity(context, ((OtherUsersAdapter.ViewHolder) view.getTag()).getName());
                 }

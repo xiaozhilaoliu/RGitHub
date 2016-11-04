@@ -38,7 +38,7 @@ public class RGitHubMainActivity extends BaseActivity {
         setOnClickListener();
         radioGroup.check(R.id.first);
         RGitHubApplication.isLogin = true;
-        LoadingDialog.closeAllDialog();
+        LoadingDialog.closeDialog();
     }
 
     private void setOnClickListener() {
