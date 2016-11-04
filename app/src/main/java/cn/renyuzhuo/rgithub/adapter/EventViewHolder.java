@@ -3,6 +3,7 @@ package cn.renyuzhuo.rgithub.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,7 +25,7 @@ class EventViewHolder {
     private TextView eventTime;
     private boolean isRepo;
     private EventBean eventBean;
-    RelativeLayout goToAction;
+    LinearLayout goToAction;
 
     EventViewHolder(Context context, View view, String pname) {
         this.context = context;
@@ -48,7 +49,7 @@ class EventViewHolder {
         eventEvent = (TextView) view.findViewById(R.id.event_event);
         eventIcon = (ImageView) view.findViewById(R.id.event_icon);
         eventTime = (TextView) view.findViewById(R.id.event_time);
-        goToAction = (RelativeLayout) view.findViewById(R.id.go_to_action);
+        goToAction = (LinearLayout) view.findViewById(R.id.item_container);
     }
 
     public void setData(EventBean tempEventBean) {

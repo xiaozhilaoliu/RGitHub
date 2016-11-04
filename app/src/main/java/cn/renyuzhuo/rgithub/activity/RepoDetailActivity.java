@@ -17,6 +17,7 @@ import java.util.Map;
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.utils.DateUtil;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
 import cn.renyuzhuo.rlog.rlog;
@@ -61,6 +62,7 @@ public class RepoDetailActivity extends BaseActivity {
             String[] names = fullname.split("/");
             if (names != null && names.length == 2) {
                 RepoClient.setRepoClientListener(this);
+                LoadingDialog.openLoadingDialogLoading(context);
                 RepoClient.getRepo(names[0], names[1]);
             }
         }
@@ -68,6 +70,7 @@ public class RepoDetailActivity extends BaseActivity {
 
     @Override
     public void onGetRepo(RepoBean repoBean) {
+        LoadingDialog.closeDialog();
         this.repoBean = repoBean;
         mapRepos.put(fullname, repoBean);
         initView();
@@ -204,13 +207,6 @@ public class RepoDetailActivity extends BaseActivity {
                 OpenWeb.open(context, repoBean.getHtml_url());
             }
         });
-    }
-
-    public static void startRepoDetailActivity(Context context, RepoBean repoBean) {
-        Intent intent = new Intent(context, RepoDetailActivity.class);
-        mapRepos.put(repoBean.getFull_name(), repoBean);
-        intent.putExtra("fullname", repoBean.getFull_name());
-        context.startActivity(intent);
     }
 
     public static void startRepoDetailActivity(Context context, String repoName) {

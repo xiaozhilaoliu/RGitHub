@@ -20,10 +20,12 @@
 
             <ImageView
                 android:id="@+id/avatar"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:layout_marginTop="15dp" />
+                android:layout_marginTop="15dp"
+                android:background="@drawable/logo" />
 
             <TextView
                 android:id="@+id/name"

@@ -63,13 +63,13 @@ public class SecondFragment extends BaseListViewFragment {
 
     @Override
     public void loadMore() {
-        LoadingDialog.openLoadingDialogLoading(context);
         if (!pageHelper.hasMore()) {
             if (pageHelper.showToast()) {
                 Toast.makeText(context, getString(R.string.has_no_more), Toast.LENGTH_SHORT).show();
             }
             return;
         }
+        LoadingDialog.openLoadingDialogLoading(context);
         EventClient.getLoginUserEvent(pageHelper.nextPage());
     }
 }

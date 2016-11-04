@@ -126,7 +126,7 @@ public class RepoActivity extends BaseListViewActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RepoDetailActivity.startRepoDetailActivity(context, ((ReposAdapter) adapter).getItem(position));
+                RepoDetailActivity.startRepoDetailActivity(context, ((ReposAdapter) adapter).getItem(position).getFull_name());
             }
         });
     }
