@@ -14,14 +14,9 @@ import rx.schedulers.Schedulers;
  * Created by renyuzhuo on 16-11-1.
  */
 public class RepoClient {
-    private static RepoClientListener repoClientListener;
     private static RepoService repoService = ApiBase.getInstance().build().create(RepoService.class);
 
-    public static void setRepoClientListener(RepoClientListener repoClientListener) {
-        RepoClient.repoClientListener = repoClientListener;
-    }
-
-    public static void getStarsList(String username, int page) {
+    public static void getStarsList(final RepoClientListener repoClientListener, String username, int page) {
         repoService.getStarList("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -35,7 +30,7 @@ public class RepoClient {
                 });
     }
 
-    public static void getReposList(String username, int page) {
+    public static void getReposList(final RepoClientListener repoClientListener, String username, int page) {
         repoService.getRepoList("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,7 +44,7 @@ public class RepoClient {
                 });
     }
 
-    public static void getRepo(String username, String reponame) {
+    public static void getRepo(final RepoClientListener repoClientListener, String username, String reponame) {
         repoService.getRepo("token " + Token.getAuthorization(), username, reponame)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -63,7 +58,7 @@ public class RepoClient {
                 });
     }
 
-    public static void getRepoForks(String username, String reponame, String type, int page) {
+    public static void getRepoForks(final RepoClientListener repoClientListener, String username, String reponame, String type, int page) {
         repoService.getRepoList("token " + Token.getAuthorization(), username, reponame, type, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

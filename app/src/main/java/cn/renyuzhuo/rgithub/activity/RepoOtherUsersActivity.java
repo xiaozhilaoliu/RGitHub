@@ -55,7 +55,6 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         type = intent.getStringExtra("type");
         List<OtherUserInfoBean> tempOtherUserInfoBean;
         repoFullName = username + "/" + reponame;
-        RepoClient.setRepoClientListener(this);
         if (type.equals(getString(R.string.stargazers))) {
             titleText.setText(getString(R.string.stargazers));
             tempOtherUserInfoBean = mapStars.get(repoFullName);
@@ -74,7 +73,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
                 return;
             }
             pageHelper = new PageHelper();
-            RepoClient.getRepoForks(username, reponame, "forks", pageHelper.nextPage());
+            RepoClient.getRepoForks(this, username, reponame, "forks", pageHelper.nextPage());
         } else if (type.equals(getString(R.string.watchers))) {
             titleText.setText(getString(R.string.watchers));
             if (mapWatch.get(repoFullName) != null) {
@@ -89,19 +88,13 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
     }
 
     private void initListRepo(List<RepoBean> repoBeanList) {
-        adapter = new ReposAdapter(context, repoBeanList);
+        adapter = new ReposAdapter(context, repoBeanList, true);
         initListView();
     }
 
     private void initListUser(List<OtherUserInfoBean> tempOtherUserInfoBean) {
         adapter = new OtherUsersAdapter(context, tempOtherUserInfoBean);
         initListView();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        RepoClient.setRepoClientListener(this);
     }
 
     @Override
@@ -130,7 +123,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
             return;
         }
 
-        adapter = new ReposAdapter(context, repoBeanList);
+        adapter = new ReposAdapter(context, repoBeanList, true);
         initListView();
 
         mapFocks.put(repoFullName, repoBeanList);
@@ -147,7 +140,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         if (type.equals(getString(R.string.stargazers))) {
             UserInfoClient.getRepoFollows(this, username, reponame, "stargazers", pageHelper.nextPage());
         } else if (type.equals(getString(R.string.forks))) {
-            RepoClient.getRepoForks(username, reponame, "forks", pageHelper.nextPage());
+            RepoClient.getRepoForks(this, username, reponame, "forks", pageHelper.nextPage());
         } else if (type.equals(getString(R.string.watchers))) {
             UserInfoClient.getRepoFollows(this, username, reponame, "subscribers", pageHelper.nextPage());
         }

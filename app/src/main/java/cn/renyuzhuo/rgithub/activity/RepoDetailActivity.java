@@ -61,9 +61,8 @@ public class RepoDetailActivity extends BaseActivity {
         } else {
             String[] names = fullname.split("/");
             if (names != null && names.length == 2) {
-                RepoClient.setRepoClientListener(this);
                 LoadingDialog.openLoadingDialogLoading(context);
-                RepoClient.getRepo(names[0], names[1]);
+                RepoClient.getRepo(this, names[0], names[1]);
             }
         }
     }

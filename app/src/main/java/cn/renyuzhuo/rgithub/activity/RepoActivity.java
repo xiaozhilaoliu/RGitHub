@@ -47,7 +47,6 @@ public class RepoActivity extends BaseListViewActivity {
         username = intent.getStringExtra("username");
         type = intent.getStringExtra("type");
 
-        RepoClient.setRepoClientListener(this);
         if (type.equals(getString(R.string.stars))) {
             isStars = true;
             titleText.setText(getString(R.string.stars));
@@ -58,7 +57,7 @@ public class RepoActivity extends BaseListViewActivity {
                 return;
             }
             pageHelper = new PageHelper();
-            RepoClient.getStarsList(username, pageHelper.nextPage());
+            RepoClient.getStarsList(this, username, pageHelper.nextPage());
         } else {
             isStars = false;
             titleText.setText(getString(R.string.repos));
@@ -69,7 +68,7 @@ public class RepoActivity extends BaseListViewActivity {
                 return;
             }
             pageHelper = new PageHelper();
-            RepoClient.getReposList(username, pageHelper.nextPage());
+            RepoClient.getReposList(this, username, pageHelper.nextPage());
         }
         LoadingDialog.openLoadingDialogLoading(this);
     }
@@ -115,9 +114,9 @@ public class RepoActivity extends BaseListViewActivity {
         }
         LoadingDialog.openLoadingDialogLoadingMore(context);
         if (isStars) {
-            RepoClient.getStarsList(username, pageHelper.nextPage());
+            RepoClient.getStarsList(this, username, pageHelper.nextPage());
         } else {
-            RepoClient.getReposList(username, pageHelper.nextPage());
+            RepoClient.getReposList(this, username, pageHelper.nextPage());
         }
     }
 

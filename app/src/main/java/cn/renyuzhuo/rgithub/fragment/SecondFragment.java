@@ -33,9 +33,8 @@ public class SecondFragment extends BaseListViewFragment {
         listView = (ListView) view.findViewById(R.id.listview);
         if (isFirst) {
             isFirst = false;
-            EventClient.setEventClientListener(this);
             pageHelper = new PageHelper();
-            EventClient.getLoginUserEvent(pageHelper.nextPage());
+            EventClient.getLoginUserEvent(this, pageHelper.nextPage());
             LoadingDialog.openLoadingDialogLoading(context);
         } else {
             initListView();
@@ -70,6 +69,6 @@ public class SecondFragment extends BaseListViewFragment {
             return;
         }
         LoadingDialog.openLoadingDialogLoading(context);
-        EventClient.getLoginUserEvent(pageHelper.nextPage());
+        EventClient.getLoginUserEvent(this, pageHelper.nextPage());
     }
 }

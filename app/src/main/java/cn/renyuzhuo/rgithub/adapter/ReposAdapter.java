@@ -21,12 +21,18 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
  */
 public class ReposAdapter extends BaseAdapter {
 
+    private boolean isFullName = false;
     private Context context;
     private List<RepoBean> repoBeanList;
 
     public ReposAdapter(Context context, List<RepoBean> repoBeanList) {
         this.context = context;
         this.repoBeanList = repoBeanList;
+    }
+
+    public ReposAdapter(Context context, List<RepoBean> repoBeanList, boolean isFullName) {
+        this(context, repoBeanList);
+        this.isFullName = isFullName;
     }
 
     @Override
@@ -94,7 +100,11 @@ public class ReposAdapter extends BaseAdapter {
         public void setData(RepoBean repoBean) {
             fullName = repoBean.getFull_name();
             Picasso.with(context).load(repoBean.getOwner().getAvatar_url()).placeholder(R.drawable.logo).into(ownerAvatar);
-            repoName.setText(repoBean.getName());
+            if ((isFullName)) {
+                repoName.setText(repoBean.getFull_name());
+            } else {
+                repoName.setText(repoBean.getName());
+            }
             repoDescription.setText(repoBean.getDescription());
             repoLanguage.setText(repoBean.getLanguage());
             repoStarNum.setText(String.valueOf(repoBean.getStargazers_count()));

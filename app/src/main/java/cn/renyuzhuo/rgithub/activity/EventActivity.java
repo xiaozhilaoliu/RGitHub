@@ -42,7 +42,6 @@ public class EventActivity extends BaseListViewActivity {
         pname = intent.getStringExtra("pname");
         type = intent.getStringExtra("type");
 
-        EventClient.setEventClientListener(this);
         if (type.equals(getString(R.string.project_event))) {
             isRepoEvent = true;
             mapName = username + "/" + pname;
@@ -53,7 +52,7 @@ public class EventActivity extends BaseListViewActivity {
                 return;
             }
             pageHelper = new PageHelper();
-            EventClient.getRepoEvent(username, pname, pageHelper.nextPage());
+            EventClient.getRepoEvent(this, username, pname, pageHelper.nextPage());
         } else if (type.equals(getString(R.string.person_event))) {
             isRepoEvent = false;
             mapName = username;
@@ -63,7 +62,7 @@ public class EventActivity extends BaseListViewActivity {
                 initList(tempEventBean);
                 return;
             }
-            EventClient.getUserEvent(username, pageHelper.nextPage());
+            EventClient.getUserEvent(this, username, pageHelper.nextPage());
         }
         LoadingDialog.openLoadingDialogLoading(this);
     }
@@ -104,11 +103,6 @@ public class EventActivity extends BaseListViewActivity {
         }
     }
 
-    @Override
-    public void afterInitListView() {
-
-    }
-
     public static void startEventActivity(Context context, String username, String projectName) {
         Intent intent = new Intent(context, EventActivity.class);
         intent.putExtra("username", username);
@@ -127,9 +121,9 @@ public class EventActivity extends BaseListViewActivity {
         }
         LoadingDialog.openLoadingDialogLoadingMore(context);
         if (isRepoEvent) {
-            EventClient.getRepoEvent(username, pname, pageHelper.nextPage());
+            EventClient.getRepoEvent(this, username, pname, pageHelper.nextPage());
         } else {
-            EventClient.getUserEvent(username, pageHelper.nextPage());
+            EventClient.getUserEvent(this, username, pageHelper.nextPage());
         }
     }
 }

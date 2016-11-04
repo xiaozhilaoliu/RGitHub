@@ -15,14 +15,9 @@ import rx.schedulers.Schedulers;
  * Created by renyuzhuo on 16-11-2.
  */
 public class EventClient {
-    private static EventClientListener eventClientListener;
     private static EventService eventService = ApiBase.getInstance().build().create(EventService.class);
 
-    public static void setEventClientListener(EventClientListener eventClientListener) {
-        EventClient.eventClientListener = eventClientListener;
-    }
-
-    public static void getUserEvent(String username, int page) {
+    public static void getUserEvent(final EventClientListener eventClientListener, String username, int page) {
         eventService.getUserEvent("token " + Token.getAuthorization(), username, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -36,7 +31,7 @@ public class EventClient {
                 });
     }
 
-    public static void getRepoEvent(String username, String pname, int page) {
+    public static void getRepoEvent(final EventClientListener eventClientListener, String username, String pname, int page) {
         eventService.getRepoEvent("token " + Token.getAuthorization(), username, pname, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -50,7 +45,7 @@ public class EventClient {
                 });
     }
 
-    public static void getLoginUserEvent(int page) {
-        getUserEvent(UserInfoBean.getInstance().getLogin(), page);
+    public static void getLoginUserEvent(final EventClientListener eventClientListener, int page) {
+        getUserEvent(eventClientListener, UserInfoBean.getInstance().getLogin(), page);
     }
 }
