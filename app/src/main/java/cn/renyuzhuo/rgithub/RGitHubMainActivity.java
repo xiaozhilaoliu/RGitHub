@@ -36,9 +36,13 @@ public class RGitHubMainActivity extends BaseActivity {
         rlog.d();
         initView();
         setOnClickListener();
+        rlog.d("after setOnClickListener");
         radioGroup.check(R.id.first);
+        rlog.d("after check");
         RGitHubApplication.isLogin = true;
+        rlog.d("after set isLogin = true");
         LoadingDialog.closeDialog();
+        rlog.d("after closeDialog");
     }
 
     private void setOnClickListener() {
@@ -46,8 +50,11 @@ public class RGitHubMainActivity extends BaseActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                rlog.d("check before");
                 group.check(checkedId);
+                rlog.d("check middle");
                 fragmentFactory.replaceFragment(checkedId);
+                rlog.d("check after");
             }
         });
     }

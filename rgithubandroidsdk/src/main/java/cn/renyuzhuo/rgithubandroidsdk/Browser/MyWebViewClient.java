@@ -54,6 +54,7 @@ public class MyWebViewClient extends WebViewClient {
         if (webDialog != null) {
             rlog.d("webDialog dismiss");
             webDialog.dismiss();
+            webDialog = null;
         }
     }
 
