@@ -41,7 +41,7 @@ public class RepoDetailActivity extends BaseActivity {
     TextView lock, language, issues, branch, calendar, tool, ownerName;
     LinearLayout ownerLinerar;
 
-    LinearLayout eventsEvents, eventsWarn, eventsReadme;
+    LinearLayout eventsEvents, eventsWarn, eventsReadme, eventsHomepage;
     View readmeLine, homePageLine;
 
     LinearLayout commit, pull, source;
@@ -105,6 +105,7 @@ public class RepoDetailActivity extends BaseActivity {
         eventsWarn = (LinearLayout) findViewById(R.id.events_warn);
         eventsReadme = (LinearLayout) findViewById(R.id.events_readme);
         readmeLine = findViewById(R.id.readme_top_line);
+        eventsHomepage = (LinearLayout) findViewById(R.id.events_homepage);
         homePageLine = findViewById(R.id.homepage_top_line);
 
         commit = (LinearLayout) findViewById(R.id.commit);
@@ -168,31 +169,33 @@ public class RepoDetailActivity extends BaseActivity {
             }
         });
 
-        eventsWarn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        if (repoBean.getOpen_issues_count() != 0) {
+            eventsWarn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    OpenWeb.open(context, "https://github.com/" + repoBean.getFull_name() + "/issues");
+                }
+            });
+        }
 
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                OpenWeb.open(context, "https://github.com/" + repoBean.getFull_name() + "/commits");
             }
         });
 
         pull.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                OpenWeb.open(context, "https://github.com/" + repoBean.getFull_name() + "/pulls");
             }
         });
 
         source.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                OpenWeb.open(context, "https://github.com/" + repoBean.getFull_name() + "?files=1");
             }
         });
 
@@ -204,6 +207,17 @@ public class RepoDetailActivity extends BaseActivity {
         });
 
         RepoClient.getRepoReadMe(this, repoBean.getOwner().getLogin(), repoBean.getName());
+
+        if (repoBean.getHomepage() != null) {
+            eventsHomepage.setVisibility(View.VISIBLE);
+            homePageLine.setVisibility(View.VISIBLE);
+            eventsHomepage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    OpenWeb.open(context, repoBean.getHomepage());
+                }
+            });
+        }
     }
 
     @Override
