@@ -109,6 +109,14 @@
                 android:orientation="vertical" />
 
             <include layout="@layout/repo_website_layout" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="5dp"
+                android:orientation="vertical" />
+
+            <include layout="@layout/repo_rgithub" />
         </LinearLayout>
     </LinearLayout>
 

@@ -44,6 +44,7 @@ public class ThirdFragment extends BaseListViewFragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                adapter = null;
                 pageHelper = new PageHelper();
                 keyWord = editText.getText().toString();
                 keyWord = keyWord.trim().replace(" ", "+");

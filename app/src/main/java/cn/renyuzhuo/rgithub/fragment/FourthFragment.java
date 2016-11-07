@@ -35,6 +35,8 @@ public class FourthFragment extends BaseFragment {
 
     LinearLayout websit;
 
+    LinearLayout forkMe;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class FourthFragment extends BaseFragment {
         starts = (LinearLayout) view.findViewById(R.id.stars);
         repos = (LinearLayout) view.findViewById(R.id.repos);
         websit = (LinearLayout) view.findViewById(R.id.websit);
+
+        forkMe = (LinearLayout) view.findViewById(R.id.fork_me);
     }
 
     private void initUserView() {
@@ -110,6 +114,13 @@ public class FourthFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 OpenWeb.open(context, UserInfoBean.getInstance().getHtml_url());
+            }
+        });
+
+        forkMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenWeb.open(context, "http://github.com/RWebRTC/RGitHub");
             }
         });
     }
