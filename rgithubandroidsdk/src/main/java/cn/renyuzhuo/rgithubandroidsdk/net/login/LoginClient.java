@@ -43,6 +43,7 @@ public class LoginClient {
                         Token.setAuthorization(accessTokenBean.getAccess_token());
                         if (loginClientListener != null) {
                             loginClientListener.onLoginSuccess(accessTokenBean);
+                            loginClientListener = null;
                         }
                     }
                 });

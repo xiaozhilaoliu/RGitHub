@@ -17,26 +17,28 @@ public class BaseListViewFragment extends BaseFragment {
     PageHelper pageHelper;
 
     public void initListView() {
-        listView.setAdapter(adapter);
-        listView.setVisibility(View.VISIBLE);
+        if (adapter != null) {
+            listView.setAdapter(adapter);
+            listView.setVisibility(View.VISIBLE);
 
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
-                        rlog.d("load more");
-                        loadMore();
+            listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView view, int scrollState) {
+                    if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                        if (view.getLastVisiblePosition() == view.getCount() - 1) {
+                            rlog.d("load more");
+                            loadMore();
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                @Override
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
-            }
-        });
-        afterInitListView();
+                }
+            });
+            afterInitListView();
+        }
     }
 
     public void afterInitListView() {

@@ -53,7 +53,7 @@ public class RGitHubMainActivity extends BaseActivity {
                 rlog.d("check before");
                 group.check(checkedId);
                 rlog.d("check middle");
-                fragmentFactory.replaceFragment(checkedId);
+                fragmentFactory.replaceFragment(RGitHubMainActivity.this, checkedId);
                 rlog.d("check after");
             }
         });

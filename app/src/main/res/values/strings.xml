@@ -24,5 +24,8 @@
     <string name="person_event">PersonEvent</string>
     <string name="long_string">This is a very long long long long long long long long long long long long long long long long long long long long long String</string>
     <string name="homepage">HomePage</string>
+    <string name="search">Search</string>
+    <string name="search_text">RepoName</string>
+    <string name="not_empty">not empty</string>
 
 </resources>
