@@ -21,6 +21,7 @@ RGitHub. A GitHub Client.
 - MarkDown README
 - 横屏显示图标
 - WebSite 删除
+- Trending 修改
 
 # LICENSE
 
