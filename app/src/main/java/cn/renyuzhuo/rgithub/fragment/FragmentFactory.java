@@ -18,7 +18,7 @@ public class FragmentFactory {
     private static Map<Integer, Fragment> map;
     private FragmentTransaction trans;
 
-    public FragmentFactory(Activity activity) {
+    public FragmentFactory() {
         initFragment();
     }
 

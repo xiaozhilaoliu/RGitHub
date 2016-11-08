@@ -60,7 +60,7 @@ public class RGitHubMainActivity extends BaseActivity {
     }
 
     private void initView() {
-        fragmentFactory = new FragmentFactory(this);
+        fragmentFactory = new FragmentFactory();
     }
 
     private void login() {
