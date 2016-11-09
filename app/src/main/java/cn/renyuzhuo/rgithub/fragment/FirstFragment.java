@@ -10,8 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,9 +31,11 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
     ArrayAdapter sinceAdapter, languageAdapter;
     private Context context;
 
-    String slugString = "java";
-    String sinceString = "daily";
+    private static String slugString = "java";
+    private static String sinceString = "daily";
     private TrendingAdapter.ViewHolder holder;
+
+    private static Map<String, List<TrendingBean>> mapTrending = new HashMap<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +43,7 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
         context = getActivity();
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         listView = (ListView) view.findViewById(R.id.listview);
+
         sinceAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.since, R.layout.first_fragment_spinner);
         since = (Spinner) view.findViewById(R.id.since);
         since.setAdapter(sinceAdapter);
@@ -71,22 +74,39 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
             }
         });
 
-        initTrending();
+        if (mapTrending.get(sinceString + "/" + slugString) != null) {
+            adapter = new TrendingAdapter(context, mapTrending.get(sinceString + "/" + slugString));
+            initListView();
+        } else {
+            initTrending();
+        }
 
         return view;
     }
 
     private void initTrending() {
-        TrendingClient.getTrending(context, this, sinceString, slugString);
-        LoadingDialog.openLoadingDialogLoading(context);
+        if (mapTrending.get(sinceString + "/" + slugString) != null) {
+            adapter = new TrendingAdapter(context, mapTrending.get(sinceString + "/" + slugString));
+            initListView();
+        } else {
+            TrendingClient.getTrending(this, sinceString, slugString);
+            LoadingDialog.openLoadingDialogLoading(context);
+        }
     }
 
     @Override
-    public void onGetTrendingSuccess(List<TrendingBean> trendingBeen) {
+    public void onGetTrendingSuccess(String key, List<TrendingBean> trendingBeen) {
         LoadingDialog.closeDialog();
         rlog.d(trendingBeen);
         adapter = new TrendingAdapter(context, trendingBeen);
         initListView();
+        mapTrending.put(key, trendingBeen);
+    }
+
+    @Override
+    public void onNetErr() {
+        LoadingDialog.closeDialog();
+        Toast.makeText(context, getString(R.string.net_err), Toast.LENGTH_SHORT).show();
     }
 
     @Override

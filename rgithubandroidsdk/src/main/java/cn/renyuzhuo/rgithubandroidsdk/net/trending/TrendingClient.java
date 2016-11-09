@@ -1,20 +1,19 @@
 package cn.renyuzhuo.rgithubandroidsdk.net.trending;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.util.Log;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import cn.renyuzhuo.rgithubandroidsdk.Browser.MyWebViewClient;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.trending.TrendingBean;
-import cn.renyuzhuo.rgithubandroidsdk.net.Base.CodeHub.TrendingBase;
-import cn.renyuzhuo.rgithubandroidsdk.net.result.MySubscriber;
-import cn.renyuzhuo.rgithubandroidsdk.service.trending.TrendingService;
 import cn.renyuzhuo.rlog.rlog;
+import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -22,65 +21,105 @@ import rx.schedulers.Schedulers;
  * Created by renyuzhuo on 16-11-7.
  */
 public class TrendingClient {
-    private static TrendingService trendingService = TrendingBase.getInstance().build().create(TrendingService.class);
 
-    public static void getTrending(final TrendingClientListener trendingClientListener, String since) {
-        trendingService.getTrending(since)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MySubscriber<List<TrendingBean>>() {
-                    @Override
-                    public void onNext(List<TrendingBean> trendingBeanList) {
-                        if (trendingClientListener != null) {
-                            trendingClientListener.onGetTrendingSuccess(trendingBeanList);
-                        }
-                    }
-                });
-    }
+    static Document doc;
 
     @SuppressLint("JavascriptInterface")
-    public static void getTrending(Context context, final TrendingClientListener trendingClientListener, String since, String language) {
+    public static void getTrending(final TrendingClientListener trendingClientListener, final String since, final String language) {
 
-        WebView webView = new WebView(context);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.addJavascriptInterface(new InJavaScriptLocalObj(), "local_obj");
-        webView.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
+        final List<TrendingBean> trendingBeanList = new ArrayList<>();
+
+        Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                try {
+                    rlog.d("begin get html");
+                    String url = "https://github.com/trending/" + language + "?since=" + since;
+                    rlog.d(url);
+                    doc = Jsoup.connect(url).get();
+                    subscriber.onCompleted();
+                    rlog.d("finish get html");
+                } catch (IOException e) {
+                    rlog.ebegin();
+                    e.printStackTrace();
+                    rlog.eend();
+                    subscriber.onError(e);
+                }
             }
-
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                Log.d("WebView", "onPageStarted");
-                super.onPageStarted(view, url, favicon);
-            }
-
-            public void onPageFinished(WebView view, String url) {
-                Log.d("WebView", "onPageFinished ");
-                view.loadUrl("javascript:window.local_obj.showSource('<head>'+" +
-                        "document.getElementsByTagName('html')[0].innerHTML+'</head>');");
-                super.onPageFinished(view, url);
-            }
-        });
-        webView.loadUrl("http://www.baidu.com");
-
-        trendingService.getTrending(since, language)
+        })
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new MySubscriber<List<TrendingBean>>() {
+                .subscribe(new Subscriber<String>() {
                     @Override
-                    public void onNext(List<TrendingBean> trendingBeanList) {
-                        if (trendingClientListener != null) {
-                            trendingClientListener.onGetTrendingSuccess(trendingBeanList);
+                    public void onCompleted() {
+
+                        rlog.d("begin deal html");
+                        Elements repoList = doc.getElementsByClass("repo-list");
+                        if (repoList != null && repoList.size() != 0) {
+                            Elements lis = repoList.get(0).getElementsByTag("li");
+                            for (int i = 0; i < lis.size(); i++) {
+                                TrendingBean trendingBean = new TrendingBean();
+                                Elements h3 = lis.get(i).getElementsByTag("h3");
+                                if (h3 != null && h3.size() != 0) {
+                                    String h3String = h3.get(0).text();
+                                    String[] name = h3String.split(" / ");
+                                    if (name != null && name.length == 2) {
+                                        trendingBean.setOwner(name[0]);
+                                        trendingBean.setName(name[1]);
+                                    }
+                                }
+                                Elements description = lis.get(i).getElementsByClass("py-1");
+                                if (description != null && description.size() != 0) {
+                                    String des = description.get(0).text();
+                                    rlog.d(des);
+                                    trendingBean.setDescription(des);
+                                }
+                                Elements programLanguage = lis.get(i).getElementsByAttributeValue("itemprop", "programmingLanguage");
+                                if (programLanguage != null && programLanguage.size() != 0) {
+                                    String lang = programLanguage.get(0).text();
+                                    rlog.d(lang);
+                                    trendingBean.setLanguage(lang);
+                                }
+                                Elements starFork = lis.get(i).getElementsByAttributeValue("class", "muted-link tooltipped tooltipped-s mr-3");
+                                if (starFork != null && starFork.size() != 0) {
+                                    int star = Integer.valueOf(starFork.get(0).text().replace(",", ""));
+                                    trendingBean.setStars(star);
+                                    if (starFork.size() != 1) {
+                                        int fork = Integer.valueOf(starFork.get(1).text().replace(",", ""));
+                                        trendingBean.setForks(fork);
+                                    } else {
+                                        trendingBean.setForks(0);
+                                    }
+                                } else {
+                                    trendingBean.setStars(0);
+                                    trendingBean.setForks(0);
+                                }
+
+                                Elements imgs = lis.get(i).getElementsByAttributeValue("class", "avatar mb-1");
+                                if (imgs != null && imgs.size() != 0) {
+                                    String src = imgs.get(0).attr("src");
+                                    trendingBean.setAvatarUrl(src);
+                                }
+
+                                trendingBeanList.add(i, trendingBean);
+
+                            }
+                            rlog.d(trendingBeanList);
+                            trendingClientListener.onGetTrendingSuccess(since + "/" + language, trendingBeanList);
                         }
                     }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        rlog.d("err and maybe timeout");
+                        trendingClientListener.onNetErr();
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        rlog.d("get html not finish");
+                    }
                 });
-    }
 
-    static class InJavaScriptLocalObj {
-        public void showSource(String html) {
-            rlog.d(html);
-        }
     }
-
 }

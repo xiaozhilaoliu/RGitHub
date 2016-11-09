@@ -11,9 +11,10 @@ public class TrendingBean {
 
     private String owner;
     private String name;
-    private String url;
     private String avatarUrl;
     private String description;
+
+    private String language;
 
     private int stars;
     private int forks;
@@ -35,11 +36,7 @@ public class TrendingBean {
     }
 
     public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
+        return "https://api.github.com/repos/" + getFullName();
     }
 
     public String getAvatarUrl() {
@@ -74,14 +71,26 @@ public class TrendingBean {
         this.forks = forks;
     }
 
+    public String getFullName() {
+        return owner + "/" + name;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     @Override
     public String toString() {
-        return "Trending{" +
+        return "TrendingBean{" +
                 "owner='" + owner + '\'' +
                 ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", description='" + description + '\'' +
+                ", language='" + language + '\'' +
                 ", stars=" + stars +
                 ", forks=" + forks +
                 '}';

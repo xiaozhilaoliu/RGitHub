@@ -12,5 +12,9 @@
         <item>html</item>
         <item>c</item>
         <item>javascript</item>
+        <item>css</item>
+        <item>objective-c</item>
+        <item>sql</item>
+        <item>shell</item>
     </string-array>
 </resources>

@@ -87,11 +87,12 @@ public class TrendingAdapter extends BaseAdapter {
 
         public void setData(TrendingBean trendingBean) {
             Picasso.with(context).load(trendingBean.getAvatarUrl()).placeholder(R.drawable.logo).into(ownerAvatar);
-            repoName.setText(trendingBean.getOwner() + "/" + trendingBean.getName());
+            repoName.setText(trendingBean.getFullName());
             repoDescription.setText(trendingBean.getDescription());
+            repoLanguage.setText(trendingBean.getLanguage());
             repoStarNum.setText(String.valueOf(trendingBean.getStars()));
             repoForkNum.setText(String.valueOf(trendingBean.getForks()));
-            fullNema = trendingBean.getOwner() + "/" + trendingBean.getName();
+            fullNema = trendingBean.getFullName();
         }
 
         public String getFullName() {
