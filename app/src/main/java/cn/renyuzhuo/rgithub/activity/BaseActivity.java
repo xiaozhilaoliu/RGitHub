@@ -61,4 +61,5 @@ public class BaseActivity extends Activity implements UserInfoClientListener, Re
     public void onGetUserEvent(List<EventBean> eventBeen) {
 
     }
+
 }

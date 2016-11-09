@@ -75,11 +75,6 @@ public class OtherUsersActivity extends BaseListViewActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
         LoadingDialog.closeDialog();
         pageHelper.hasMoreOrNot(otherUserInfoBeenList.size());
