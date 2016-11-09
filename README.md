@@ -8,6 +8,8 @@ RGitHub. A GitHub Client.
 
 <a href='https://play.google.com/store/apps/details?id=cn.renyuzhuo.rgithub'><img alt='Get it on Google Play' width=160 src='https://cloud.githubusercontent.com/assets/21374839/20084339/9613a18a-a59c-11e6-8db6-86d0ae0b84f8.png'/></a>
 
+[GitHub](https://github.com/RWebRTC/RGitHub/raw/develop/app/RGitHub.apk)
+
 # Screenshot
 
 <img src="https://cloud.githubusercontent.com/assets/21374839/20131582/575f1a2a-a699-11e6-9581-465463e4cbf0.png" width="300"/>
