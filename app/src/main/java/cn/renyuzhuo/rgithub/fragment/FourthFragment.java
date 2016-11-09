@@ -18,6 +18,7 @@ import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.RGitHubApplication;
 import cn.renyuzhuo.rgithub.activity.OtherUsersActivity;
 import cn.renyuzhuo.rgithub.activity.RepoActivity;
+import cn.renyuzhuo.rgithub.activity.SettingActivity;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 
@@ -120,7 +121,8 @@ public class FourthFragment extends BaseFragment {
         forkMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, "http://github.com/RWebRTC/RGitHub");
+                Intent intent = new Intent(context, SettingActivity.class);
+                context.startActivity(intent);
             }
         });
     }

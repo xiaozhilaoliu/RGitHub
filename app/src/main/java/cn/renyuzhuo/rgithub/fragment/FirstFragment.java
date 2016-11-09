@@ -98,9 +98,12 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
     public void onGetTrendingSuccess(String key, List<TrendingBean> trendingBeen) {
         LoadingDialog.closeDialog();
         rlog.d(trendingBeen);
-        adapter = new TrendingAdapter(context, trendingBeen);
-        initListView();
         mapTrending.put(key, trendingBeen);
+        if (mapTrending.get(sinceString + "/" + slugString) != null) {
+            adapter = new TrendingAdapter(context, mapTrending.get(sinceString + "/" + slugString));
+            initListView();
+            return;
+        }
     }
 
     @Override

@@ -36,10 +36,10 @@ public class TrendingClient {
                     rlog.d("begin get html");
                     String url = "https://github.com/trending/" + language + "?since=" + since;
                     rlog.d(url);
-                    doc = Jsoup.connect(url).get();
+                    doc = Jsoup.connect(url).timeout(20000).get();
                     subscriber.onCompleted();
                     rlog.d("finish get html");
-                } catch (IOException e) {
+                } catch (Exception e) {
                     rlog.ebegin();
                     e.printStackTrace();
                     rlog.eend();

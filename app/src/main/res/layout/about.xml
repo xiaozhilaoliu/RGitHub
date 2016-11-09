@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout style="@style/repo_state_detail_relative_style">
+
+
+            <ImageView
+                android:id="@+id/lay2"
+                style="@style/repo_state_detail_img_style"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/website" />
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/lay2"
+                android:text="@string/developer_website" />
+
+            <ImageView
+                style="@style/repo_state_detail_img_forward_style"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/forward" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/sqlit_line_horizontal" />
+
+    <include layout="@layout/goto_repo_layout" />
+
+    <include layout="@layout/sqlit_line_horizontal" />
+
+    <LinearLayout
+        android:id="@+id/lay5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:scrollbars="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rgithub_description"
+                android:textColor="@color/setup_title_back_color" />
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>

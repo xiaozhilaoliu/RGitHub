@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RGitHub</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="again">再按一次退出</string>
+    <string name="stars">Stars</string>
+    <string name="repos">Repositories</string>
+    <string name="has_no_more">没有更多了</string>
+    <string name="stargazers">Stargazers</string>
+    <string name="watchers">Watchers</string>
+    <string name="forks">Forks</string>
+    <string name="language">Language</string>
+    <string name="owner">Owner</string>
+    <string name="is_private">Private</string>
+    <string name="is_public">Public</string>
+    <string name="events">Events</string>
+    <string name="issues">Issues</string>
+    <string name="readme">Readme</string>
+    <string name="websit">Website</string>
+    <string name="commit">Commits</string>
+    <string name="pull">Pull Request</string>
+    <string name="source">Source</string>
+    <string name="project_event">ProjectEvent</string>
+    <string name="person_event">PersonEvent</string>
+    <string name="homepage">HomePage</string>
+    <string name="search">搜索</string>
+    <string name="search_text">项目名</string>
+    <string name="not_empty">not empty</string>
+    <string name="about">关于</string>
+    <string name="fragment_first_title">热门项目</string>
+    <string name="fragment_second_title">新鲜事</string>
+    <string name="fragment_third_title">搜索</string>
+    <string name="fragment_fourth_title">我</string>
+    <string name="about_description">GitHub 客户端</string>
+    <string name="developer_website">开发者网站</string>
+    <string name="repo_index">项目主页</string>
+</resources>

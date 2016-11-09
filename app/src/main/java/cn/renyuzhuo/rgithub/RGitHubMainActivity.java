@@ -2,6 +2,7 @@ package cn.renyuzhuo.rgithub;
 
 import android.os.Bundle;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.renyuzhuo.rgithub.activity.BaseActivity;
@@ -17,11 +18,14 @@ public class RGitHubMainActivity extends BaseActivity {
 
     FragmentFactory fragmentFactory;
     RadioGroup radioGroup;
+    TextView appTitle;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        appTitle = (TextView) findViewById(R.id.app_title);
 
         if (RGitHubApplication.isLogin) {
             initFinish();
@@ -46,6 +50,28 @@ public class RGitHubMainActivity extends BaseActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.first: {
+                        appTitle.setText(getString(R.string.fragment_first_title));
+                        break;
+                    }
+                    case R.id.second:{
+                        appTitle.setText(getString(R.string.fragment_second_title));
+                        break;
+                    }
+                    case R.id.third:{
+                        appTitle.setText(getString(R.string.fragment_third_title));
+                        break;
+                    }
+                    case R.id.fourth:{
+                        appTitle.setText(getString(R.string.fragment_fourth_title));
+                        break;
+                    }
+                    default: {
+                        appTitle.setText(getString(R.string.app_name));
+                        break;
+                    }
+                }
                 group.check(checkedId);
                 fragmentFactory.replaceFragment(RGitHubMainActivity.this, checkedId);
             }

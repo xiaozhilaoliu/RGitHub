@@ -23,8 +23,8 @@
         <activity android:name=".activity.RepoActivity" />
         <activity android:name=".activity.RepoDetailActivity" />
         <activity android:name=".activity.EventActivity" />
-        <activity android:name=".activity.RepoOtherUsersActivity"></activity>
-
+        <activity android:name=".activity.RepoOtherUsersActivity" />
+        <activity android:name=".activity.SettingActivity"></activity>
     </application>
 
 </manifest>

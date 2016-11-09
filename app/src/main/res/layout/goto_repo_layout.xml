@@ -22,6 +22,7 @@
                 android:background="@drawable/ic_book" />
 
             <TextView
+                android:id="@+id/goto_repo"
                 style="@style/repo_state_detail_text_style"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/lay3"
