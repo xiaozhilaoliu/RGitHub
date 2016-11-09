@@ -71,4 +71,9 @@ public class SecondFragment extends BaseListViewFragment {
         LoadingDialog.openLoadingDialogLoading(context);
         EventClient.getLoginUserEvent(this, pageHelper.nextPage());
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

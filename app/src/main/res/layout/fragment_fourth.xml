@@ -1,123 +1,25 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/fragment_style"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    tools:context="cn.renyuzhuo.rgithub.fragment.FirstFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
+        style="@style/fragment_style"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/setting_items_content_normal_color"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
 
-            <ImageView
-                android:id="@+id/avatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/logo" />
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="3dp"
-                android:gravity="center"
-                android:textSize="25dp" />
-
-            <TextView
-                android:id="@+id/bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:textSize="10dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/followers"
-                    style="@style/follow_button">
-
-                    <TextView
-                        android:id="@+id/followers_num"
-                        style="@style/follow_button_text" />
-
-                    <TextView
-                        style="@style/follow_button_text"
-                        android:text="@string/followers" />
-                </LinearLayout>
-
-                <View style="@style/vertical_line" />
-
-                <LinearLayout
-                    android:id="@+id/following"
-                    style="@style/follow_button">
-
-                    <TextView
-                        android:id="@+id/following_num"
-                        style="@style/follow_button_text" />
-
-                    <TextView
-                        style="@style/follow_button_text"
-                        android:text="@string/following" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="5dp"
-                android:orientation="vertical" />
-
-            <include layout="@layout/goto_star_layout" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="5dp"
-                android:orientation="vertical" />
-
-            <include layout="@layout/goto_repo_layout" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="5dp"
-                android:orientation="vertical" />
-
-            <include layout="@layout/repo_website_layout" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="5dp"
-                android:orientation="vertical" />
+            <include layout="@layout/user_base" />
 
             <include layout="@layout/repo_rgithub" />
         </LinearLayout>
-    </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

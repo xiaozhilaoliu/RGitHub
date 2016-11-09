@@ -72,6 +72,7 @@ public class RGitHubMainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         OtherUserInfoActivity.clear();
+        fragmentFactory.onDestroy();
     }
 
     private long mPressedTime = 0;

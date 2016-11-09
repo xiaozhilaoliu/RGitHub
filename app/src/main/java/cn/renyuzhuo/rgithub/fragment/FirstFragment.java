@@ -77,7 +77,7 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
     }
 
     private void initTrending() {
-        TrendingClient.getTrending(this, sinceString, slugString);
+        TrendingClient.getTrending(context, this, sinceString, slugString);
         LoadingDialog.openLoadingDialogLoading(context);
     }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/followers_and_following" />
+
+    <include layout="@layout/sqlit_line_horizontal" />
+
+    <include layout="@layout/goto_star_layout" />
+
+    <include layout="@layout/sqlit_line_horizontal" />
+
+    <include layout="@layout/goto_repo_layout" />
+
+    <include layout="@layout/sqlit_line_horizontal" />
+
+    <include layout="@layout/repo_website_layout" />
+
+    <include layout="@layout/sqlit_line_horizontal" />
+
+</LinearLayout>

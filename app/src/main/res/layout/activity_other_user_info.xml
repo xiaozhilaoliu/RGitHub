@@ -21,12 +21,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/title"
             android:orientation="vertical"
             android:scrollbars="vertical">
 
-            <include layout="@layout/fragment_fourth" />
+            <include layout="@layout/user_base" />
 
         </LinearLayout>
     </RelativeLayout>

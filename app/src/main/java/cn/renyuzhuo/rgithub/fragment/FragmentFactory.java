@@ -37,4 +37,9 @@ public class FragmentFactory {
         trans.replace(R.id.fragment, map.get(checkedId));
         trans.commit();
     }
+
+    public void onDestroy() {
+        map = null;
+        trans = null;
+    }
 }
