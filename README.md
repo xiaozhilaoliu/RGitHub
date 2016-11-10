@@ -8,7 +8,9 @@ RGitHub. A GitHub Client.
 
 <a href="https://play.google.com/store/apps/details?id=cn.renyuzhuo.rgithub"><img alt="Get it on Google Play" width="160" src="https://cloud.githubusercontent.com/assets/21374839/20084339/9613a18a-a59c-11e6-8db6-86d0ae0b84f8.png"/></a>
 
-[GitHub](https://github.com/RWebRTC/RGitHub/raw/develop/app/RGitHub.apk)
+From [GitHub](https://github.com/RWebRTC/RGitHub/raw/develop/RGitHub.apk)
+
+From [Coding](https://coding.net/u/rwebrtc/p/RGitHub/git/raw/master/RGitHub.apk) ( The Fastest From China )
 
 # Screenshot
 
