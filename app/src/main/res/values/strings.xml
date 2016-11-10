@@ -41,7 +41,7 @@
         该项目收到很多项目启发，参考 README 文件。对于更进一步开发，主要根据本项目开发者实际需求进行开发。\n\n
         同时，本项目的子项目 rgithubandroidsdk 是根据本项目需求开发出的 GitHub API，该 API 未包含全部 GitHub API，但是根据现有结构可以很方便进行扩展，该 GitHub 访问设计文档请参考项目主页。\n\n
         欢迎 Fork， 欢迎 Issue。\n\n
-        Email:rgithub@gmail.com
+        Email:rwebrtc@gmail.com
     </string>
     <string name="logout">Logout</string>
     <string name="logout_success">Logout Success</string>
