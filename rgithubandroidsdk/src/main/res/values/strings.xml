@@ -5,4 +5,7 @@
     <string name="loading_more">Loading More</string>
     <string name="web_loading">Web Loading</string>
     <string name="net_err">Net Error! Please exit and check the Internet and reopen. :(</string>
+    <string name="new_download">New</string>
+    <string name="agree">OK</string>
+    <string name="disagree">Not now</string>
 </resources>

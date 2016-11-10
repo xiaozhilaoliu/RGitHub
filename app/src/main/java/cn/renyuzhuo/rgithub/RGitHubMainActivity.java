@@ -5,6 +5,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import cn.renyuzhuo.autoupdate.UpdateMain;
 import cn.renyuzhuo.rgithub.activity.BaseActivity;
 import cn.renyuzhuo.rgithub.activity.OtherUserInfoActivity;
 import cn.renyuzhuo.rgithub.fragment.FragmentFactory;
@@ -24,6 +25,8 @@ public class RGitHubMainActivity extends BaseActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        UpdateMain.getUpdateMain(this).ifNeedUpdate("RWebRTC", "RGitHub", "develop", "version");
 
         appTitle = (TextView) findViewById(R.id.app_title);
 
@@ -55,15 +58,15 @@ public class RGitHubMainActivity extends BaseActivity {
                         appTitle.setText(getString(R.string.fragment_first_title));
                         break;
                     }
-                    case R.id.second:{
+                    case R.id.second: {
                         appTitle.setText(getString(R.string.fragment_second_title));
                         break;
                     }
-                    case R.id.third:{
+                    case R.id.third: {
                         appTitle.setText(getString(R.string.fragment_third_title));
                         break;
                     }
-                    case R.id.fourth:{
+                    case R.id.fourth: {
                         appTitle.setText(getString(R.string.fragment_fourth_title));
                         break;
                     }
@@ -98,7 +101,9 @@ public class RGitHubMainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         OtherUserInfoActivity.clear();
-        fragmentFactory.onDestroy();
+        if (fragmentFactory != null) {
+            fragmentFactory.onDestroy();
+        }
     }
 
     private long mPressedTime = 0;

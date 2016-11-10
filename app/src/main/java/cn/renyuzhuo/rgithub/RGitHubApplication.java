@@ -4,7 +4,9 @@ import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
 
+import cn.renyuzhuo.autoupdate.UpdateMain;
 import cn.renyuzhuo.rgithubandroidsdk.GitHubSdk;
+import cn.renyuzhuo.rgithubandroidsdk.net.update.UpdateClient;
 
 /**
  * Created by renyuzhuo on 16-10-30.

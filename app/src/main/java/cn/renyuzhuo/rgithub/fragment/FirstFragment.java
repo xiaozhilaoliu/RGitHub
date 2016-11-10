@@ -37,6 +37,8 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
 
     private static Map<String, List<TrendingBean>> mapTrending = new HashMap<>();
 
+    private static boolean isLoading = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,13 +91,17 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
             adapter = new TrendingAdapter(context, mapTrending.get(sinceString + "/" + slugString));
             initListView();
         } else {
-            TrendingClient.getTrending(this, sinceString, slugString);
-            LoadingDialog.openLoadingDialogLoading(context);
+            if (!isLoading) {
+                isLoading = true;
+                TrendingClient.getTrending(this, sinceString, slugString);
+                LoadingDialog.openLoadingDialogLoading(context);
+            }
         }
     }
 
     @Override
     public void onGetTrendingSuccess(String key, List<TrendingBean> trendingBeen) {
+        isLoading = false;
         LoadingDialog.closeDialog();
         rlog.d(trendingBeen);
         mapTrending.put(key, trendingBeen);
@@ -108,6 +114,7 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
 
     @Override
     public void onNetErr() {
+        isLoading = false;
         LoadingDialog.closeDialog();
         Toast.makeText(context, getString(R.string.net_err), Toast.LENGTH_SHORT).show();
     }
