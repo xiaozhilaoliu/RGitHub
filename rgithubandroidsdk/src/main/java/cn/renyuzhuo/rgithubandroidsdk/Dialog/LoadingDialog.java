@@ -1,5 +1,7 @@
 package cn.renyuzhuo.rgithubandroidsdk.Dialog;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
@@ -49,7 +51,6 @@ public class LoadingDialog {
     static MaterialDialog updateDialog;
 
     public static void openDownloadDialog(final UpdateClientListener updateClientListener, Context context, String content) {
-
         updateDialog = new MaterialDialog.Builder(context)
                 .title(R.string.new_download)
                 .content(content)
@@ -58,9 +59,40 @@ public class LoadingDialog {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         updateClientListener.onAcceptUpdate();
+                        updateDialog = null;
                     }
                 })
                 .negativeText(R.string.disagree)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        updateDialog = null;
+                    }
+                })
+                .show();
+    }
+
+    static MaterialDialog logoutDialog;
+
+    public static void logoutDialog(final LogoutListener logoutListener, final Fragment fragment) {
+        logoutDialog = new MaterialDialog.Builder(fragment.getActivity())
+                .title(R.string.logout)
+                .content(fragment.getActivity().getString(R.string.logout))
+                .positiveText(R.string.agree)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        logoutListener.logout(fragment);
+                        updateDialog = null;
+                    }
+                })
+                .negativeText(R.string.disagree)
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        updateDialog = null;
+                    }
+                })
                 .show();
     }
 }

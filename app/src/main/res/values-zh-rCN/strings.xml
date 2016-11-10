@@ -43,4 +43,6 @@
         欢迎 Fork， 欢迎 Issue。\n\n
         Email:rgithub@gmail.com
     </string>
+    <string name="logout">退出登陆</string>
+    <string name="logout_success">退出登陆成功</string>
 </resources>

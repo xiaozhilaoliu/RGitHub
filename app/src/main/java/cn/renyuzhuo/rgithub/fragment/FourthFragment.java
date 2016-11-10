@@ -1,5 +1,6 @@
 package cn.renyuzhuo.rgithub.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,8 +12,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.RGitHubApplication;
@@ -20,7 +24,9 @@ import cn.renyuzhuo.rgithub.activity.OtherUsersActivity;
 import cn.renyuzhuo.rgithub.activity.RepoActivity;
 import cn.renyuzhuo.rgithub.activity.SettingActivity;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
+import cn.renyuzhuo.rlog.rlog;
 
 public class FourthFragment extends BaseFragment {
 
@@ -37,6 +43,8 @@ public class FourthFragment extends BaseFragment {
     LinearLayout websit;
 
     LinearLayout forkMe;
+
+    LinearLayout logout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +76,7 @@ public class FourthFragment extends BaseFragment {
         websit = (LinearLayout) view.findViewById(R.id.websit);
 
         forkMe = (LinearLayout) view.findViewById(R.id.fork_me);
+        logout = (LinearLayout) view.findViewById(R.id.logout);
     }
 
     private void initUserView() {
@@ -123,6 +132,13 @@ public class FourthFragment extends BaseFragment {
             public void onClick(View v) {
                 Intent intent = new Intent(context, SettingActivity.class);
                 context.startActivity(intent);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoadingDialog.logoutDialog(FourthFragment.this, FourthFragment.this);
             }
         });
     }

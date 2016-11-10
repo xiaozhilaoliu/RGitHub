@@ -8,4 +8,5 @@
     <string name="new_download">New</string>
     <string name="agree">OK</string>
     <string name="disagree">Not now</string>
+    <string name="logout">Logout</string>
 </resources>
