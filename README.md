@@ -31,6 +31,7 @@ RGitHub. A GitHub Client.
 
 - MarkDown README
 - 横屏显示图标
+- 自动更新
 
 # LICENSE
 
