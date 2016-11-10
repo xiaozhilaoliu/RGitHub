@@ -26,7 +26,7 @@ public class RGitHubMainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        UpdateMain.getUpdateMain(this).ifNeedUpdate("RWebRTC", "RGitHub", "develop", "version");
+        UpdateMain.getUpdateMain(this).ifNeedUpdate("RWebRTC", "RGitHub", "master", "version");
 
         appTitle = (TextView) findViewById(R.id.app_title);
 
