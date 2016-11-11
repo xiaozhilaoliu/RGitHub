@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        style="@style/AvatarMedium"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tv_issue_creation"
+        style="@style/SubtitleText"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:paddingEnd="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="2dp"
+        android:paddingStart="10dp"
+        android:textColor="@color/setup_title_back_color" />
+
+    <TextView
+        android:id="@+id/tv_pull_request_icon"
+        style="@style/TextIcon"
+        android:paddingEnd="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tv_comment_icon"
+        style="@style/TextIcon"
+        android:background="@drawable/comment" />
+
+    <TextView
+        android:id="@+id/tv_issue_comments"
+        style="@style/ListNumericSubtitleText"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/setup_title_back_color" />
+
+</merge>

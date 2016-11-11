@@ -8,18 +8,21 @@ import java.io.File;
 import java.util.List;
 
 import cn.renyuzhuo.rgithub.R;
+import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LogoutListener;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event.EventBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.issues.IssuesBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.search.SearchBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Event.EventClientListener;
+import cn.renyuzhuo.rgithubandroidsdk.net.issues.IssuesClientListener;
 import cn.renyuzhuo.rgithubandroidsdk.net.search.SearchClientListener;
 import cn.renyuzhuo.rlog.rlog;
 
 /**
  * Created by renyuzhuo on 16-10-28.
  */
-public class BaseFragment extends Fragment implements EventClientListener, SearchClientListener, LogoutListener {
+public class BaseFragment extends Fragment implements EventClientListener, SearchClientListener, LogoutListener, IssuesClientListener {
     @Override
     public void onGetRepoEvent(List<EventBean> eventBeen) {
 
@@ -69,4 +72,7 @@ public class BaseFragment extends Fragment implements EventClientListener, Searc
         System.exit(0);
     }
 
+    @Override
+    public void onGetIssues(List<IssuesBean> issuesBeanList) {
+    }
 }

@@ -81,7 +81,7 @@
     <color name="account_setup_headline_color">#5E802B</color>
     <color name="account_setup_info_text_color">#000000</color>
     <color name="account_setup_label_text_color">#666666</color>
-    <color name="account_setup_divider_color">#CCCCCC</color>
+    <color name="account_setup_divider_color">#c7c5c5</color>
     <color name="text_secondary_color">#666666</color>
     <color name="combined_view_account_color_1">#ff71aea7</color>
     <color name="combined_view_account_color_2">#ff621919</color>
