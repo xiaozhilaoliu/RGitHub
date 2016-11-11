@@ -31,7 +31,7 @@ public class BaseFragment extends Fragment implements EventClientListener, Searc
     }
 
     @Override
-    public void onGetSearchResult(SearchBean searchBean) {
+    public void onGetSearchResult(String key, SearchBean searchBean) {
 
     }
 
@@ -68,4 +68,5 @@ public class BaseFragment extends Fragment implements EventClientListener, Searc
         }
         System.exit(0);
     }
+
 }

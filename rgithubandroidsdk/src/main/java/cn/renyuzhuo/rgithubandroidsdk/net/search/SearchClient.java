@@ -14,7 +14,7 @@ import rx.schedulers.Schedulers;
 public class SearchClient {
     private static SearchService trendingService = ApiBase.getInstance().build().create(SearchService.class);
 
-    public static void getSearchResult(final SearchClientListener searchClientListener, String keyWord, int page) {
+    public static void getSearchResult(final SearchClientListener searchClientListener, final String keyWord, int page) {
         trendingService.getSearchResult("token " + Token.getAuthorization(), keyWord, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -22,7 +22,7 @@ public class SearchClient {
                     @Override
                     public void onNext(SearchBean searchBean) {
                         if (searchClientListener != null) {
-                            searchClientListener.onGetSearchResult(searchBean);
+                            searchClientListener.onGetSearchResult(keyWord, searchBean);
                         }
                     }
                 });

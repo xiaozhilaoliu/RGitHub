@@ -54,7 +54,9 @@ public class RGitHubMainActivity extends BaseActivity {
     }
 
     private void setOnClickListener() {
+        rlog.d("set down redio listener");
         radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+        fragmentFactory = new FragmentFactory();
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -90,7 +92,6 @@ public class RGitHubMainActivity extends BaseActivity {
             }
         });
 
-        fragmentFactory = new FragmentFactory();
         searchTrending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

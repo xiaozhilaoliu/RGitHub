@@ -29,7 +29,7 @@
     <string name="about">About</string>
     <string name="fragment_first_title">Trending</string>
     <string name="fragment_second_title">News</string>
-    <string name="fragment_third_title">Search</string>
+    <string name="fragment_third_title">Issues</string>
     <string name="fragment_fourth_title">Me</string>
     <string name="about_description">A GitHub Client</string>
     <string name="developer_website">Developer Website</string>

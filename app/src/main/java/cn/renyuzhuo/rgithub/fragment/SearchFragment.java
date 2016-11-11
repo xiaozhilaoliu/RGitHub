@@ -12,11 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.activity.PageHelper;
 import cn.renyuzhuo.rgithub.activity.RepoDetailActivity;
 import cn.renyuzhuo.rgithub.adapter.SearchAdapter;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.search.Items;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.search.SearchBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.search.SearchClient;
 
@@ -28,8 +33,10 @@ public class SearchFragment extends BaseListViewFragment {
     EditText editText;
     String keyWord;
 
+    private static Map<String, List<Items>> mapItems = new HashMap<>();
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_search, container, false);
         context = getActivity();
@@ -40,32 +47,48 @@ public class SearchFragment extends BaseListViewFragment {
             @Override
             public void onClick(View v) {
                 adapter = null;
-                pageHelper = new PageHelper();
                 keyWord = editText.getText().toString();
                 keyWord = keyWord.trim().replace(" ", "+");
                 if (keyWord.length() == 0) {
                     editText.setHint(getString(R.string.not_empty));
                     return;
                 }
-                SearchClient.getSearchResult(SearchFragment.this, keyWord, pageHelper.nextPage());
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                if (mapItems.get(keyWord) != null) {
+                    initAdapterAndAddToList(keyWord);
+                    return;
+                }
+                pageHelper = new PageHelper();
+                closeInput();
                 LoadingDialog.openLoadingDialogLoadingMore(context);
+                SearchClient.getSearchResult(SearchFragment.this, keyWord, pageHelper.nextPage());
+
             }
+
         });
-        adapter = null;
+        if (keyWord != null && keyWord.length() != 0) {
+            if (mapItems.get(keyWord) != null) {
+                initAdapterAndAddToList(keyWord);
+            }
+        }
         return view;
     }
 
     @Override
-    public void onGetSearchResult(SearchBean searchBean) {
+    public void onGetSearchResult(String key, SearchBean searchBean) {
         LoadingDialog.closeDialog();
-        pageHelper.hasMoreOrNot(searchBean.getItems().size());
         if (adapter != null) {
+            pageHelper.hasMoreOrNot(searchBean.getItems().size());
             ((SearchAdapter) adapter).addSearchResult(searchBean.getItems());
             return;
         }
-        adapter = new SearchAdapter(context, searchBean.getItems());
+        mapItems.put(key, searchBean.getItems());
+        initAdapterAndAddToList(key);
+    }
+
+    private void initAdapterAndAddToList(String key) {
+        closeInput();
+        pageHelper = new PageHelper(mapItems.get(key).size());
+        adapter = new SearchAdapter(context, mapItems.get(key));
         initListView();
     }
 
@@ -78,6 +101,11 @@ public class SearchFragment extends BaseListViewFragment {
                 RepoDetailActivity.startRepoDetailActivity(context, fullName);
             }
         });
+    }
+
+    private void closeInput() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 
     @Override
