@@ -80,6 +80,7 @@ public class IssuesBeanAdapter extends BaseAdapter {
         ImageView ivAvatar;
         TextView tvIssueComments;
         TextView tvIssueCreation;
+        private String issueUrl;
 
         public ViewHolder(View view) {
             tvIssueNumber = (TextView) view.findViewById(R.id.tv_issue_number);
@@ -97,6 +98,11 @@ public class IssuesBeanAdapter extends BaseAdapter {
             Picasso.with(context).load(issuesBean.getUser().getAvatar_url()).placeholder(R.drawable.logo).into(ivAvatar);
             tvIssueComments.setText(String.valueOf(issuesBean.getComments()));
             tvIssueCreation.setText(issuesBean.getUser().getLogin() + " " + DateUtil.formate(issuesBean.getCreated_at()));
+            issueUrl = issuesBean.getHtml_url();
+        }
+
+        public String getIssueUrl() {
+            return issueUrl;
         }
     }
 }

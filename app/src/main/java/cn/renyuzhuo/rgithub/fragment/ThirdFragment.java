@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.activity.PageHelper;
 import cn.renyuzhuo.rgithub.adapter.IssuesBeanAdapter;
+import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.issues.IssuesBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.issues.IssuesClient;
@@ -69,5 +71,16 @@ public class ThirdFragment extends BaseListViewFragment {
         }
         LoadingDialog.openLoadingDialogLoading(context);
         IssuesClient.getIssues(this, pageHelper.nextPage());
+    }
+
+    @Override
+    public void afterInitListView() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String issueUrl = ((IssuesBeanAdapter.ViewHolder) view.getTag()).getIssueUrl();
+                OpenWeb.open(context, issueUrl);
+            }
+        });
     }
 }
