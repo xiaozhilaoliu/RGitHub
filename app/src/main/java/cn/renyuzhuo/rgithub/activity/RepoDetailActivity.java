@@ -208,7 +208,7 @@ public class RepoDetailActivity extends BaseActivity {
 
         RepoClient.getRepoReadMe(this, repoBean.getOwner().getLogin(), repoBean.getName());
 
-        if (repoBean.getHomepage() != null) {
+        if (repoBean.getHomepage() != null && repoBean.getHomepage().length() != 0) {
             eventsHomepage.setVisibility(View.VISIBLE);
             homePageLine.setVisibility(View.VISIBLE);
             eventsHomepage.setOnClickListener(new View.OnClickListener() {
