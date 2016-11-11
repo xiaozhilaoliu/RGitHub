@@ -1,6 +1,8 @@
 package cn.renyuzhuo.rgithub;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,9 @@ public class RGitHubMainActivity extends BaseActivity {
     RadioGroup radioGroup;
     TextView appTitle;
 
+    ImageButton searchTrending;
+    boolean isSearching = false;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,7 @@ public class RGitHubMainActivity extends BaseActivity {
         UpdateMain.getUpdateMain(this).ifNeedUpdate("RWebRTC", "RGitHub", "master", "version");
 
         appTitle = (TextView) findViewById(R.id.app_title);
+        searchTrending = (ImageButton) findViewById(R.id.search_trending);
 
         if (RGitHubApplication.isLogin) {
             initFinish();
@@ -41,7 +47,6 @@ public class RGitHubMainActivity extends BaseActivity {
         rlog.d();
         rlog.d("init finish");
         rlog.d();
-        initView();
         setOnClickListener();
         radioGroup.check(R.id.first);
         RGitHubApplication.isLogin = true;
@@ -53,10 +58,16 @@ public class RGitHubMainActivity extends BaseActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                group.check(checkedId);
+                if (checkedId != R.id.first) {
+                    searchTrending.setVisibility(View.GONE);
+                } else {
+                    searchTrending.setVisibility(View.VISIBLE);
+                }
                 switch (checkedId) {
                     case R.id.first: {
-                        appTitle.setText(getString(R.string.fragment_first_title));
-                        break;
+                        initSearchingView();
+                        return;
                     }
                     case R.id.second: {
                         appTitle.setText(getString(R.string.fragment_second_title));
@@ -75,14 +86,30 @@ public class RGitHubMainActivity extends BaseActivity {
                         break;
                     }
                 }
-                group.check(checkedId);
                 fragmentFactory.replaceFragment(RGitHubMainActivity.this, checkedId);
+            }
+        });
+
+        fragmentFactory = new FragmentFactory();
+        searchTrending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSearching = !isSearching;
+                initSearchingView();
             }
         });
     }
 
-    private void initView() {
-        fragmentFactory = new FragmentFactory();
+    private void initSearchingView() {
+        if (isSearching) {
+            appTitle.setText(getString(R.string.search));
+            searchTrending.setBackgroundResource(R.drawable.trending);
+            fragmentFactory.replaceFragment(RGitHubMainActivity.this, R.id.search_icon);
+        } else {
+            appTitle.setText(getString(R.string.fragment_first_title));
+            searchTrending.setBackgroundResource(R.drawable.search);
+            fragmentFactory.replaceFragment(RGitHubMainActivity.this, R.id.trending_icon);
+        }
     }
 
     private void login() {

@@ -25,7 +25,8 @@ public class FragmentFactory {
     private void initFragment() {
         if (map == null) {
             map = new HashMap<>();
-            map.put(R.id.first, new FirstFragment());
+            map.put(R.id.trending_icon, new FirstFragment());
+            map.put(R.id.search_icon, new SearchFragment());
             map.put(R.id.second, new SecondFragment());
             map.put(R.id.third, new ThirdFragment());
             map.put(R.id.fourth, new FourthFragment());

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="since" type="id" />
+    <item name="search_icon" type="id" />
+    <item name="trending_icon" type="id" />
 </resources>

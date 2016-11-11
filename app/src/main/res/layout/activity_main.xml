@@ -17,6 +17,12 @@
                 android:id="@+id/app_title"
                 style="@style/title_style.title_text"
                 android:text="@string/app_name" />
+
+            <ImageButton
+                android:id="@+id/search_trending"
+                style="@style/search_icon"
+                android:background="@drawable/search" />
+
         </RelativeLayout>
 
         <FrameLayout

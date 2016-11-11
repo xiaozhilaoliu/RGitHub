@@ -67,5 +67,11 @@ public class UpdateMain implements UpdateClientListener {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(version.getUrl()));
             context.startActivity(intent);
         }
+        updateMain = null;
+    }
+
+    @Override
+    public void onDoNotAcceptUpdate() {
+        updateMain = null;
     }
 }

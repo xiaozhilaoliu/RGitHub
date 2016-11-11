@@ -9,4 +9,6 @@ public interface UpdateClientListener {
     void onGetVersion(ResponseBody responseBody);
 
     void onAcceptUpdate();
+
+    void onDoNotAcceptUpdate();
 }
