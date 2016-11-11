@@ -2,7 +2,8 @@ package cn.renyuzhuo.rgithub.activity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Path;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
+import cn.renyuzhuo.rlog.rlog;
 
 public class SettingActivity extends Activity {
 
@@ -34,7 +36,19 @@ public class SettingActivity extends Activity {
         gotoRepo.setText(getString(R.string.repo_index));
 
         name.setText(getString(R.string.app_name));
-        bio.setText(getString(R.string.about_description));
+
+        String versionName = null;
+        try {
+            PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            versionName = pi.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            rlog.d("get package info err");
+        }
+        if (versionName != null) {
+            bio.setText(getString(R.string.about_description) + " ( " + versionName + " )");
+        } else {
+            bio.setText(getString(R.string.about_description));
+        }
         lay1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
