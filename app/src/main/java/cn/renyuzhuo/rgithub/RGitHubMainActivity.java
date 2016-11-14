@@ -7,7 +7,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.renyuzhuo.autoupdate.UpdateMain;
+import cn.renyuzhuo.rautoupdate.UpdateMain;
 import cn.renyuzhuo.rgithub.activity.BaseActivity;
 import cn.renyuzhuo.rgithub.activity.OtherUserInfoActivity;
 import cn.renyuzhuo.rgithub.fragment.FragmentFactory;

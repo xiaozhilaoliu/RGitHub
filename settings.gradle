@@ -1,1 +1,1 @@
-include ':app', ':rgithubandroidsdk', ':autoupdate'
+include ':app', ':rgithubandroidsdk'

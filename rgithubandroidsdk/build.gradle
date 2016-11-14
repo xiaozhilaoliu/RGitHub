@@ -51,4 +51,5 @@ dependencies {
 
     // rlog
     compile 'cn.renyuzhuo.rlog:rlog:0.1.2'
+    compile 'cn.renyuzhuo.rautoupdate:rautoupdate:0.0.1'
 }
