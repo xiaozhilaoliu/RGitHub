@@ -121,7 +121,7 @@ public class IssuesBeanAdapter extends BaseAdapter {
             tvIssueTitle.setText(issuesBean.getTitle());
             Picasso.with(context).load(issuesBean.getUser().getAvatar_url()).placeholder(R.drawable.logo).into(ivAvatar);
             tvIssueComments.setText(String.valueOf(issuesBean.getComments()));
-            tvIssueCreation.setText(issuesBean.getUser().getLogin() + " " + DateUtil.formate(issuesBean.getCreated_at()));
+            tvIssueCreation.setText(issuesBean.getUser().getLogin() + " " + DateUtil.formate(issuesBean.getUpdated_at()));
             issueUrl = issuesBean.getHtml_url();
         }
 
