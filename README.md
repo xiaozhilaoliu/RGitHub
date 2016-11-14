@@ -2,7 +2,7 @@
 
 RGitHub. A GitHub Client.
 
-一个 GitHub 客户端，加载内容会缓存，应用未关闭情况下，可能获取到的更新不够及时，但考虑到 GitHub 的特点，这样做是可以接受的。更多内容看 [这里](http://renyuzhuo.cn/#/issues/39)。
+一个 GitHub 客户端，加载内容会缓存，应用未关闭情况下，可能获取到的更新不够及时，但考虑到 GitHub 的特点，这样做是可以接受的。更多内容看 [这里](http://renyuzhuo.cn/rgithub)。
 
 # Download
 
@@ -29,6 +29,8 @@ From [Coding](https://coding.net/u/rwebrtc/p/RGitHub/git/raw/master/app-release.
 
 [CodeHub](http://codehub-app.com/)
 
+……
+
 # TODO
 
 - MarkDown README
@@ -36,4 +38,5 @@ From [Coding](https://coding.net/u/rwebrtc/p/RGitHub/git/raw/master/app-release.
 
 # LICENSE
 
-[MIT](http://renyuzhuo.cn/#/issues/37)
+[MIT](http://renyuzhuo.cn/MIT)
+
