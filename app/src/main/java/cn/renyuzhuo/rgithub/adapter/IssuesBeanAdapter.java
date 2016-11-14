@@ -2,14 +2,12 @@ package cn.renyuzhuo.rgithub.adapter;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -23,7 +21,6 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.issues.IssuesBean;
 /**
  * Created by renyuzhuo on 16-11-11.
  */
-@RequiresApi(api = Build.VERSION_CODES.M)
 public class IssuesBeanAdapter extends BaseAdapter {
 
     Context context;
@@ -100,11 +97,23 @@ public class IssuesBeanAdapter extends BaseAdapter {
 
         public void setData(IssuesBean issuesBean) {
             if (issuesBean.getState().equals("open")) {
-                issuesBack.setBackgroundColor(context.getResources().getColor(R.color.event_open, null));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    issuesBack.setBackgroundColor(context.getResources().getColor(R.color.event_open, null));
+                } else {
+                    issuesBack.setBackgroundColor(context.getResources().getColor(R.color.event_open));
+                }
             } else if (issuesBean.getState().equals("closed")) {
-                issuesBack.setBackgroundColor(context.getResources().getColor(R.color.event_del, null));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    issuesBack.setBackgroundColor(context.getResources().getColor(R.color.event_del, null));
+                } else {
+                    issuesBack.setBackgroundColor(context.getResources().getColor(R.color.event_del));
+                }
             } else {
-                issuesBack.setBackgroundColor(context.getResources().getColor(R.color.white, null));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    issuesBack.setBackgroundColor(context.getResources().getColor(R.color.white, null));
+                } else {
+                    issuesBack.setBackgroundColor(context.getResources().getColor(R.color.white));
+                }
             }
 
             tvIssueNumber.setText(context.getString(R.string.sp) + String.valueOf(issuesBean.getNumber()));
