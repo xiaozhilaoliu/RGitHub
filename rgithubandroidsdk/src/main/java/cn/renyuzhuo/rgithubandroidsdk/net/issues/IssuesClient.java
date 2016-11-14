@@ -17,7 +17,7 @@ public class IssuesClient {
     private static IssuesService issuesService = ApiBase.getInstance().build().create(IssuesService.class);
 
     public static void getIssues(final IssuesClientListener issuesClientListener, int page) {
-        issuesService.getIssues("token " + Token.getAuthorization(), "updated", "subscribed", "open", page)
+        issuesService.getIssues("token " + Token.getAuthorization(), "updated", "subscribed", "all", page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new MySubscriber<List<IssuesBean>>() {

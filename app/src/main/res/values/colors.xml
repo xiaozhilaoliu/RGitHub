@@ -129,4 +129,5 @@
     <color name="event_comment">#33d9c10d</color>
     <color name="event_issue">#33ce96f1</color>
     <color name="event_watch">#33969292</color>
+    <color name="event_open">#3308d70f</color>
 </resources>

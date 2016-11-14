@@ -31,7 +31,7 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
     ArrayAdapter sinceAdapter, languageAdapter;
     private Context context;
 
-    private static String slugString = "java";
+    private static String slugString = "";
     private static String sinceString = "daily";
     private TrendingAdapter.ViewHolder holder;
 

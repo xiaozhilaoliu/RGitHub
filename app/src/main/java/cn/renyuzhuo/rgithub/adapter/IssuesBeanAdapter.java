@@ -1,11 +1,15 @@
 package cn.renyuzhuo.rgithub.adapter;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -19,6 +23,7 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.issues.IssuesBean;
 /**
  * Created by renyuzhuo on 16-11-11.
  */
+@RequiresApi(api = Build.VERSION_CODES.M)
 public class IssuesBeanAdapter extends BaseAdapter {
 
     Context context;
@@ -74,6 +79,7 @@ public class IssuesBeanAdapter extends BaseAdapter {
     }
 
     public class ViewHolder {
+        LinearLayout issuesBack;
         TextView tvIssueNumber;
         TextView tvIssueRepoName;
         TextView tvIssueTitle;
@@ -83,6 +89,7 @@ public class IssuesBeanAdapter extends BaseAdapter {
         private String issueUrl;
 
         public ViewHolder(View view) {
+            issuesBack = (LinearLayout) view.findViewById(R.id.issues_back);
             tvIssueNumber = (TextView) view.findViewById(R.id.tv_issue_number);
             tvIssueRepoName = (TextView) view.findViewById(R.id.tv_issue_repo_name);
             tvIssueTitle = (TextView) view.findViewById(R.id.tv_issue_title);
@@ -92,6 +99,14 @@ public class IssuesBeanAdapter extends BaseAdapter {
         }
 
         public void setData(IssuesBean issuesBean) {
+            if (issuesBean.getState().equals("open")) {
+                issuesBack.setBackgroundColor(context.getResources().getColor(R.color.event_open, null));
+            } else if (issuesBean.getState().equals("closed")) {
+                issuesBack.setBackgroundColor(context.getResources().getColor(R.color.event_del, null));
+            } else {
+                issuesBack.setBackgroundColor(context.getResources().getColor(R.color.white, null));
+            }
+
             tvIssueNumber.setText(context.getString(R.string.sp) + String.valueOf(issuesBean.getNumber()));
             tvIssueRepoName.setText(issuesBean.getFullName());
             tvIssueTitle.setText(issuesBean.getTitle());
