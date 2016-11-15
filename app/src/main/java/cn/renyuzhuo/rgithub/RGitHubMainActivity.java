@@ -31,23 +31,32 @@ public class RGitHubMainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 应用自动更新检测
         UpdateMain.getUpdateMain(this).ifNeedUpdate("RWebRTC", "RGitHub", "master", "version");
+        rlog.d("auto update");
 
         appTitle = (TextView) findViewById(R.id.app_title);
         searchTrending = (ImageButton) findViewById(R.id.search_trending);
 
         if (RGitHubApplication.isLogin) {
-            initFinish();
+            // 如果登陆成功，进行界面初始化
+            rlog.d("login success and init view");
+            initView();
         } else {
+            rlog.d("login");
             login();
         }
     }
 
-    private void initFinish() {
+    /**
+     * 初始化界面
+     */
+    private void initView() {
         rlog.d();
         rlog.d("init finish");
         rlog.d();
         setOnClickListener();
+        rlog.d("select the first fragment by default");
         radioGroup.check(R.id.first);
         RGitHubApplication.isLogin = true;
         LoadingDialog.closeDialog();
@@ -68,6 +77,7 @@ public class RGitHubMainActivity extends BaseActivity {
                 }
                 switch (checkedId) {
                     case R.id.first: {
+                        // 第一个按钮，可能是search或者是treading，需要分别进行处理
                         initSearchingView();
                         return;
                     }
@@ -92,6 +102,7 @@ public class RGitHubMainActivity extends BaseActivity {
             }
         });
 
+        rlog.d("set search and treading listener");
         searchTrending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,12 +112,17 @@ public class RGitHubMainActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 初始化搜索按钮
+     */
     private void initSearchingView() {
         if (isSearching) {
+            rlog.d("search");
             appTitle.setText(getString(R.string.search));
             searchTrending.setBackgroundResource(R.drawable.trending);
             fragmentFactory.replaceFragment(RGitHubMainActivity.this, R.id.search_icon);
         } else {
+            rlog.d("treading");
             appTitle.setText(getString(R.string.fragment_first_title));
             searchTrending.setBackgroundResource(R.drawable.search);
             fragmentFactory.replaceFragment(RGitHubMainActivity.this, R.id.trending_icon);
@@ -114,6 +130,7 @@ public class RGitHubMainActivity extends BaseActivity {
     }
 
     private void login() {
+        rlog.d("login begin");
         LoadingDialog.openLoadingDialogLogin(this);
         LoginClient.setLoginSuccessListener(this);
         LoginClient.login(this, RGitHubApplication.clientId, RGitHubApplication.clientSecret, RGitHubApplication.redirectUri);
@@ -122,6 +139,7 @@ public class RGitHubMainActivity extends BaseActivity {
     @Override
     public void onLoginSuccess(AccessTokenBean accessToken) {
         rlog.d("login success");
+        rlog.d("get userInfo");
         UserInfoClient.getLoginUserInfo(this);
     }
 
@@ -132,6 +150,8 @@ public class RGitHubMainActivity extends BaseActivity {
         if (fragmentFactory != null) {
             fragmentFactory.onDestroy();
         }
+        rlog.d("exit application");
+        System.exit(0);
     }
 
     private long mPressedTime = 0;
@@ -140,16 +160,18 @@ public class RGitHubMainActivity extends BaseActivity {
     public void onBackPressed() {
         long mNowTime = System.currentTimeMillis();
         if ((mNowTime - mPressedTime) > 1000) {
+            rlog.d("back 1 times");
             Toast.makeText(this, getString(R.string.again), Toast.LENGTH_SHORT).show();
             mPressedTime = mNowTime;
         } else {
+            rlog.d("back 2 times and exit");
             this.finish();
-            System.exit(0);
         }
     }
 
     @Override
     public void onGetUserInfoSuccess() {
-        initFinish();
+        rlog.d("get userInfo success");
+        initView();
     }
 }

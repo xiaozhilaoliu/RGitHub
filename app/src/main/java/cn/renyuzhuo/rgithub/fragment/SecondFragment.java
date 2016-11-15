@@ -56,11 +56,6 @@ public class SecondFragment extends BaseListViewFragment {
     }
 
     @Override
-    public void afterInitListView() {
-
-    }
-
-    @Override
     public void loadMore() {
         if (!pageHelper.hasMore()) {
             if (pageHelper.showToast()) {

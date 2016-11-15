@@ -13,6 +13,7 @@ import cn.renyuzhuo.rlog.rlog;
  */
 public class OpenWeb {
     public static void open(Context context, String url) {
+        rlog.d("open Web");
         if (!url.contains("http://") && !url.contains("https://")) {
             url = "http://" + url;
         }

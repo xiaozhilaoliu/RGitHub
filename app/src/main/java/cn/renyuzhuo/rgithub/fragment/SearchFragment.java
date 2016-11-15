@@ -2,6 +2,7 @@ package cn.renyuzhuo.rgithub.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +26,7 @@ import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.search.Items;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.search.SearchBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.search.SearchClient;
+import cn.renyuzhuo.rlog.rlog;
 
 public class SearchFragment extends BaseListViewFragment {
 
@@ -34,23 +37,39 @@ public class SearchFragment extends BaseListViewFragment {
     String keyWord;
 
     private static Map<String, List<Items>> mapItems = new HashMap<>();
+    private static Map<String, Integer> mapCount = new HashMap<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_search, container, false);
+
         context = getActivity();
+
         listView = (ListView) view.findViewById(R.id.listview);
         search = (Button) view.findViewById(R.id.search);
         editText = (EditText) view.findViewById(R.id.search_edit);
+
+        initSearchClick();
+
+        if (keyWord != null && keyWord.length() != 0) {
+            if (mapItems.get(keyWord) != null) {
+                initAdapterAndAddToList(keyWord);
+            }
+        }
+        return view;
+    }
+
+    private void initSearchClick() {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 adapter = null;
-                keyWord = editText.getText().toString();
-                keyWord = keyWord.trim().replace(" ", "+");
+                // 处理关键子为去掉空格的小写字母
+                keyWord = editText.getText().toString().trim().toLowerCase();
+                rlog.d("keyWord: " + keyWord);
                 if (keyWord.length() == 0) {
-                    editText.setHint(getString(R.string.not_empty));
+                    editText.setHint(getString(R.string.please_input));
                     return;
                 }
                 if (mapItems.get(keyWord) != null) {
@@ -65,23 +84,20 @@ public class SearchFragment extends BaseListViewFragment {
             }
 
         });
-        if (keyWord != null && keyWord.length() != 0) {
-            if (mapItems.get(keyWord) != null) {
-                initAdapterAndAddToList(keyWord);
-            }
-        }
-        return view;
     }
 
     @Override
     public void onGetSearchResult(String key, SearchBean searchBean) {
         LoadingDialog.closeDialog();
         if (adapter != null) {
+            // 加载更多，追加结果
             pageHelper.hasMoreOrNot(searchBean.getItems().size());
             ((SearchAdapter) adapter).addSearchResult(searchBean.getItems());
             return;
         }
+        // 查询某一关键字
         mapItems.put(key, searchBean.getItems());
+        mapCount.put(key, searchBean.getTotal_count());
         initAdapterAndAddToList(key);
     }
 
@@ -90,6 +106,8 @@ public class SearchFragment extends BaseListViewFragment {
         pageHelper = new PageHelper(mapItems.get(key).size());
         adapter = new SearchAdapter(context, mapItems.get(key));
         initListView();
+        Toast.makeText(context, mapCount.get(key) + " " + getString(R.string.results),
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override

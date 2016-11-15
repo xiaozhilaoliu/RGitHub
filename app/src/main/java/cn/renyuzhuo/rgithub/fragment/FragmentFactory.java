@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.util.SparseArray;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,32 +16,30 @@ import cn.renyuzhuo.rgithub.R;
  */
 public class FragmentFactory {
 
-    private static Map<Integer, Fragment> map;
-    private FragmentTransaction trans;
+    private static SparseArray<Fragment> fragmentSparseArray;
 
     public FragmentFactory() {
         initFragment();
     }
 
     private void initFragment() {
-        if (map == null) {
-            map = new HashMap<>();
-            map.put(R.id.trending_icon, new FirstFragment());
-            map.put(R.id.search_icon, new SearchFragment());
-            map.put(R.id.second, new SecondFragment());
-            map.put(R.id.third, new ThirdFragment());
-            map.put(R.id.fourth, new FourthFragment());
+        if (fragmentSparseArray == null) {
+            fragmentSparseArray = new SparseArray<>();
+            fragmentSparseArray.put(R.id.trending_icon, new FirstFragment());
+            fragmentSparseArray.put(R.id.search_icon, new SearchFragment());
+            fragmentSparseArray.put(R.id.second, new SecondFragment());
+            fragmentSparseArray.put(R.id.third, new ThirdFragment());
+            fragmentSparseArray.put(R.id.fourth, new FourthFragment());
         }
     }
 
     public void replaceFragment(Activity activity, int checkedId) {
-        trans = activity.getFragmentManager().beginTransaction();
-        trans.replace(R.id.fragment, map.get(checkedId));
-        trans.commit();
+        activity.getFragmentManager().beginTransaction()
+                .replace(R.id.fragment, fragmentSparseArray.get(checkedId))
+                .commit();
     }
 
     public void onDestroy() {
-        map = null;
-        trans = null;
+        fragmentSparseArray = null;
     }
 }

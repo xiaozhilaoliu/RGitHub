@@ -25,17 +25,18 @@ import cn.renyuzhuo.rlog.rlog;
 public class BaseFragment extends Fragment implements EventClientListener, SearchClientListener, LogoutListener, IssuesClientListener {
     @Override
     public void onGetRepoEvent(List<EventBean> eventBeen) {
-
     }
 
     @Override
     public void onGetUserEvent(List<EventBean> eventBeen) {
-
     }
 
     @Override
     public void onGetSearchResult(String key, SearchBean searchBean) {
+    }
 
+    @Override
+    public void onGetIssues(List<IssuesBean> issuesBeanList) {
     }
 
     private int clearCacheFolder(File dir) {
@@ -59,20 +60,18 @@ public class BaseFragment extends Fragment implements EventClientListener, Searc
 
     @Override
     public void logout(Fragment fragment) {
+        rlog.d("logout");
         Toast.makeText(fragment.getActivity(), getString(R.string.logout_success), Toast.LENGTH_SHORT).show();
-        String chahePath = getActivity().getCacheDir().getPath() + "/app_webview";
-        rlog.d(chahePath);
-        clearCacheFolder(getActivity().getCacheDir());
-        clearCacheFolder(new File(chahePath));
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        String cachePath = getActivity().getCacheDir().getPath();
+        rlog.d(cachePath);
+        String webViewPath = cachePath + "/app_webview";
+        rlog.d(webViewPath);
+
+        rlog.d("begin clean cache");
+        clearCacheFolder(new File(cachePath));
+        clearCacheFolder(new File(webViewPath));
+        rlog.d("finish clean cache and will exit");
         System.exit(0);
     }
 
-    @Override
-    public void onGetIssues(List<IssuesBean> issuesBeanList) {
-    }
 }

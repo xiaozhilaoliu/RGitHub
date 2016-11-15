@@ -2,9 +2,11 @@ package cn.renyuzhuo.rgithub;
 
 import android.app.Application;
 
+import com.bumptech.glide.load.model.GlideUrl;
 import com.squareup.leakcanary.LeakCanary;
 
 import cn.renyuzhuo.rgithubandroidsdk.GitHubSdk;
+import cn.renyuzhuo.rlog.rlog;
 
 /**
  * Created by renyuzhuo on 16-10-30.
@@ -19,8 +21,11 @@ public class RGitHubApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        rlog.setDebugLever(rlog.DEBUG_LEVEL.debug);
+        rlog.d("init GitHubSdk");
         GitHubSdk.init(this);
 
+        rlog.d("LeakCanary init");
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return;
         }

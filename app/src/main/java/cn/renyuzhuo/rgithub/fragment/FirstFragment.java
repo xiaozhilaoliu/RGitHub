@@ -46,6 +46,20 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
         View view = inflater.inflate(R.layout.fragment_first, container, false);
         listView = (ListView) view.findViewById(R.id.listview);
 
+        initSpinner(view);
+
+        if (!hasGetTrending()) {
+            initTrending();
+        }
+
+        return view;
+    }
+
+    /**
+     * 初始化下拉列表监听
+     */
+    private void initSpinner(View view) {
+
         sinceAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.since, R.layout.first_fragment_spinner);
         since = (Spinner) view.findViewById(R.id.since);
         since.setAdapter(sinceAdapter);
@@ -58,8 +72,7 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (view != null) {
-                    slugString = ((TextView) view).getText().toString();
-                    rlog.d(slugString);
+                    slugString = spinnerSelected(view);
                     initTrending();
                 }
             }
@@ -69,28 +82,39 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (view != null) {
-                    sinceString = ((TextView) view).getText().toString();
-                    rlog.d(sinceString);
+                    sinceString = spinnerSelected(view);
                     initTrending();
                 }
             }
         });
-
-        if (mapTrending.get(sinceString + "/" + slugString) != null) {
-            adapter = new TrendingAdapter(context, mapTrending.get(sinceString + "/" + slugString));
-            initListView();
-        } else {
-            initTrending();
-        }
-
-        return view;
     }
 
-    private void initTrending() {
+    /**
+     * 下拉列表选择的字符串
+     */
+    private String spinnerSelected(View view) {
+        return ((TextView) view).getText().toString();
+    }
+
+    /**
+     * 是否获取过某一次查询结果，如果获取过，界面进行更新，返回 true
+     */
+    private boolean hasGetTrending() {
         if (mapTrending.get(sinceString + "/" + slugString) != null) {
+            rlog.d("has get the trending");
             adapter = new TrendingAdapter(context, mapTrending.get(sinceString + "/" + slugString));
             initListView();
+            return true;
         } else {
+            return false;
+        }
+    }
+
+    /**
+     * 初始化热门项目界面
+     */
+    private void initTrending() {
+        if (!hasGetTrending()) {
             if (!isLoading) {
                 isLoading = true;
                 TrendingClient.getTrending(this, sinceString, slugString);
@@ -114,6 +138,7 @@ public class FirstFragment extends BaseListViewFragment implements TrendingClien
 
     @Override
     public void onNetErr() {
+        rlog.d("internet err");
         isLoading = false;
         LoadingDialog.closeDialog();
         Toast.makeText(context, getString(R.string.net_err), Toast.LENGTH_SHORT).show();

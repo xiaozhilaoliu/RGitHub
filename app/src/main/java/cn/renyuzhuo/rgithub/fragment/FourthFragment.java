@@ -1,22 +1,16 @@
 package cn.renyuzhuo.rgithub.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.RGitHubApplication;
@@ -26,7 +20,6 @@ import cn.renyuzhuo.rgithub.activity.SettingActivity;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
-import cn.renyuzhuo.rlog.rlog;
 
 public class FourthFragment extends BaseFragment {
 
