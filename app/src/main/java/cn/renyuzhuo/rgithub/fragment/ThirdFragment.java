@@ -54,7 +54,7 @@ public class ThirdFragment extends BaseListViewFragment {
         pageHelper.hasMoreOrNot(issuesBeanList.size());
 
         if (adapter != null) {
-            ((IssuesBeanAdapter) adapter).addIssues(issuesBeanList);
+            adapter.addLists(issuesBeanList);
             return;
         }
         adapter = new IssuesBeanAdapter(context, issuesBeanList);

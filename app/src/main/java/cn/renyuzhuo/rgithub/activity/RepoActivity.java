@@ -91,7 +91,7 @@ public class RepoActivity extends BaseListViewActivity {
         pageHelper.hasMoreOrNot(repoBeanList.size());
 
         if (adapter != null) {
-            ((ReposAdapter) adapter).addRepo(repoBeanList);
+            adapter.addLists(repoBeanList);
             return;
         }
 

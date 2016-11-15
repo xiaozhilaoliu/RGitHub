@@ -19,15 +19,12 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 /**
  * Created by renyuzhuo on 16-11-1.
  */
-public class ReposAdapter extends BaseAdapter {
+public class ReposAdapter extends ListBaseAdapter {
 
     private boolean isFullName = false;
-    private Context context;
-    private List<RepoBean> repoBeanList;
 
     public ReposAdapter(Context context, List<RepoBean> repoBeanList) {
-        this.context = context;
-        this.repoBeanList = repoBeanList;
+        super(context, repoBeanList);
     }
 
     public ReposAdapter(Context context, List<RepoBean> repoBeanList, boolean isFullName) {
@@ -36,27 +33,11 @@ public class ReposAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        if (repoBeanList != null) {
-            return repoBeanList.size();
-        }
-        return 0;
-    }
-
-    @Override
     public RepoBean getItem(int position) {
-        if (repoBeanList != null) {
-            return repoBeanList.get(position);
+        if (lists != null) {
+            return (RepoBean) lists.get(position);
         }
         return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        if (repoBeanList != null) {
-            return repoBeanList.get(position).hashCode();
-        }
-        return 0;
     }
 
     @Override
@@ -73,11 +54,6 @@ public class ReposAdapter extends BaseAdapter {
         viewHolder.setData(getItem(position));
         return view;
 
-    }
-
-    public void addRepo(List<RepoBean> repoBeen) {
-        repoBeanList.addAll(repoBeen);
-        notifyDataSetChanged();
     }
 
     public class ViewHolder {

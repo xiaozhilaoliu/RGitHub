@@ -21,38 +21,18 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.issues.IssuesBean;
 /**
  * Created by renyuzhuo on 16-11-11.
  */
-public class IssuesBeanAdapter extends BaseAdapter {
-
-    Context context;
-    List<IssuesBean> issuesBeanList;
+public class IssuesBeanAdapter extends ListBaseAdapter {
 
     public IssuesBeanAdapter(Context context, List<IssuesBean> issuesBeanList) {
-        this.context = context;
-        this.issuesBeanList = issuesBeanList;
-    }
-
-    @Override
-    public int getCount() {
-        if (issuesBeanList != null) {
-            return issuesBeanList.size();
-        }
-        return 0;
+        super(context, issuesBeanList);
     }
 
     @Override
     public IssuesBean getItem(int position) {
-        if (issuesBeanList != null) {
-            return issuesBeanList.get(position);
+        if (lists != null) {
+            return (IssuesBean) lists.get(position);
         }
         return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        if (issuesBeanList != null) {
-            return issuesBeanList.get(position).hashCode();
-        }
-        return 0;
     }
 
     @Override
@@ -68,11 +48,6 @@ public class IssuesBeanAdapter extends BaseAdapter {
         }
         viewHolder.setData(getItem(position));
         return view;
-    }
-
-    public void addIssues(List<IssuesBean> issuesBeanList) {
-        this.issuesBeanList.addAll(issuesBeanList);
-        notifyDataSetChanged();
     }
 
     public class ViewHolder {

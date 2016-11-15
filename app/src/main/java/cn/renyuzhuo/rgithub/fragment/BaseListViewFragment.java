@@ -6,13 +6,14 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import cn.renyuzhuo.rgithub.activity.PageHelper;
+import cn.renyuzhuo.rgithub.adapter.ListBaseAdapter;
 import cn.renyuzhuo.rlog.rlog;
 
 /**
  * Created by renyuzhuo on 16-11-3.
  */
 public class BaseListViewFragment extends BaseFragment {
-    BaseAdapter adapter;
+    ListBaseAdapter adapter;
     ListView listView;
     PageHelper pageHelper;
 

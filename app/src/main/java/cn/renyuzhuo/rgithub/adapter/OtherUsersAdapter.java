@@ -18,37 +18,18 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 /**
  * Created by renyuzhuo on 16-11-1.
  */
-public class OtherUsersAdapter extends BaseAdapter {
-    private List<OtherUserInfoBean> otherUserInfoBeenList;
-    private Context context;
+public class OtherUsersAdapter extends ListBaseAdapter {
 
     public OtherUsersAdapter(Context context, List<OtherUserInfoBean> otherUserInfoBeenList) {
-        this.otherUserInfoBeenList = otherUserInfoBeenList;
-        this.context = context;
-    }
-
-    @Override
-    public int getCount() {
-        if (otherUserInfoBeenList != null) {
-            return otherUserInfoBeenList.size();
-        }
-        return 0;
+        super(context, otherUserInfoBeenList);
     }
 
     @Override
     public OtherUserInfoBean getItem(int position) {
-        if (otherUserInfoBeenList != null) {
-            return otherUserInfoBeenList.get(position);
+        if (lists != null) {
+            return (OtherUserInfoBean) lists.get(position);
         }
         return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        if (otherUserInfoBeenList != null) {
-            return otherUserInfoBeenList.get(position).hashCode();
-        }
-        return 0;
     }
 
     @Override
@@ -64,11 +45,6 @@ public class OtherUsersAdapter extends BaseAdapter {
         }
         viewHolder.setData(getItem(position));
         return view;
-    }
-
-    public void addUserInfo(List<OtherUserInfoBean> list) {
-        otherUserInfoBeenList.addAll(list);
-        notifyDataSetChanged();
     }
 
     public class ViewHolder {

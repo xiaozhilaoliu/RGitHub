@@ -80,7 +80,7 @@ public class OtherUsersActivity extends BaseListViewActivity {
         pageHelper.hasMoreOrNot(otherUserInfoBeenList.size());
 
         if (adapter != null) {
-            ((OtherUsersAdapter) adapter).addUserInfo(otherUserInfoBeenList);
+            adapter.addLists(otherUserInfoBeenList);
             return;
         }
 

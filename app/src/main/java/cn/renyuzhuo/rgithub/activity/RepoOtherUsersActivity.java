@@ -103,7 +103,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         pageHelper.hasMoreOrNot(otherUserInfoBeenList.size());
 
         if (adapter != null) {
-            ((OtherUsersAdapter) adapter).addUserInfo(otherUserInfoBeenList);
+            adapter.addLists(otherUserInfoBeenList);
             return;
         }
 
@@ -119,7 +119,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         pageHelper.hasMoreOrNot(repoBeanList.size());
 
         if (adapter != null) {
-            ((ReposAdapter) adapter).addRepo(repoBeanList);
+            adapter.addLists(repoBeanList);
             return;
         }
 

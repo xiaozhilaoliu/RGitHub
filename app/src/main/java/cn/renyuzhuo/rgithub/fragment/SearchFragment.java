@@ -92,7 +92,7 @@ public class SearchFragment extends BaseListViewFragment {
         if (adapter != null) {
             // 加载更多，追加结果
             pageHelper.hasMoreOrNot(searchBean.getItems().size());
-            ((SearchAdapter) adapter).addSearchResult(searchBean.getItems());
+            adapter.addLists(searchBean.getItems());
             return;
         }
         // 查询某一关键字

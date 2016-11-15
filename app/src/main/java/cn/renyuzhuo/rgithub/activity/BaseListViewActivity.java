@@ -5,13 +5,14 @@ import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
+import cn.renyuzhuo.rgithub.adapter.ListBaseAdapter;
 import cn.renyuzhuo.rlog.rlog;
 
 /**
  * Created by renyuzhuo on 16-11-2.
  */
 public class BaseListViewActivity extends BaseActivity {
-    BaseAdapter adapter;
+    ListBaseAdapter adapter;
     ListView listView;
     PageHelper pageHelper;
 

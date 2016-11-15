@@ -18,38 +18,18 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.trending.TrendingBean;
 /**
  * Created by renyuzhuo on 16-11-7.
  */
-public class TrendingAdapter extends BaseAdapter {
-
-    private final Context context;
-    private final List<TrendingBean> trendingBeanList;
+public class TrendingAdapter extends ListBaseAdapter {
 
     public TrendingAdapter(Context context, List<TrendingBean> trendingBeanList) {
-        this.context = context;
-        this.trendingBeanList = trendingBeanList;
-    }
-
-    @Override
-    public int getCount() {
-        if (trendingBeanList != null) {
-            return trendingBeanList.size();
-        }
-        return 0;
+        super(context, trendingBeanList);
     }
 
     @Override
     public TrendingBean getItem(int position) {
-        if (trendingBeanList != null) {
-            return trendingBeanList.get(position);
+        if (lists != null) {
+            return (TrendingBean) lists.get(position);
         }
         return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        if (trendingBeanList != null) {
-            return trendingBeanList.get(position).hashCode();
-        }
-        return 0;
     }
 
     @Override

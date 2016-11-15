@@ -19,38 +19,18 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.search.SearchBean;
 /**
  * Created by renyuzhuo on 16-11-7.
  */
-public class SearchAdapter extends BaseAdapter {
-
-    Context context;
-    List<Items> itemses;
+public class SearchAdapter extends ListBaseAdapter {
 
     public SearchAdapter(Context context, List<Items> itemses) {
-        this.context = context;
-        this.itemses = itemses;
-    }
-
-    @Override
-    public int getCount() {
-        if (itemses != null) {
-            return itemses.size();
-        }
-        return 0;
+        super(context, itemses);
     }
 
     @Override
     public Items getItem(int position) {
-        if (itemses != null) {
-            return itemses.get(position);
+        if (lists != null) {
+            return (Items) lists.get(position);
         }
         return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        if (itemses != null) {
-            return itemses.get(position).hashCode();
-        }
-        return 0;
     }
 
     @Override
@@ -69,12 +49,6 @@ public class SearchAdapter extends BaseAdapter {
         viewHolder.setData(getItem(position));
         return view;
     }
-
-    public void addSearchResult(List<Items> itemsList) {
-        itemses.addAll(itemsList);
-        notifyDataSetChanged();
-    }
-
 
     public class ViewHolder {
         ImageView ownerAvatar;
