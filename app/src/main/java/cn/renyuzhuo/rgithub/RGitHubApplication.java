@@ -5,6 +5,8 @@ import android.app.Application;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.squareup.leakcanary.LeakCanary;
 
+import java.util.Map;
+
 import cn.renyuzhuo.rgithubandroidsdk.GitHubSdk;
 import cn.renyuzhuo.rlog.rlog;
 

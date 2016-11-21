@@ -49,6 +49,7 @@
     <string name="sp">#</string>
     <string name="please_input">Please Input</string>
     <string name="results">results</string>
+    <string name="not_following">Unfollowing</string>
 
 
 </resources>

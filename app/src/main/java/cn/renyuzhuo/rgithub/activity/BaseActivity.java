@@ -28,6 +28,26 @@ public class BaseActivity extends Activity implements UserInfoClientListener, Re
     }
 
     @Override
+    public void onNotFollowing(String username) {
+
+    }
+
+    @Override
+    public void onFollowing(String username) {
+
+    }
+
+    @Override
+    public void onDeletetFollowingSuccess() {
+
+    }
+
+    @Override
+    public void onPutFollowingSuccess() {
+
+    }
+
+    @Override
     public void onGetRepoList(List<RepoBean> repoBeanList) {
 
     }

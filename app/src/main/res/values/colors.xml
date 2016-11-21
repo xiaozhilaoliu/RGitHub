@@ -121,6 +121,7 @@
     <color name="dialog_text_color">#454549</color>
     <color name="account_setting_disable_text_color">#33000000</color>
     <color name="red">#d4ef2112</color>
+    <color name="green">#d409d141</color>
 
     <color name="event_del">#33ff0000</color>
     <color name="event_fork">#331342ed</color>

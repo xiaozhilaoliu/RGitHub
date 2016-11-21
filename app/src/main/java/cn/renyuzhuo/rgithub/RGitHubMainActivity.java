@@ -174,4 +174,5 @@ public class RGitHubMainActivity extends BaseActivity {
         rlog.d("get userInfo success");
         initView();
     }
+
 }

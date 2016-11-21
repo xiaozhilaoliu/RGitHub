@@ -19,6 +19,7 @@ import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
+import cn.renyuzhuo.rlog.rlog;
 
 public class OtherUsersActivity extends BaseListViewActivity {
 
@@ -117,5 +118,10 @@ public class OtherUsersActivity extends BaseListViewActivity {
                 OtherUserInfoActivity.startOtherUserInfoActivity(context, ((OtherUsersAdapter.ViewHolder) view.getTag()).getName());
             }
         });
+    }
+
+    public static void followingUpdate(String username) {
+        rlog.d("followingUpdate");
+        mapFollowing.remove(username);
     }
 }

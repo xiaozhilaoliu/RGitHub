@@ -10,12 +10,26 @@
 
     <include layout="@layout/goto_star_layout" />
 
-    <include layout="@layout/sqlit_line_horizontal" />
+    <include
+        android:id="@+id/stars_horizontal"
+        layout="@layout/sqlit_line_horizontal" />
 
     <include layout="@layout/goto_repo_layout" />
 
     <include layout="@layout/sqlit_line_horizontal" />
 
     <include layout="@layout/repo_website_layout" />
+
+    <include layout="@layout/sqlit_line_horizontal" />
+
+    <include
+        android:id="@+id/post_not_following"
+        layout="@layout/following_not"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/post_following"
+        layout="@layout/following"
+        android:visibility="gone" />
 
 </LinearLayout>

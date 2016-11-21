@@ -101,4 +101,53 @@ public class UserInfoClient {
                 });
     }
 
+    public static void isFollowing(final UserInfoClientListener userInfoClientListener, final String username) {
+        userService.isFollowing("token " + Token.getAuthorization(), username)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new MySubscriber<Void>() {
+                    @Override
+                    public void onNext(Void aVoid) {
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onFollowing(username);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onNotFollowing(username);
+                        }
+                    }
+                });
+    }
+
+    public static void notFollowing(final UserInfoClientListener userInfoClientListener, String username) {
+        userService.notFollowing("token " + Token.getAuthorization(), username)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new MySubscriber<Void>() {
+                    @Override
+                    public void onNext(Void aVoid) {
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onDeletetFollowingSuccess();
+                        }
+                    }
+                });
+
+    }
+
+    public static void following(final UserInfoClientListener userInfoClientListener, String username) {
+        userService.following("token " + Token.getAuthorization(), username)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new MySubscriber<Void>() {
+                    @Override
+                    public void onNext(Void aVoid) {
+                        if (userInfoClientListener != null) {
+                            userInfoClientListener.onPutFollowingSuccess();
+                        }
+                    }
+                });
+    }
 }

@@ -5,9 +5,11 @@ import java.util.List;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Completable;
@@ -63,4 +65,29 @@ public interface UserService {
     Observable<List<OtherUserInfoBean>> getRepoFollowList(@Header("Authorization") String token, @Path("username") String username,
                                                           @Path("reponame") String reponame, @Path("type") String type,
                                                           @Query("page") int page);
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "User-Agent: RGitHub"
+    })
+    @GET("/user/following/{username}")
+    Observable<Void> isFollowing(@Header("Authorization") String token, @Path("username") String username);
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "Content-Length: 0",
+            "User-Agent: RGitHub"
+    })
+    @DELETE("/user/following/{username}")
+    Observable<Void> notFollowing(@Header("Authorization") String token, @Path("username") String username);
+
+    @Headers({
+            "Accept: application/json",
+            "Content-Type: application/json",
+            "User-Agent: RGitHub"
+    })
+    @PUT("/user/following/{username}")
+    Observable<Void> following(@Header("Authorization") String token, @Path("username") String username);
 }

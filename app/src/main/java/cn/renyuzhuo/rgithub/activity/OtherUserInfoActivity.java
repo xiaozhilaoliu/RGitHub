@@ -3,6 +3,7 @@ package cn.renyuzhuo.rgithub.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +18,9 @@ import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
+import cn.renyuzhuo.rlog.rlog;
 
 public class OtherUserInfoActivity extends BaseActivity {
 
@@ -33,8 +36,11 @@ public class OtherUserInfoActivity extends BaseActivity {
     String username;
 
     LinearLayout starts, repos;
+    View starsHorizontal;
 
     LinearLayout websit;
+
+    View followingSomebody, notFollowingSomebody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +70,12 @@ public class OtherUserInfoActivity extends BaseActivity {
         following = (LinearLayout) findViewById(R.id.following);
 
         starts = (LinearLayout) findViewById(R.id.stars);
+        starsHorizontal = findViewById(R.id.stars_horizontal);
         repos = (LinearLayout) findViewById(R.id.repos);
         websit = (LinearLayout) findViewById(R.id.websit);
+
+        followingSomebody = findViewById(R.id.post_following);
+        notFollowingSomebody = findViewById(R.id.post_not_following);
     }
 
     private void initUserView() {
@@ -95,12 +105,22 @@ public class OtherUserInfoActivity extends BaseActivity {
             }
         });
 
-        starts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RepoActivity.startActivity(context, username, getString(R.string.stars));
-            }
-        });
+        rlog.d("Type:" + otherUserInfoDetailBean.getType());
+
+        if (otherUserInfoDetailBean.getType().equals("Organization")) {
+            starts.setVisibility(View.GONE);
+            starsHorizontal.setVisibility(View.GONE);
+        } else {
+            starts.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RepoActivity.startActivity(context, username, getString(R.string.stars));
+                }
+            });
+
+            UserInfoClient.isFollowing(this, username);
+
+        }
 
         repos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,4 +162,40 @@ public class OtherUserInfoActivity extends BaseActivity {
         map.put(username, otherUserInfoDetailBean);
     }
 
+    @Override
+    public void onFollowing(final String username) {
+        notFollowingSomebody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserInfoClient.notFollowing(OtherUserInfoActivity.this, username);
+            }
+        });
+        notFollowingSomebody.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onNotFollowing(final String username) {
+        followingSomebody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserInfoClient.following(OtherUserInfoActivity.this, username);
+            }
+        });
+        followingSomebody.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onDeletetFollowingSuccess() {
+        notFollowingSomebody.setVisibility(View.GONE);
+        onNotFollowing(username);
+
+        OtherUsersActivity.followingUpdate(UserInfoBean.getInstance().getLogin());
+    }
+
+    @Override
+    public void onPutFollowingSuccess() {
+        followingSomebody.setVisibility(View.GONE);
+        onFollowing(username);
+        OtherUsersActivity.followingUpdate(UserInfoBean.getInstance().getLogin());
+    }
 }
