@@ -24,6 +24,7 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.UserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
 import cn.renyuzhuo.rgithubandroidsdk.net.user.UserInfoClient;
+import cn.renyuzhuo.rlog.rlog;
 
 public class RepoOtherUsersActivity extends BaseListViewActivity {
 
@@ -53,6 +54,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         List<OtherUserInfoBean> tempOtherUserInfoBean;
         repoFullName = username + "/" + reponame;
         if (type.equals(getString(R.string.stargazers))) {
+            rlog.d(getString(R.string.stargazers));
             titleText.setText(getString(R.string.stargazers));
             tempOtherUserInfoBean = GitHubData.getStarOtherUserInfoBeansMap().get(repoFullName);
             if (tempOtherUserInfoBean != null) {
@@ -63,6 +65,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
             pageHelper = new PageHelper();
             UserInfoClient.getRepoFollows(this, username, reponame, "stargazers", pageHelper.nextPage());
         } else if (type.equals(getString(R.string.forks))) {
+            rlog.d(getString(R.string.forks));
             titleText.setText(getString(R.string.forks));
             if (GitHubData.getForkRepoBeansMap().get(repoFullName) != null) {
                 pageHelper = new PageHelper(GitHubData.getForkRepoBeansMap().get(repoFullName).size());
@@ -72,6 +75,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
             pageHelper = new PageHelper();
             RepoClient.getRepoForks(this, username, reponame, "forks", pageHelper.nextPage());
         } else if (type.equals(getString(R.string.watchers))) {
+            rlog.d(getString(R.string.watchers));
             titleText.setText(getString(R.string.watchers));
             if (GitHubData.getWatchOtherUserInfoBeansMap().get(repoFullName) != null) {
                 pageHelper = new PageHelper(GitHubData.getWatchOtherUserInfoBeansMap().get(repoFullName).size());
@@ -95,7 +99,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
     }
 
     @Override
-    public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
+    public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList, String type) {
         LoadingDialog.closeDialog();
         pageHelper.hasMoreOrNot(otherUserInfoBeenList.size());
 
@@ -107,7 +111,11 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         adapter = new OtherUsersAdapter(context, otherUserInfoBeenList);
         initListView();
 
-        GitHubData.getStarOtherUserInfoBeansMap().put(repoFullName, otherUserInfoBeenList);
+        if (type.equals(getString(R.string.stargazers))) {
+            GitHubData.getStarOtherUserInfoBeansMap().put(repoFullName, otherUserInfoBeenList);
+        } else if (type.equals(getString(R.string.stargazers))) {
+            GitHubData.getWatchOtherUserInfoBeansMap().put(repoFullName, otherUserInfoBeenList);
+        }
     }
 
     @Override
@@ -123,7 +131,9 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         adapter = new ReposAdapter(context, repoBeanList, true);
         initListView();
 
-        GitHubData.getForkRepoBeansMap().put(repoFullName, repoBeanList);
+        if (type.equals(getString(R.string.forks))) {
+            GitHubData.getForkRepoBeansMap().put(repoFullName, repoBeanList);
+        }
     }
 
     public void loadMore() {

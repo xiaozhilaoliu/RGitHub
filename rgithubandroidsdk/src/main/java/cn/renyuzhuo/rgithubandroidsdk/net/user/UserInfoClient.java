@@ -87,7 +87,7 @@ public class UserInfoClient {
         getRepoOtherUserList(userInfoClientListener, username, reponame, type, page);
     }
 
-    private static void getRepoOtherUserList(final UserInfoClientListener userInfoClientListener, String username, String reponame, String type, int page) {
+    private static void getRepoOtherUserList(final UserInfoClientListener userInfoClientListener, String username, String reponame, final String type, int page) {
         userService.getRepoFollowList("token " + Token.getAuthorization(), username, reponame, type, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -95,7 +95,7 @@ public class UserInfoClient {
                     @Override
                     public void onNext(List<OtherUserInfoBean> otherUserInfoBeenList) {
                         if (userInfoClientListener != null) {
-                            userInfoClientListener.onGetUserList(otherUserInfoBeenList);
+                            userInfoClientListener.onGetUserList(otherUserInfoBeenList, type);
                         }
                     }
                 });

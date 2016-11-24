@@ -68,6 +68,11 @@ public class BaseActivity extends Activity implements UserInfoClientListener, Re
     }
 
     @Override
+    public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList, String type) {
+
+    }
+
+    @Override
     public void onLoginSuccess(AccessTokenBean accessToken) {
 
     }

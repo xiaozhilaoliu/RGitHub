@@ -14,6 +14,8 @@ public interface UserInfoClientListener extends BaseListener {
 
     void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList);
 
+    void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList, String type);
+
     void onGetOtherUserInfoSuccess(OtherUserInfoDetailBean otherUserInfoBean);
 
     void onNotFollowing(String username);
@@ -23,4 +25,5 @@ public interface UserInfoClientListener extends BaseListener {
     void onDeletetFollowingSuccess();
 
     void onPutFollowingSuccess();
+
 }
