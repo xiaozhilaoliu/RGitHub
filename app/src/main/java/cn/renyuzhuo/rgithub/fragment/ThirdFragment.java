@@ -79,7 +79,7 @@ public class ThirdFragment extends BaseListViewFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String issueUrl = ((IssuesBeanAdapter.ViewHolder) view.getTag()).getIssueUrl();
-                OpenWeb.open(context, issueUrl);
+                OpenWeb.open(issueUrl);
             }
         });
     }

@@ -14,17 +14,22 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBea
  */
 public class GitHubData {
 
+    // OtherUserInfoActivity
     private static Map<String, OtherUserInfoDetailBean> otherUserInfoDetailBeanMap = new HashMap<>();
 
+    // EventActivity
     private static Map<String, List<EventBean>> userEventBeansMap = new HashMap<>();
     private static Map<String, List<EventBean>> repoEventBeansMap = new HashMap<>();
 
+    // OtherUsersActivity
     private static Map<String, List<OtherUserInfoBean>> followerOtherUserInfoBeansMap = new HashMap<>();
     private static Map<String, List<OtherUserInfoBean>> followingOtherUserInfoBeansMap = new HashMap<>();
 
+    // RepoActivity
     private static Map<String, List<RepoBean>> starRepoBeansMap = new HashMap<>();
     private static Map<String, List<RepoBean>> repoRepoBeansMap = new HashMap<>();
 
+    // RepoOtherUsersActivity
     private static Map<String, List<OtherUserInfoBean>> starOtherUserInfoBeansMap = new HashMap<>();
     private static Map<String, List<RepoBean>> forkRepoBeansMap = new HashMap<>();
     private static Map<String, List<OtherUserInfoBean>> watchOtherUserInfoBeansMap = new HashMap<>();

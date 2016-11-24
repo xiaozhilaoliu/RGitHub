@@ -12,7 +12,13 @@ import cn.renyuzhuo.rlog.rlog;
  * Created by renyuzhuo on 16-11-3.
  */
 public class OpenWeb {
-    public static void open(Context context, String url) {
+
+    static Context context;
+
+    public static void open(String url) {
+        if (context == null) {
+            rlog.e("OpenWeb.context == null");
+        }
         rlog.d("open Web");
         if (!url.contains("http://") && !url.contains("https://")) {
             url = "http://" + url;
@@ -26,5 +32,9 @@ public class OpenWeb {
             rlog.eend();
             Toast.makeText(context, context.getString(R.string.url_err), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static void init(Context context) {
+        OpenWeb.context = context;
     }
 }

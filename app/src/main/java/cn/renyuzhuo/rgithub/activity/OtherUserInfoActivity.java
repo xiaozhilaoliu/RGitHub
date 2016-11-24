@@ -133,7 +133,7 @@ public class OtherUserInfoActivity extends BaseActivity {
         websit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, otherUserInfoDetailBean.getHtml_url());
+                OpenWeb.open(otherUserInfoDetailBean.getHtml_url());
             }
         });
 

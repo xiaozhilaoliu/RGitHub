@@ -7,6 +7,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 import java.util.Map;
 
+import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.GitHubSdk;
 import cn.renyuzhuo.rlog.rlog;
 
@@ -26,6 +27,7 @@ public class RGitHubApplication extends Application {
         rlog.setDebugLever(rlog.DEBUG_LEVEL.debug);
         rlog.d("init GitHubSdk");
         GitHubSdk.init(this);
+        OpenWeb.init(this);
 
         rlog.d("LeakCanary init");
         if (LeakCanary.isInAnalyzerProcess(this)) {

@@ -52,14 +52,14 @@ public class SettingActivity extends Activity {
         lay1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, "http://renyuzhuo.cn");
+                OpenWeb.open("http://renyuzhuo.cn");
             }
         });
 
         repos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, "http://github.com/RWebRTC/RGitHub");
+                OpenWeb.open("http://github.com/RWebRTC/RGitHub");
             }
         });
     }

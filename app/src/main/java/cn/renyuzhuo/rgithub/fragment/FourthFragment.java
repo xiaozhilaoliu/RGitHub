@@ -116,7 +116,7 @@ public class FourthFragment extends BaseFragment {
         websit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, UserInfoBean.getInstance().getHtml_url());
+                OpenWeb.open(UserInfoBean.getInstance().getHtml_url());
             }
         });
 

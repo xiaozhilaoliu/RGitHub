@@ -173,7 +173,7 @@ public class RepoDetailActivity extends BaseActivity {
             eventsWarn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    OpenWeb.open(context, "https://github.com/" + repoBean.getFull_name() + "/issues");
+                    OpenWeb.open("https://github.com/" + repoBean.getFull_name() + "/issues");
                 }
             });
         }
@@ -181,28 +181,28 @@ public class RepoDetailActivity extends BaseActivity {
         commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, "https://github.com/" + repoBean.getFull_name() + "/commits");
+                OpenWeb.open("https://github.com/" + repoBean.getFull_name() + "/commits");
             }
         });
 
         pull.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, "https://github.com/" + repoBean.getFull_name() + "/pulls");
+                OpenWeb.open("https://github.com/" + repoBean.getFull_name() + "/pulls");
             }
         });
 
         source.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, "https://github.com/" + repoBean.getFull_name() + "?files=1");
+                OpenWeb.open("https://github.com/" + repoBean.getFull_name() + "?files=1");
             }
         });
 
         website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open(context, repoBean.getHtml_url());
+                OpenWeb.open(repoBean.getHtml_url());
             }
         });
 
@@ -214,7 +214,7 @@ public class RepoDetailActivity extends BaseActivity {
             eventsHomepage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    OpenWeb.open(context, repoBean.getHomepage());
+                    OpenWeb.open(repoBean.getHomepage());
                 }
             });
         }
@@ -228,7 +228,7 @@ public class RepoDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 //                MarkdownActivity.startMarkdownActivity(context, readme.getDownload_url().replace("https://raw.githubusercontent.com/", ""));
-                OpenWeb.open(context, readme.getHtml_url());
+                OpenWeb.open(readme.getHtml_url());
             }
         });
     }
