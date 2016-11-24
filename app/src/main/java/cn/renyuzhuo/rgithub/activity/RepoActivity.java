@@ -15,6 +15,7 @@ import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.adapter.ReposAdapter;
+import cn.renyuzhuo.rgithub.utils.GitHubData;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.repo.RepoClient;
@@ -28,10 +29,6 @@ public class RepoActivity extends BaseListViewActivity {
 
     TextView titleText;
     Context context;
-
-
-    private static Map<String, List<RepoBean>> mapStars = new HashMap<>();
-    private static Map<String, List<RepoBean>> mapRepos = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +47,8 @@ public class RepoActivity extends BaseListViewActivity {
         if (type.equals(getString(R.string.stars))) {
             isStars = true;
             titleText.setText(getString(R.string.stars));
-            if (mapStars.get(username) != null) {
-                List<RepoBean> tempRepoBeanList = mapStars.get(username);
+            if (GitHubData.getStarRepoBeansMap().get(username) != null) {
+                List<RepoBean> tempRepoBeanList = GitHubData.getStarRepoBeansMap().get(username);
                 pageHelper = new PageHelper(tempRepoBeanList.size());
                 initList(tempRepoBeanList);
                 return;
@@ -61,8 +58,8 @@ public class RepoActivity extends BaseListViewActivity {
         } else {
             isStars = false;
             titleText.setText(getString(R.string.repos));
-            if (mapRepos.get(username) != null) {
-                List<RepoBean> tempRepoBeanList = mapRepos.get(username);
+            if (GitHubData.getRepoRepoBeansMap().get(username) != null) {
+                List<RepoBean> tempRepoBeanList = GitHubData.getRepoRepoBeansMap().get(username);
                 pageHelper = new PageHelper(tempRepoBeanList.size());
                 initList(tempRepoBeanList);
                 return;
@@ -99,9 +96,9 @@ public class RepoActivity extends BaseListViewActivity {
         initListView();
 
         if (isStars) {
-            mapStars.put(username, repoBeanList);
+            GitHubData.getStarRepoBeansMap().put(username, repoBeanList);
         } else {
-            mapRepos.put(username, repoBeanList);
+            GitHubData.getRepoRepoBeansMap().put(username, repoBeanList);
         }
     }
 

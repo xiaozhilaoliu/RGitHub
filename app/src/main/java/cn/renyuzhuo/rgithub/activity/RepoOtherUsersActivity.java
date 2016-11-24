@@ -16,6 +16,7 @@ import java.util.Map;
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.adapter.OtherUsersAdapter;
 import cn.renyuzhuo.rgithub.adapter.ReposAdapter;
+import cn.renyuzhuo.rgithub.utils.GitHubData;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event.Repo;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
@@ -33,10 +34,6 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
     TextView titleText;
 
     Context context;
-
-    private static Map<String, List<OtherUserInfoBean>> mapStars = new HashMap<>();
-    private static Map<String, List<RepoBean>> mapFocks = new HashMap<>();
-    private static Map<String, List<OtherUserInfoBean>> mapWatch = new HashMap<>();
     String repoFullName;
 
     @Override
@@ -57,7 +54,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         repoFullName = username + "/" + reponame;
         if (type.equals(getString(R.string.stargazers))) {
             titleText.setText(getString(R.string.stargazers));
-            tempOtherUserInfoBean = mapStars.get(repoFullName);
+            tempOtherUserInfoBean = GitHubData.getStarOtherUserInfoBeansMap().get(repoFullName);
             if (tempOtherUserInfoBean != null) {
                 pageHelper = new PageHelper(tempOtherUserInfoBean.size());
                 initListUser(tempOtherUserInfoBean);
@@ -67,18 +64,18 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
             UserInfoClient.getRepoFollows(this, username, reponame, "stargazers", pageHelper.nextPage());
         } else if (type.equals(getString(R.string.forks))) {
             titleText.setText(getString(R.string.forks));
-            if (mapFocks.get(repoFullName) != null) {
-                pageHelper = new PageHelper(mapFocks.get(repoFullName).size());
-                initListRepo(mapFocks.get(repoFullName));
+            if (GitHubData.getForkRepoBeansMap().get(repoFullName) != null) {
+                pageHelper = new PageHelper(GitHubData.getForkRepoBeansMap().get(repoFullName).size());
+                initListRepo(GitHubData.getForkRepoBeansMap().get(repoFullName));
                 return;
             }
             pageHelper = new PageHelper();
             RepoClient.getRepoForks(this, username, reponame, "forks", pageHelper.nextPage());
         } else if (type.equals(getString(R.string.watchers))) {
             titleText.setText(getString(R.string.watchers));
-            if (mapWatch.get(repoFullName) != null) {
-                pageHelper = new PageHelper(mapWatch.get(repoFullName).size());
-                initListUser(mapWatch.get(repoFullName));
+            if (GitHubData.getWatchOtherUserInfoBeansMap().get(repoFullName) != null) {
+                pageHelper = new PageHelper(GitHubData.getWatchOtherUserInfoBeansMap().get(repoFullName).size());
+                initListUser(GitHubData.getWatchOtherUserInfoBeansMap().get(repoFullName));
                 return;
             }
             pageHelper = new PageHelper();
@@ -110,7 +107,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         adapter = new OtherUsersAdapter(context, otherUserInfoBeenList);
         initListView();
 
-        mapStars.put(repoFullName, otherUserInfoBeenList);
+        GitHubData.getStarOtherUserInfoBeansMap().put(repoFullName, otherUserInfoBeenList);
     }
 
     @Override
@@ -126,7 +123,7 @@ public class RepoOtherUsersActivity extends BaseListViewActivity {
         adapter = new ReposAdapter(context, repoBeanList, true);
         initListView();
 
-        mapFocks.put(repoFullName, repoBeanList);
+        GitHubData.getForkRepoBeansMap().put(repoFullName, repoBeanList);
     }
 
     public void loadMore() {

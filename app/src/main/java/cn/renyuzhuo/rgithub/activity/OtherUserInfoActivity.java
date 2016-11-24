@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
+import cn.renyuzhuo.rgithub.utils.GitHubData;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
@@ -25,7 +26,7 @@ import cn.renyuzhuo.rlog.rlog;
 public class OtherUserInfoActivity extends BaseActivity {
 
     Context context;
-    public static Map<String, OtherUserInfoDetailBean> map = new HashMap<>();
+
     private Intent intent;
 
     ImageView avatar;
@@ -50,8 +51,8 @@ public class OtherUserInfoActivity extends BaseActivity {
 
         intent = getIntent();
         username = intent.getStringExtra("name");
-        if (map.get(username) != null) {
-            onGetOtherUserInfoSuccess(map.get(username));
+        if (GitHubData.getOtherUserInfoDetailBeanMap().get(username) != null) {
+            onGetOtherUserInfoSuccess(GitHubData.getOtherUserInfoDetailBeanMap().get(username));
             return;
         }
         UserInfoClient.getOtherUserInfo(this, username);
@@ -150,7 +151,7 @@ public class OtherUserInfoActivity extends BaseActivity {
     }
 
     public static void clear() {
-        map.clear();
+        GitHubData.getOtherUserInfoDetailBeanMap().clear();
     }
 
     @Override
@@ -159,7 +160,7 @@ public class OtherUserInfoActivity extends BaseActivity {
         LoadingDialog.closeDialog();
         initViews();
         initUserView();
-        map.put(username, otherUserInfoDetailBean);
+        GitHubData.getOtherUserInfoDetailBeanMap().put(username, otherUserInfoDetailBean);
     }
 
     @Override

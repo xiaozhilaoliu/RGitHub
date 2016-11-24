@@ -13,6 +13,7 @@ import java.util.Map;
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.adapter.RepoEventAdapter;
 import cn.renyuzhuo.rgithub.adapter.UserEventAdapter;
+import cn.renyuzhuo.rgithub.utils.GitHubData;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event.EventBean;
 import cn.renyuzhuo.rgithubandroidsdk.net.Event.EventClient;
@@ -22,8 +23,6 @@ public class EventActivity extends BaseListViewActivity {
     Intent intent;
     Context context;
     String username, pname, type;
-    private static Map<String, List<EventBean>> mapRepoEvent = new HashMap<>();
-    private static Map<String, List<EventBean>> mapUserEvent = new HashMap<>();
 
     private boolean isRepoEvent;
     String mapName;
@@ -45,8 +44,8 @@ public class EventActivity extends BaseListViewActivity {
         if (type.equals(getString(R.string.project_event))) {
             isRepoEvent = true;
             mapName = username + "/" + pname;
-            if (mapRepoEvent.get(mapName) != null) {
-                List<EventBean> tempEventBeen = mapRepoEvent.get(mapName);
+            if (GitHubData.getRepoEventBeansMap().get(mapName) != null) {
+                List<EventBean> tempEventBeen = GitHubData.getRepoEventBeansMap().get(mapName);
                 pageHelper = new PageHelper(tempEventBeen.size());
                 initList(tempEventBeen);
                 return;
@@ -56,8 +55,8 @@ public class EventActivity extends BaseListViewActivity {
         } else if (type.equals(getString(R.string.person_event))) {
             isRepoEvent = false;
             mapName = username;
-            if (mapUserEvent.get(mapName) != null) {
-                List<EventBean> tempEventBean = mapUserEvent.get(mapName);
+            if (GitHubData.getUserEventBeansMap().get(mapName) != null) {
+                List<EventBean> tempEventBean = GitHubData.getUserEventBeansMap().get(mapName);
                 pageHelper = new PageHelper(tempEventBean.size());
                 initList(tempEventBean);
                 return;
@@ -97,9 +96,9 @@ public class EventActivity extends BaseListViewActivity {
         initListView();
 
         if (isRepoEvent) {
-            mapRepoEvent.put(mapName, eventBeen);
+            GitHubData.getRepoEventBeansMap().put(mapName, eventBeen);
         } else {
-            mapUserEvent.put(mapName, eventBeen);
+            GitHubData.getUserEventBeansMap().put(mapName, eventBeen);
         }
     }
 

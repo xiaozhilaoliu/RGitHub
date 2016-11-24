@@ -15,6 +15,7 @@ import java.util.Map;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.adapter.OtherUsersAdapter;
+import cn.renyuzhuo.rgithub.utils.GitHubData;
 import cn.renyuzhuo.rgithubandroidsdk.Dialog.LoadingDialog;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
@@ -28,9 +29,6 @@ public class OtherUsersActivity extends BaseListViewActivity {
     TextView titleText;
     Context context;
     private boolean isFollowing;
-
-    private static Map<String, List<OtherUserInfoBean>> mapFollowers = new HashMap<>();
-    private static Map<String, List<OtherUserInfoBean>> mapFollowing = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +45,8 @@ public class OtherUsersActivity extends BaseListViewActivity {
         if (type.equals(getString(R.string.followers))) {
             isFollowing = false;
             titleText.setText(getString(R.string.followers));
-            if (mapFollowers.get(username) != null) {
-                List<OtherUserInfoBean> tempOtherUserInfo = mapFollowers.get(username);
+            if (GitHubData.getFollowerOtherUserInfoBeansMap().get(username) != null) {
+                List<OtherUserInfoBean> tempOtherUserInfo = GitHubData.getFollowerOtherUserInfoBeansMap().get(username);
                 pageHelper = new PageHelper(tempOtherUserInfo.size());
                 initList(tempOtherUserInfo);
                 return;
@@ -58,8 +56,8 @@ public class OtherUsersActivity extends BaseListViewActivity {
         } else if (type.equals(getString(R.string.following))) {
             isFollowing = true;
             titleText.setText(getString(R.string.following));
-            if (mapFollowing.get(username) != null) {
-                List<OtherUserInfoBean> tempOtherUserInfo = mapFollowing.get(username);
+            if (GitHubData.getFollowingOtherUserInfoBeansMap().get(username) != null) {
+                List<OtherUserInfoBean> tempOtherUserInfo = GitHubData.getFollowingOtherUserInfoBeansMap().get(username);
                 pageHelper = new PageHelper(tempOtherUserInfo.size());
                 initList(tempOtherUserInfo);
                 return;
@@ -89,9 +87,9 @@ public class OtherUsersActivity extends BaseListViewActivity {
         initListView();
 
         if (isFollowing) {
-            mapFollowing.put(username, otherUserInfoBeenList);
+            GitHubData.getFollowingOtherUserInfoBeansMap().put(username, otherUserInfoBeenList);
         } else {
-            mapFollowers.put(username, otherUserInfoBeenList);
+            GitHubData.getFollowerOtherUserInfoBeansMap().put(username, otherUserInfoBeenList);
         }
     }
 
@@ -122,6 +120,6 @@ public class OtherUsersActivity extends BaseListViewActivity {
 
     public static void followingUpdate(String username) {
         rlog.d("followingUpdate");
-        mapFollowing.remove(username);
+        GitHubData.getFollowingOtherUserInfoBeansMap().remove(username);
     }
 }
