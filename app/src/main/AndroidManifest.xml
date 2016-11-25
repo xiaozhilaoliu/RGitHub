@@ -24,7 +24,8 @@
         <activity android:name=".activity.RepoDetailActivity" />
         <activity android:name=".activity.EventActivity" />
         <activity android:name=".activity.RepoOtherUsersActivity" />
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.NotifyActivity"></activity>
     </application>
 
 </manifest>

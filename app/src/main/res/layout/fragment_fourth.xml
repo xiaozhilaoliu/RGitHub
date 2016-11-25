@@ -18,6 +18,10 @@
 
             <include layout="@layout/user_base" />
 
+            <include layout="@layout/notify" />
+
+            <include layout="@layout/sqlit_line_horizontal" />
+
             <include layout="@layout/repo_rgithub" />
 
             <include layout="@layout/sqlit_line_horizontal" />

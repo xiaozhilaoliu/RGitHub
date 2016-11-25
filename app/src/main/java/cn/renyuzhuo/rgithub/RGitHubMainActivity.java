@@ -57,7 +57,7 @@ public class RGitHubMainActivity extends BaseActivity {
         rlog.d();
         setOnClickListener();
         rlog.d("select the first fragment by default");
-        radioGroup.check(R.id.first);
+        radioGroup.check(R.id.fourth);
         RGitHubApplication.isLogin = true;
         LoadingDialog.closeDialog();
     }

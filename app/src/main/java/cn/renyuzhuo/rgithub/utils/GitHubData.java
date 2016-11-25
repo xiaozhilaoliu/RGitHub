@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.event.EventBean;
+import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.notify.NotifyBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.repo.RepoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoBean;
 import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBean;
@@ -33,6 +34,7 @@ public class GitHubData {
     private static Map<String, List<OtherUserInfoBean>> starOtherUserInfoBeansMap = new HashMap<>();
     private static Map<String, List<RepoBean>> forkRepoBeansMap = new HashMap<>();
     private static Map<String, List<OtherUserInfoBean>> watchOtherUserInfoBeansMap = new HashMap<>();
+    private static List<NotifyBean> notifyBeanList;
 
     public static Map<String, OtherUserInfoDetailBean> getOtherUserInfoDetailBeanMap() {
         return otherUserInfoDetailBeanMap;
@@ -72,5 +74,13 @@ public class GitHubData {
 
     public static Map<String, List<OtherUserInfoBean>> getWatchOtherUserInfoBeansMap() {
         return watchOtherUserInfoBeansMap;
+    }
+
+    public static void setNotifyBeanList(List<NotifyBean> notifyBeanList) {
+        GitHubData.notifyBeanList = notifyBeanList;
+    }
+
+    public static List<NotifyBean> getNotifyBeanList() {
+        return notifyBeanList;
     }
 }

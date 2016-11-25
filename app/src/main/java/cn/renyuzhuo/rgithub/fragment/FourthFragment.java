@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import cn.renyuzhuo.rgithub.R;
 import cn.renyuzhuo.rgithub.RGitHubApplication;
+import cn.renyuzhuo.rgithub.activity.NotifyActivity;
 import cn.renyuzhuo.rgithub.activity.OtherUsersActivity;
 import cn.renyuzhuo.rgithub.activity.RepoActivity;
 import cn.renyuzhuo.rgithub.activity.SettingActivity;
@@ -38,6 +39,8 @@ public class FourthFragment extends BaseFragment {
     LinearLayout forkMe;
 
     LinearLayout logout;
+
+    LinearLayout notify;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +70,8 @@ public class FourthFragment extends BaseFragment {
         starts = (LinearLayout) view.findViewById(R.id.stars);
         repos = (LinearLayout) view.findViewById(R.id.repos);
         websit = (LinearLayout) view.findViewById(R.id.websit);
+
+        notify = (LinearLayout) view.findViewById(R.id.notify);
 
         forkMe = (LinearLayout) view.findViewById(R.id.fork_me);
         logout = (LinearLayout) view.findViewById(R.id.logout);
@@ -132,6 +137,14 @@ public class FourthFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 LoadingDialog.logoutDialog(FourthFragment.this, FourthFragment.this);
+            }
+        });
+
+        notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, NotifyActivity.class);
+                context.startActivity(intent);
             }
         });
     }

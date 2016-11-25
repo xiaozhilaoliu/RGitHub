@@ -52,5 +52,7 @@
     <string name="please_input">Please Input</string>
     <string name="results">results</string>
     <string name="not_following">Unfollowing</string>
+    <string name="notify">Notification</string>
+    <string name="no_notify">No notifications</string>
 
 </resources>
