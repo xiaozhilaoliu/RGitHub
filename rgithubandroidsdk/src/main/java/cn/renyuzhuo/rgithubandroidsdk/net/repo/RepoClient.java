@@ -92,4 +92,55 @@ public class RepoClient {
                     }
                 });
     }
+
+    public static void ifStarRepo(final RepoClientListener repoClientListener, final String username, final String reponame) {
+        repoService.ifStarRepo("token " + Token.getAuthorization(), username, reponame)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new MySubscriber<Void>() {
+                    @Override
+                    public void onNext(Void aVoid) {
+                        rlog.d("ifStarRepo: Success");
+                        if (repoClientListener != null) {
+                            repoClientListener.onHaveStar(username, reponame);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        rlog.d("ifStarRepo: ERR");
+                        if (repoClientListener != null) {
+                            repoClientListener.onNotStar(username, reponame);
+                        }
+                    }
+                });
+    }
+
+    public static void starRepo(final RepoClientListener repoClientListener, final String username, final String reponame) {
+        repoService.starRepo("token " + Token.getAuthorization(), username, reponame)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new MySubscriber<Void>() {
+                    @Override
+                    public void onNext(Void aVoid) {
+                        if (repoClientListener != null) {
+                            repoClientListener.onStarSuccess(username, reponame);
+                        }
+                    }
+                });
+    }
+
+    public static void unStarRepo(final RepoClientListener repoClientListener, final String username, final String reponame) {
+        repoService.unStarRepo("token " + Token.getAuthorization(), username, reponame)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new MySubscriber<Void>() {
+                    @Override
+                    public void onNext(Void aVoid) {
+                        if (repoClientListener != null) {
+                            repoClientListener.onUnStarSuccess(username, reponame);
+                        }
+                    }
+                });
+    }
 }

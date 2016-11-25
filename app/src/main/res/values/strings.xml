@@ -20,6 +20,8 @@
     <string name="commit">Commits</string>
     <string name="pull">Pull Request</string>
     <string name="source">Source</string>
+    <string name="star_this_repo">Star This Repo</string>
+    <string name="un_star_this_repo">Unstar This Repo</string>
     <string name="project_event">ProjectEvent</string>
     <string name="person_event">PersonEvent</string>
     <string name="homepage">HomePage</string>
@@ -50,6 +52,5 @@
     <string name="please_input">Please Input</string>
     <string name="results">results</string>
     <string name="not_following">Unfollowing</string>
-
 
 </resources>

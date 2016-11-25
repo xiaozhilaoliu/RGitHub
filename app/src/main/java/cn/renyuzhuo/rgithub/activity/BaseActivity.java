@@ -63,6 +63,26 @@ public class BaseActivity extends Activity implements UserInfoClientListener, Re
     }
 
     @Override
+    public void onNotStar(String username, String reponame) {
+
+    }
+
+    @Override
+    public void onHaveStar(String username, String reponame) {
+
+    }
+
+    @Override
+    public void onStarSuccess(String username, String reponame) {
+
+    }
+
+    @Override
+    public void onUnStarSuccess(String username, String reponame) {
+
+    }
+
+    @Override
     public void onGetUserList(List<OtherUserInfoBean> otherUserInfoBeenList) {
 
     }

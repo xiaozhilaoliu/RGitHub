@@ -114,4 +114,47 @@
 
         </RelativeLayout>
     </LinearLayout>
+
+    <View
+        android:id="@+id/before_star_repo"
+        style="@style/horizontal_line"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/star_repo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <RelativeLayout
+            style="@style/repo_state_detail_relative_style"
+            android:background="@color/green">
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerInParent="true"
+                android:text="@string/star_this_repo" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/un_star_repo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <RelativeLayout
+            style="@style/repo_state_detail_relative_style"
+            android:background="@color/red">
+
+            <TextView
+                style="@style/repo_state_detail_text_style"
+                android:layout_centerInParent="true"
+                android:text="@string/un_star_this_repo" />
+
+        </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

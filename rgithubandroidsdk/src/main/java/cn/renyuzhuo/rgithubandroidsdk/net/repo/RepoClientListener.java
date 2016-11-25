@@ -15,4 +15,12 @@ public interface RepoClientListener extends BaseListener {
     void onGetRepo(RepoBean repoBean);
 
     void onGetReadme(Readme readme);
+
+    void onNotStar(String username, String reponame);
+
+    void onHaveStar(String username, String reponame);
+
+    void onStarSuccess(String username, String reponame);
+
+    void onUnStarSuccess(String username, String reponame);
 }

@@ -7,7 +7,6 @@
     </string-array>
 
     <string-array name="language">
-        <item></item>
         <item>java</item>
         <item>cpp</item>
         <item>html</item>
@@ -17,5 +16,6 @@
         <item>objective-c</item>
         <item>sql</item>
         <item>shell</item>
+        <item></item>
     </string-array>
 </resources>

@@ -26,6 +26,8 @@ import cn.renyuzhuo.rlog.rlog;
 
 public class RepoDetailActivity extends BaseActivity {
 
+    String username, reponame;
+
     private static Map<String, RepoBean> mapRepos = new HashMap<>();
     Intent intent;
     Context context;
@@ -48,6 +50,9 @@ public class RepoDetailActivity extends BaseActivity {
 
     LinearLayout website;
 
+    LinearLayout starRepo, unStarRepo;
+    View beforeStarRepoLine;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,15 +63,17 @@ public class RepoDetailActivity extends BaseActivity {
         repoBean = mapRepos.get(fullname);
         rlog.d(repoBean);
         findViewIds();
+        String[] names = fullname.split("/");
+        if (names != null && names.length == 2) {
+            username = names[0];
+            reponame = names[1];
+        }
         if (repoBean != null) {
             initView();
             initListener();
         } else {
-            String[] names = fullname.split("/");
-            if (names != null && names.length == 2) {
-                LoadingDialog.openLoadingDialogLoading(context);
-                RepoClient.getRepo(this, names[0], names[1]);
-            }
+            LoadingDialog.openLoadingDialogLoading(context);
+            RepoClient.getRepo(this, username, reponame);
         }
     }
 
@@ -113,9 +120,13 @@ public class RepoDetailActivity extends BaseActivity {
         source = (LinearLayout) findViewById(R.id.source);
         website = (LinearLayout) findViewById(R.id.websit);
 
+        starRepo = (LinearLayout) findViewById(R.id.star_repo);
+        unStarRepo = (LinearLayout) findViewById(R.id.un_star_repo);
+        beforeStarRepoLine = findViewById(R.id.before_star_repo);
     }
 
     private void initView() {
+        RepoClient.ifStarRepo(this, username, reponame);
         Picasso.with(context).load(repoBean.getOwner().getAvatar_url()).placeholder(R.drawable.logo).into(avatar);
         repoName.setText(repoBean.getName());
         description.setText(repoBean.getDescription());
@@ -218,6 +229,20 @@ public class RepoDetailActivity extends BaseActivity {
                 }
             });
         }
+
+        starRepo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoClient.starRepo(RepoDetailActivity.this, username, reponame);
+            }
+        });
+
+        unStarRepo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepoClient.unStarRepo(RepoDetailActivity.this, username, reponame);
+            }
+        });
     }
 
     @Override
@@ -237,5 +262,37 @@ public class RepoDetailActivity extends BaseActivity {
         Intent intent = new Intent(context, RepoDetailActivity.class);
         intent.putExtra("fullname", repoName);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void onHaveStar(String username, String reponame) {
+        if (repoBean.getFull_name().equals(username + "/" + reponame)) {
+            showBeforeStarRepoLine();
+            unStarRepo.setVisibility(View.VISIBLE);
+            starRepo.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onNotStar(String username, String reponame) {
+        if (repoBean.getFull_name().equals(username + "/" + reponame)) {
+            showBeforeStarRepoLine();
+            unStarRepo.setVisibility(View.GONE);
+            starRepo.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void showBeforeStarRepoLine() {
+        beforeStarRepoLine.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onStarSuccess(String username, String reponame) {
+        onHaveStar(username, reponame);
+    }
+
+    @Override
+    public void onUnStarSuccess(String username, String reponame) {
+        onNotStar(username, reponame);
     }
 }
