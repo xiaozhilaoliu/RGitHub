@@ -62,14 +62,10 @@ public class BaseFragment extends Fragment implements EventClientListener, Searc
     public void logout(Fragment fragment) {
         rlog.d("logout");
         Toast.makeText(fragment.getActivity(), getString(R.string.logout_success), Toast.LENGTH_SHORT).show();
-        String cachePath = getActivity().getCacheDir().getPath();
-        rlog.d(cachePath);
-        String webViewPath = cachePath + "/app_webview";
-        rlog.d(webViewPath);
+        String apkRunPath = "/data/data/cn.renyuzhuo.rgithub";
 
         rlog.d("begin clean cache");
-        clearCacheFolder(new File(cachePath));
-        clearCacheFolder(new File(webViewPath));
+        clearCacheFolder(new File(apkRunPath));
         rlog.d("finish clean cache and will exit");
         System.exit(0);
     }
