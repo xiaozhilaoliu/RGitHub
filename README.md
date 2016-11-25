@@ -1,8 +1,8 @@
 # RGitHub
 
-RGitHub. A GitHub Client.
+RGitHub. A Quick GitHub Client.
 
-一个 GitHub 客户端，加载内容会缓存，应用未关闭情况下，可能获取到的更新不够及时，但考虑到 GitHub 的特点，这样做是可以接受的。更多内容看 [这里](http://renyuzhuo.cn/rgithub)。
+一个 GitHub 客户端，加载内容会缓存，应用未关闭情况下，可能获取到的更新不够及时，但考虑到 GitHub 的特点，这样做是可以接受的。更多内容看 [这里](http://renyuzhuo.cn/rgithub)。感谢 Coding.net，要是 GitHub 有像 Coding 一样好用的（或者说适合我的）客户端，那也就没有此项目了。
 
 # Download
 
@@ -35,10 +35,14 @@ From [Coding](https://coding.net/u/rwebrtc/p/RGitHub/git/raw/master/app-release.
 
 ……
 
+# GitHub API
+
+TODO 说明
+
 # TODO
 
 - MarkDown README
-- 横屏显示图标
+- 横屏显示图标（需要有审美细胞的同志帮助）
 
 # LICENSE
 
