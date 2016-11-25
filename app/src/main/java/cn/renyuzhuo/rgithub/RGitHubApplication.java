@@ -1,6 +1,7 @@
 package cn.renyuzhuo.rgithub;
 
 import android.app.Application;
+import android.net.Uri;
 import android.os.Environment;
 
 
@@ -46,7 +47,18 @@ public class RGitHubApplication extends Application {
     }
 
     private void initPicasso() {
-        Picasso picasso = new Picasso.Builder(getApplicationContext()).downloader(new OkHttpDownloader(new File(picTempPath))).build();
+        Picasso picasso = new Picasso.Builder(getApplicationContext())
+                .downloader(new OkHttpDownloader(new File(picTempPath)))
+                .listener(new Picasso.Listener() {
+                    @Override
+                    public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception) {
+                        rlog.d("Picasso download pic err:" + uri.toString());
+                        rlog.ebegin();
+                        exception.printStackTrace();
+                        rlog.eend();
+                    }
+                })
+                .build();
         Picasso.setSingletonInstance(picasso);
     }
 
