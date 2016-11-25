@@ -131,4 +131,5 @@
     <color name="event_issue">#33ce96f1</color>
     <color name="event_watch">#33969292</color>
     <color name="event_open">#3308d70f</color>
+    <color name="event_public" >#33a72681</color>
 </resources>

@@ -117,6 +117,12 @@ class EventViewHolder {
                 setBackGroundColor(R.color.event_del);
                 break;
             }
+            case "PublicEvent": {
+                titleString = eventBean.getActor().getLogin() + " made " + eventBean.getRepo().getName() + " public";
+                eventIcon.setImageResource(R.drawable.commit);
+                setBackGroundColor(R.color.event_public);
+                break;
+            }
         }
         eventEvent.setText(titleString);
         eventTime.setText(DateUtil.formate(eventBean.getCreated_at()));
