@@ -35,8 +35,6 @@
     <string name="fragment_fourth_title">Me</string>
     <string name="about_description">A GitHub Client</string>
     <string name="developer_website">Developer Website</string>
-    <string name="repo_index">Index</string>
-
 
     <string name="rgithub_description">一个 GitHub 客户端，对下载过的数据进行缓存（非持久化），重复页面不重复加载，显示更快。由于 GitHub 信息更新不频繁，这样做是可行的。\n\n
         该应用开发动机为没有找到合适的 GitHub 客户端，主要对信息进行查看。如果需要更改信息，还是去 GitHub 网站更方便。\n\n
@@ -54,5 +52,6 @@
     <string name="not_following">Unfollowing</string>
     <string name="notify">Notification</string>
     <string name="no_notify">No notifications</string>
+    <string name="repo_feedback">Feedback</string>
 
 </resources>

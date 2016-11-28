@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.renyuzhuo.rgithub.R;
+import cn.renyuzhuo.rgithub.utils.GitHubData;
 import cn.renyuzhuo.rgithub.utils.OpenWeb;
 import cn.renyuzhuo.rlog.rlog;
 
@@ -33,7 +34,7 @@ public class SettingActivity extends Activity {
         lay1 = (LinearLayout) findViewById(R.id.lay1);
         repos = (LinearLayout) findViewById(R.id.repos);
         gotoRepo = (TextView) findViewById(R.id.goto_repo);
-        gotoRepo.setText(getString(R.string.repo_index));
+        gotoRepo.setText(getString(R.string.repo_feedback));
 
         name.setText(getString(R.string.app_name));
 
@@ -52,14 +53,14 @@ public class SettingActivity extends Activity {
         lay1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open("http://renyuzhuo.cn");
+                OpenWeb.open(GitHubData.getDeveloperWebSite());
             }
         });
 
         repos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenWeb.open("http://github.com/RWebRTC/RGitHub");
+                OpenWeb.open(GitHubData.getFeedback());
             }
         });
     }

@@ -15,6 +15,17 @@ import cn.renyuzhuo.rgithubandroidsdk.bean.githubean.user.OtherUserInfoDetailBea
  */
 public class GitHubData {
 
+    private static String developerWebSite = "http://renyuzhuo.cn/#/issues/11";
+    private static String feedback = "http://github.com/RWebRTC/RGitHub/issues/new";
+
+    public static String getDeveloperWebSite() {
+        return developerWebSite;
+    }
+
+    public static String getFeedback() {
+        return feedback;
+    }
+
     // OtherUserInfoActivity
     private static Map<String, OtherUserInfoDetailBean> otherUserInfoDetailBeanMap = new HashMap<>();
 
