@@ -71,5 +71,4 @@ public class DivideIntoClass extends Thread {
 		}
 		super.run();
 	}
-
 }

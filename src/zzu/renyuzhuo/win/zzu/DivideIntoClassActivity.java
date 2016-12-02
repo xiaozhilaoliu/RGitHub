@@ -25,8 +25,8 @@ import android.widget.Toast;
 
 @SuppressLint("HandlerLeak")
 public class DivideIntoClassActivity extends Activity {
-	private static final String[] year = { "2015", "2014", "2013", "2012",
-			"2016" };
+	private static final String[] year = { "2017", "2016", "2015", "2014", "2013", "2012",
+			"2018" };
 	private String nj, sfzh;
 	Handler mHandler;
 	public static String html;
